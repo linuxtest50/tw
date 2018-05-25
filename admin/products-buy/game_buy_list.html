@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>天网卫士 - 产品购买</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/publicAdmin.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header"></div>
+        <div class="layui-side layui-bg-black"></div>
+
+        <!-- 内容主体区域 -->
+        <div class="layui-body">
+            <div class="box">
+                <div class="t_admin_title">
+                    <h2 class="layui-inline">游戏盾列表</h2>
+                    <div class="layui-inline t_title_right">
+                        <div class="layui-form layui-inline">
+                            <select name="" lay-verify="">
+                                <option value="">选择产品类型</option>
+                                <option value="010">配置+流量</option>
+                                <option value="021">配置</option>
+                            </select>
+                        </div>
+                        <button class="layui-btn">查询</button>
+                    </div>
+                </div>
+                <div class="t_admin_content t_admin_table">
+                    <table class="layui-table">
+                        <colgroup>
+                            <col width="150">
+                            <col width="200">
+                            <col>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>产品类型</th>
+                                <th>产品规格</th>
+                                <th>产品价格</th>
+                                <th>有效期限</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>配置+流量+端口(UDP)</td>
+                                <td>基础版-TCP(TLS)-端口数量-流量包</td>
+                                <td>￥100.0</td>
+                                <td>30天</td>
+                                <td>
+                                    <a href="./game_shield_details.html">详情</a>
+                                    <a href="javascript:;" class="buy_game">购买</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--弹窗-->
+    <div class="game_popup">
+        <table class="layui-table">
+            <colgroup>
+                <col width="100">
+                <col width="200">
+                <col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>参数</th>
+                    <th>值</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>注意：游戏盾只能对域名已备案的网站进行防护，无法对基于IP服务的网站或基于域名但未备案的网站进行防护</p>
+        <div class="layui-form">
+            <input type="checkbox" name="like1[write]" lay-skin="primary" title="" class="popup_input">
+            我已阅读并同意<a href="javascript:;" class="agreement">《产品服务协议》</a>
+            <span class='tips_p'>请阅读并勾选服务协议</span>
+        </div>
+    </div>
+    <div class='t_agreement'></div>
+    <script src="../../layui/layui.js"></script>
+    <script src="../js/publicAdmin.js"></script>
+    <script src="../js/productsBuy.js"></script>
+</body>
+</html>
+
+
+
+

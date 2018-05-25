@@ -1,0 +1,131 @@
+/*public admin*/
+body{font-family: "微软雅黑"; font-size: 14px;}
+.layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-nav-child dd.layui-this a, .layui-nav-tree .layui-this,
+.layui-nav-tree .layui-this>a, .layui-nav-tree .layui-this>a:hover,.layui-nav-tree .layui-nav-bar, .layui-nav .layui-this:after,
+.layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after, .layui-form-select dl dd.layui-this, .layui-btn, .layui-form-checked[lay-skin=primary] i,
+.layui-laydate td.layui-this, .layui-laydate li.layui-this, .layui-layer-btn .layui-layer-btn0, .layui-form-onswitch{
+    background-color: #135fdf !important;
+}
+.layui-breadcrumb a:hover, .layui-form-radio>i:hover, .layui-form-radioed>i, .layui-laydate-header i:hover, .layui-laydate-header span:hover,
+.layui-laydate-footer span:hover, .layui-laydate-footer span:hover, .layui-laydate-footer span[lay-type=date], .layui-tab-brief>.layui-tab-title .layui-this
+{
+    color: #135fdf !important;
+}
+.layui-form-checked[lay-skin=primary] i, .layui-form-checkbox[lay-skin=primary]:hover i, .layui-layer-btn .layui-layer-btn0, .layui-form-onswitch{
+    border-color: #135fdf !important;
+}
+.layui-tab-brief>.layui-tab-more li.layui-this:after, .layui-tab-brief>.layui-tab-title .layui-this:after{
+    border-bottom: 2px solid #135fdf !important;
+}
+.layui-laydate-content td.laydate-selected {
+    background-color: #9abdf7 !important;
+}
+.layui-form-item{margin-bottom: 25px;}
+
+/*public左侧边栏*/
+.hide_side{display: none}
+.hide_side>li{position: relative}
+.hide_side>li>a{color: #fff; display: block; height: 60px; line-height: 60px; text-align: center}
+.hide_side_dl{position: absolute; left: 70px; top:20px; width: 80px; display: none; background: #000; border-radius: 2px; padding-top: 10px}
+.hide_side_dl dd{padding-bottom: 10px; text-align: center; position: relative}
+.hide_side_dl a{color: #fff}
+.layui-bg-black, .layui-nav-tree.layui-nav{background: #010125 !important;}
+.layui-nav-itemed>.layui-nav-child{background-color: rgba(0,0,0,0.6)!important;}
+.layui-nav-tree .layui-nav-item a:hover{background: none}
+.layui-layout-admin .layui-header{background-color: #fff;}
+.layui-layout-left a.layui-icon, .layui-layout-left a.layui-icon:hover{color: #3b3b3f}
+.layui-nav-tree .layui-nav-child a, .layui-nav-tree .layui-nav-item a{height: 50px; line-height: 50px}
+.t_icon{padding-right: 10px; font-size: 18px}
+.t_triangle{position:absolute; left: -8px; width: 0; height: 0; border-top: 10px solid #000; border-left: 8px solid transparent;}
+.layui-nav-item .t_item a{padding-left: 45px}
+.layui-nav-tree .layui-nav-more{right: 25px;}
+/*.layui-nav-child{display: block; padding: 0; height:0; overflow: hidden}*/
+/*.layui-nav-itemed>.layui-nav-child{display:block; height: 200px;overflow: auto;transition: all 1s linear}*/
+/*.layui-nav-anim{transition: all 11s linear}*/
+/*.layui-nav-tree>li>dl{-webkit-transition: 1s all linear; opacity: 0;}*/
+
+/*public右侧body*/
+.layui-header{-moz-box-shadow:1px 1px 2px -1px #bfbfbf; -webkit-box-shadow:1px 1px 2px -1px #bfbfbf; box-shadow:1px 1px 2px -1px #bfbfbf;}
+.layui-body{padding: 20px; background: #EDF0F5;}
+.box{background: #fff; padding:10px 10px 50px; border-radius: 2px; box-shadow: -1px 2px 7px #e2e2e2}
+.box h2,.t_bread_nav{font-size: 14px; padding-left: 20px;}
+.t_admin_title{height: 66px; line-height: 66px; border-bottom: 1px solid #e6e6e6}
+.t_admin_text{padding: 50px 0 0 50px}
+.t_admin_table{padding-top:20px}
+.layui-layout-admin .layui-body{bottom:0}
+
+/*个人中心*/
+.t_admin_content .layui-form-label{padding: 9px 100px 9px 0}
+.t_info_p{height: 38px; line-height: 38px; display: inline-block}
+.t_num_edit{float: right; padding-right: 100px}
+.t_num_edit, .t_num_edit>a{color: #1053FD}
+a.t_num_edit:hover{color: #1053FD}
+.t_info_a{padding-right: 100px}
+.t_admin_content .layui-form-item{color: #666}
+.t_personal_info button{height: 38px; background-color: #1053FD; margin-left: 50px}
+.t_change_phone button, .t_mod_password button{width: 80px}
+.t_title_right{float: right; padding-right: 20px}
+.t_title_right button, .t_statistics button{width: 85px;}
+.t_title_right .layui-inline{padding-right: 5px;}
+.t_send_email{width:300px; margin-top:30px}
+.t_email_vcode{width:150px; display:inline-block;}
+.t_email_btn{background: #1053fd; float:right}
+
+/*产品购买*/
+.t_admin_table table, .layui-table thead th{text-align: center}
+.t_admin_table table a{padding-left: 10px; color: #1053FD}
+.t_table_details{width:600px; padding-left: 20px}
+.t_table_details h3, .t_table_flow h3{font-size: 14px; margin-bottom: 20px; color:#666}
+#productsPopup{padding:20px 50px 0}
+.web_popup,.game_popup,.flow_popup{display: none}
+.web_popup td, .game_popup td, .flow_popup td{text-align: center}
+.web_popup p, .game_popup p, .flow_popup p{margin:20px 0 8px; color: red; font-size: 12px; line-height: 18px;}
+.web_popup a, .game_popup a, .flow_popup a{color: #1053fd}
+/*.web_shield_body .layui-table-view, .box{-moz-box-shadow: -1px 2px 7px #666563; -webkit-box-shadow: -1px 2px 7px #666563; box-shadow: -1px 2px 7px #ccc;}*/
+
+/*产品配置*/
+.t_node_ip{width: 370px; overflow:hidden}
+.t_node_ip>div{margin-bottom: 10px}
+.t_load_input{overflow:hidden;}
+.t_load_btn{padding-left: 300px}
+.t_load_input{padding-bottom: 10px}
+.t_node_edit .layui-form-label{width:200px}
+.t_node_edit .layui-form-item .layui-inline{margin-bottom: 0; float: left; margin-right:0}
+.t_node_color{color: red}
+.t_node_edit>form>button{margin-left: 132px;}
+
+/*流量统计*/
+.t_statistics{margin-top: 20px; padding:0 20px; color: #666}
+.t_statis_span>span{color: #1053FD; display: inline-block; padding-left: 15px}
+.t_statistics p{float: left; height: 40px; line-height: 40px; padding-right: 20px}
+.t_statis_sel{float: right}
+.t_statis_sel>div{padding-right: 10px}
+#statisChart{height: 500px; margin-top: 50px}
+.mytime_input{width: 320px}
+
+/*流量包管理*/
+.flow_bor{margin: 30px 20px 40px; clear: both; overflow: hidden; padding: 40px 0 40px 50px; box-shadow: 1px 1px 20px 1px #d8d6d6; border-radius: 5px; background: #fff;}
+.flow_div img{float: left;}
+.flow_num{float: left; padding: 3px 0 0 30px;}
+.flow_num>h3{font-size: 40px;}
+.flow_one h3{color: #20daae;}
+.flow_two h3{color: #40a4f0;}
+.flow_three h3{color: #f96e9f;}
+.flow_four h3{color: #9e73f5;}
+.flow_num>p{font-size: 16px;}
+.t_table_flow{width: 800px; padding-left: 20px;}
+.t_scope_input{text-align: left}
+
+/*订单*/
+.pay_popup_item{margin:15px 0 0 0; color: #666}
+.pay_popup_item .layui-form-radio{margin-top:2px}
+.pay_popup_item .layui-form-radio>i{margin-right: 4px; font-size: 16px}
+.pay_popup_page.layui-layer-page .layui-layer-btn{padding: 20px 0}
+
+/*协议*/
+span.tips_p {color: red; display: none;}
+.agr_content{display:none;height:700px;padding:20px; color: #000}
+.agr_content h2{font-size:15px;line-height:30px;font-weight:600;text-indent:2em;}
+.agr_content h3{font-size:15px;margin:30px 0 10px;font-weight:600;}
+.agr_content p{margin:10px 0;line-height:30px;}
+a.agreement:hover{text-decoration: underline}

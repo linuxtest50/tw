@@ -1,0 +1,70 @@
+<div class="layui-side-scroll">
+    <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+    <ul class="layui-nav layui-nav-tree"  lay-filter="test" lay-shrink="all">
+        <li class="layui-nav-item t_center" t-data="t_center">
+            <a href="javascript:;"><i class="layui-icon layui-icon-user t_icon"></i>个人中心</a>
+            <dl class="layui-nav-child t_item">
+                <dd class="personal_info"><a href="../personal-center/personal_info.html">个人信息</a></dd>
+                <dd class="account_safe change_phone change_email bind_email modify_password"><a href="../personal-center/account_safe.html">账号安全</a></dd>
+                <dd class="message_set"><a href="../personal-center/message_set.html">消息设置</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item t_buy" t-data="t_buy">
+            <a href="javascript:;"><i class="layui-icon layui-icon-cart-simple t_icon"></i>产品购买</a>
+            <dl class="layui-nav-child t_item">
+                <dd class="web_buy_list web_shield_details"><a href="../products-buy/web_buy_list.html">WEB盾</a></dd>
+                <dd class="game_buy_list game_shield_details"><a href="../products-buy/game_buy_list.html">游戏盾</a></dd>
+                <dd class="flow_buy_list flow_package_details"><a href="../products-buy/flow_buy_list.html">流量包</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item t_management" t-data="t_management">
+            <a href="javascript:;"><i class="layui-icon layui-icon-component t_icon"></i>产品管理</a>
+            <dl class="layui-nav-child t_item">
+                <dd class="web_magent_list web_node_edit web_source_magent web_add_source web_modify_source web_statistics">
+                    <a href="../products-management/web_magent_list.html">WEB盾</a>
+                </dd>
+                <dd class="game_magent_list game_node_edit game_source_magent game_add_source game_modify_source game_statistics">
+                    <a href="../products-management/game_magent_list.html">游戏盾</a>
+                </dd>
+                <dd class="flow_magent_list flow_magent_details flow_magent_config flow_statistics">
+                    <a href="../products-management/flow_magent_list.html">流量包</a>
+                </dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item t_order" t-data="t_order">
+            <a href="javascript:;"><i class="layui-icon layui-icon-form  t_icon"></i>订单管理</a>
+            <dl class="layui-nav-child t_item">
+                <dd class="my_order"><a href="../order-management/my_order.html">我的订单</a></dd>
+            </dl>
+        </li>
+    </ul>
+
+    <ul class="hide_side">
+        <li class="">
+            <a class="" href="javascript:;">个</a>
+            <dl class="hide_side_dl layui-anim">
+                <dd><i class="t_triangle"></i><a href="javascript:;">个人中心</a></dd>
+            </dl>
+        </li>
+        <li class="">
+            <a href="javascript:;"><i class="layui-icon layui-icon-cart-simple"></i></a>
+            <dl class="hide_side_dl layui-anim">
+                <dd><i class="t_triangle"></i><a href="javascript:;">产品购买</a></dd>
+            </dl>
+        </li>
+        <li>
+            <a href="javascript:;">理</a>
+            <dl class="hide_side_dl layui-anim">
+                <dd><i class="t_triangle"></i><a href="javascript:;">产品管理</a></dd>
+            </dl>
+        </li>
+        <li class="">
+            <a href="javascript:;">订</a>
+            <dl class="hide_side_dl layui-anim">
+                <dd><i class="t_triangle"></i><a href="javascript:;">订单管理</a></dd>
+            </dl>
+        </li>
+    </ul>
+</div>
+
+

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>天网卫士</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="./css/animate.css">
+    <link rel="stylesheet" href="./css/publicIndex.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!--header-->
+    <header>
+        <div class="box">
+            <a href=""><img src="../img/logo.png" alt="天网"></a>
+            <ul class="layui-clear">
+                <li><a href="">注册</a></li>
+                <li><a href="">登录</a></li>
+                <li class="t_nav_center"><a href="../admin/personal-center/personal_info.html">控制台</a></li>
+                <li><a href="">关于我们</a></li>
+                <li><a href="">帮助中心</a></li>
+                <li><a href="">解决方案</a></li>
+                <li><a href="">产品</a></li>
+            </ul>
+        </div>
+    </header>
+    <!--section-->
+    <section>
+        <!--banner-->
+        <div class="layui-carousel" id="carousel" lay-filter="carousel">
+            <canvas id="cas"></canvas>
+            <div carousel-item>
+                <div>
+                    <img src="../img/banner_one.png" alt="">
+                </div>
+                <div>
+                    <img src="../img/banner_two.png" alt="">
+                </div>
+                <div>
+                    <img src="../img/banner_two.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="t_carousel_info">
+            <h2 class="animated">web盾</h2>
+            <p class="animated">分布式云节点"安全替身"技术，高效防御超大流量DDOS攻击</p>
+            <a class="animated t_carousel_btn" href="http://www.layui.com">查看详情</a>
+        </div>
+        <div class="t_content">
+            <!--安全防护-->
+            <div class="t_safety layui-container">
+                <div class="t_title">
+                    <h3>安全防护</h3>
+                    <p>SAFETY PROTECTION</p>
+                </div>
+                <div class="t_safe_content layui-row layui-col-space30">
+                    <div class="layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                        <div class="t_safe_list animated">
+                            <img src="../img/safe_icon_unlimited.png" alt="">
+                            <h4>无限扩展</h4>
+                            <p>分布式产品架构，防御能力可无限扩展，保障业务永久在线</p>
+                        </div>
+                    </div>
+                    <div class="layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                        <div class="t_safe_list animated">
+                            <img src="../img/safe_icon_defense.png" alt="">
+                            <h4>全面防御</h4>
+                            <p>全面防御各类型DDoS攻击、CC攻击，自动触发，实时防护，无需干预</p>
+                        </div>
+                    </div>
+                    <div class="layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                        <div class="t_safe_list animated">
+                            <img src="../img/safe_icon_deploy.png" alt="">
+                            <h4>极速部署</h4>
+                            <p>无需安装软硬件，无需SDK集成，通过云端极速部署，紧急时刻迅速接入</p>
+                        </div>
+                    </div>
+                    <div class="layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                        <div class="t_safe_list animated">
+                            <img src="../img/safe_icon_profession.png" alt="">
+                            <h4>专业服务</h4>
+                            <p>专家运维团队7×24小时监控服务，随时应对各种复杂攻击</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--解决方案-->
+            <div class="t_solution">
+                <div class="layui-container">
+                    <div class="t_title">
+                        <h3>解决方案</h3>
+                        <p>SOLUTIONS</p>
+                        <div class="t_solution_btn">
+                            <button class="layui-btn layui-btn-sm layui-btn-primary">
+                                <i class="layui-icon">&#xe603;</i>
+                            </button>
+                            <button class="layui-btn layui-btn-sm layui-btn-primary">
+                                <i class="layui-icon layui-icon-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <ul class="layui-row layui-col-space18" id="solutionContent">
+                        <li class="layui-col-lg4 layui-col-md4 layui-col-sm4 layui-col-xs4">
+                            <a href=""><img src="../img/solution_electricity.png" alt="">
+                                <div class="t_solution_content">电商解决方案
+                                </div>
+                            </a>
+                        </li>
+                        <li class="layui-col-lg4 layui-col-md4 layui-col-sm4 layui-col-xs4">
+                            <a href=""><img src="../img/solution_game.png" alt="">
+                                <div class="t_solution_content">
+                                    <p>游戏解决方案</p>
+                                    <span>天网卫士针对游戏行业推出的网络安全解决方案，除有效防御大流量DDoS攻击外，还能彻底解决游戏行业特有的TCP协议的CC攻击问题</span>
+                                    <img src="../img/solution_icon_game.png" alt="">
+                                </div>
+                            </a>
+                        </li>
+                        <li class="layui-col-lg4 layui-col-md4 layui-col-sm4 layui-col-xs4">
+                            <a href=""><img src="../img/solution_enterprise.png" alt="">
+                                <div class="t_solution_content">企业解决方案</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--防御节点-->
+            <div class="t_defense_node">
+                <div class="t_title">
+                    <h3>防御节点</h3>
+                    <p>DEFENSE NODE</p>
+                    <p class="t_node_hr"></p>
+                    <span>遍布全球，持续扩张的数据中心让跨域体验更流畅</span>
+                </div>
+                <div class="t_defense_centent" id="serve-img-area">
+                    <div class="point-area t_place t_place1">
+                        <p class="point-name">中国</p>
+                        <a href="" target="_blank" class="point point-dot"></a>
+                        <div class="point point-shadow point-10"></div>
+                        <div class="point point-shadow point-50"></div>
+                        <div class="point point-shadow point-90"></div>
+                    </div>
+                    <div class="point-area t_place t_place2">
+                        <p class="point-name"></p>
+                        <a href="" target="_blank" class="point point-dot"></a>
+                        <div class="point point-shadow point-10"></div>
+                        <div class="point point-shadow point-50"></div>
+                        <div class="point point-shadow point-90"></div>
+                    </div>
+                    <div class="point-area t_place t_place3">
+                        <p class="point-name"></p>
+                        <a href="" target="_blank" class="point point-dot"></a>
+                        <div class="point point-shadow point-10"></div>
+                        <div class="point point-shadow point-50"></div>
+                        <div class="point point-shadow point-90"></div>
+                    </div>
+                    <div class="point-area t_place t_place4">
+                        <p class="point-name"></p>
+                        <a href="" target="_blank" class="point point-dot"></a>
+                        <div class="point point-shadow point-10"></div>
+                        <div class="point point-shadow point-50"></div>
+                        <div class="point point-shadow point-90"></div>
+                    </div>
+                    <div class="point-area t_place t_place5">
+                        <p class="point-name"></p>
+                        <a href="" target="_blank" class="point point-dot"></a>
+                        <div class="point point-shadow point-10"></div>
+                        <div class="point point-shadow point-50"></div>
+                        <div class="point point-shadow point-90"></div>
+                    </div>
+                    <div class="point-area t_place t_place6">
+                        <p class="point-name"></p>
+                        <a href="" target="_blank" class="point point-dot"></a>
+                        <div class="point point-shadow point-10"></div>
+                        <div class="point point-shadow point-50"></div>
+                        <div class="point point-shadow point-90"></div>
+                    </div>
+                    <div class="point-area t_place t_place7">
+                        <p class="point-name"></p>
+                        <a href="" target="_blank" class="point point-dot"></a>
+                        <div class="point point-shadow point-10"></div>
+                        <div class="point point-shadow point-50"></div>
+                        <div class="point point-shadow point-90"></div>
+                    </div>
+                    <div class="point-area t_place t_place8">
+                        <p class="point-name"></p>
+                        <a href="" target="_blank" class="point point-dot"></a>
+                        <div class="point point-shadow point-10"></div>
+                        <div class="point point-shadow point-50"></div>
+                        <div class="point point-shadow point-90"></div>
+                    </div>
+                    <div class="point-area t_place t_place9">
+                        <p class="point-name"></p>
+                        <a href="" target="_blank" class="point point-dot"></a>
+                        <div class="point point-shadow point-10"></div>
+                        <div class="point point-shadow point-50"></div>
+                        <div class="point point-shadow point-90"></div>
+                    </div>
+                    <div class="point-area t_place t_place10">
+                        <p class="point-name"></p>
+                        <a href="" target="_blank" class="point point-dot"></a>
+                        <div class="point point-shadow point-10"></div>
+                        <div class="point point-shadow point-50"></div>
+                        <div class="point point-shadow point-90"></div>
+                    </div>
+                    <div class="point-area t_place t_place11">
+                        <p class="point-name"></p>
+                        <a href="" target="_blank" class="point point-dot"></a>
+                        <div class="point point-shadow point-10"></div>
+                        <div class="point point-shadow point-50"></div>
+                        <div class="point point-shadow point-90"></div>
+                    </div>
+                    <div class="point-area t_place t_place12">
+                        <p class="point-name"></p>
+                        <a href="" target="_blank" class="point point-dot"></a>
+                        <div class="point point-shadow point-10"></div>
+                        <div class="point point-shadow point-50"></div>
+                        <div class="point point-shadow point-90"></div>
+                    </div>
+                    <div class="point-area t_place t_place13">
+                        <p class="point-name"></p>
+                        <a href="" target="_blank" class="point point-dot"></a>
+                        <div class="point point-shadow point-10"></div>
+                        <div class="point point-shadow point-50"></div>
+                        <div class="point point-shadow point-90"></div>
+                    </div>
+                </div>
+            </div>
+            <!--合作伙伴-->
+            <div class="t_partner layui-container">
+                <div class="t_title">
+                    <h3>合作伙伴</h3>
+                    <p>COOPERATIVE PARTNER</p>
+                </div>
+                <ul class="t_partner_list layui-row">
+                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img src="../img/partner_ali.png" alt=""></li>
+                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img src="../img/partner_ucloud.png" alt=""></li>
+                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img src="../img/partner_tencent.png" alt=""></li>
+                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img src="../img/partner_baidu.png" alt=""></li>
+                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img src="../img/partner_unicom.png" alt=""></li>
+                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img src="../img/partner_telecom.png" alt=""></li>
+                </ul>
+            </div>
+            <!--安全守卫梦想-->
+            <div class="t_about_login">
+                <div class="layui-container layui-row">
+                    <div class="layui-col-lg10 layui-col-md10 layui-col-sm10 layui-col-xs10 t_login_dream">
+                        <h4>安全守卫梦想</h4>
+                        <p>注册天网卫士账号，乐享免费试用机会</p>
+                    </div>
+                    <div class="layui-col-lg2 layui-col-md2 layui-col-sm2 layui-col-xs2">
+                        <div class="layui-btn layui-btn-radius">立即注册</div>
+                    </div>
+                </div>
+                <!--<div id="canvas" class="gradient"></div>-->
+            </div>
+        </div>
+    </section>
+    <!--footer-->
+    <footer>
+        <div class="t_footer_info">
+            <div class="layui-row layui-container">
+                <dl class="t_footer_ask layui-col-lg4 layui-col-md4 layui-col-sm4 layui-col-xs4 border">
+                    <dt>产品咨询</dt>
+                    <dd>售前咨询：400-100-102转1</dd>
+                    <dd>售后服务：400-100-102转2</dd>
+                    <dd>QQ交流群：1392695110</dd>
+                </dl>
+                <div class="t_footer_list layui-col-lg8 layui-col-md8 layui-col-sm8 layui-col-xs8">
+                    <dl>
+                        <dt>解决方案</dt>
+                        <dd><a href="">网站</a></dd>
+                        <dd><a href="">游戏</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>资源与帮助</dt>
+                        <dd><a href="">免费试用</a></dd>
+                        <dd><a href="">产品文档</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>账户管理</dt>
+                        <dd><a href="">控制台</a></dd>
+                        <dd><a href="">合同申请</a></dd>
+                        <dd><a href="">发票索取</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>联系我们</dt>
+                        <dd><a href="">关于我们</a></dd>
+                        <dd><a href="">意见反馈</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>关注天网卫士</dt>
+                        <dd><a href="">微信</a></dd>
+                        <dd><a href="">微博</a></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="t_footer_copyright">
+            <div class="layui-container layui-row">
+                <p class="layui-col-lg9 layui-col-md7 layui-col-sm7 layui-col-xs7">©2017-2018 supertcn.com 版权所有 ICP证：浙ICP备18003397号</p>
+                <div class="layui-col-lg3 layui-col-md5 layui-col-sm5 layui-col-xs5">
+                    <a class="t_footer_a" href="">法律政策</a><a class="t_footer_a" href="">隐私声明</a><a href="">用户协议</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../layui/layui.js"></script>
+    <script src="./js/publicIndex.js"></script>
+    <script src="./js/anim.js"></script>
+    <script src="http://cdn.bootcss.com/three.js/r68/three.min.js"></script>
+    <script src="../utils/canvas-renderer.js"></script>
+    <!--<script src="../utils/3d-lines-animation.js"></script>-->
+</body>
+</html>

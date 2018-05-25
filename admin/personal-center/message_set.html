@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>天网卫士 - 个人中心</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/publicAdmin.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header"></div>
+        <div class="layui-side layui-bg-black"></div>
+
+        <!-- 内容主体区域 -->
+        <div class="layui-body">
+            <div class="box">
+                <div class="t_admin_title">
+                    <h2 class="layui-inline">消息设置</h2>
+                </div>
+                <div class="t_admin_content t_admin_table">
+                    <table class="layui-table layui-form">
+                        <colgroup>
+                            <col width="250">
+                            <col>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>消息设置</th>
+                                <th>短信</th>
+                                <th>站内信</th>
+                                <th>Email</th>
+                                <th>APP消息</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr >
+                                <td > 服务到期前3天提醒</td>
+                                <td>
+                                    <input type="checkbox" name="like1[write]" lay-skin="primary"  >
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="like1[write]" lay-skin="primary" checked="">
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="like1[write]" lay-skin="primary"  >
+                                <td>
+                                    <input type="checkbox" name="like1[write]" lay-skin="primary"  >
+                                </td>
+                            </tr>
+                            <tr >
+                                <td >流量消耗到80%提醒</td>
+                                <td>
+                                    <input type="checkbox" name="like1[write]" lay-skin="primary"  >
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="like1[write]" lay-skin="primary"  >
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="like1[write]" lay-skin="primary"  >
+                                <td>
+                                    <input type="checkbox" name="like1[write]" lay-skin="primary"  >
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../layui/layui.js"></script>
+    <script src="../js/publicAdmin.js"></script>
+</body>
+</html>

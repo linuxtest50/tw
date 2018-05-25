@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>天网卫士 - 产品管理</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/publicAdmin.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header"></div>
+        <div class="layui-side layui-bg-black"></div>
+
+        <!-- 内容主体区域 -->
+        <div class="layui-body">
+            <div class="box">
+                <div class="t_admin_title">
+                    <h2 class="layui-inline">流量包管理</h2>
+                    <div class="layui-inline t_title_right">
+                        <div class="layui-form layui-inline">
+                            <select name="" lay-verify="">
+                                <option value="">请选择产品类型</option>
+                                <option value="010">特惠流量</option>
+                                <option value="021">共享流量</option>
+                            </select>
+                        </div>
+                        <button class="layui-btn">查询</button>
+                    </div>
+                </div>
+                <div class="t_admin_content t_admin_table">
+                    <div class="layui-fluid">
+                        <div class="layui-row">
+                            <div class="layui-col-md3 layui-col-xs6 layui-col-sm6 flow_div flow_one">
+                                <div class='flow_bor'>
+                                    <img alt="" src="../../img/icon_flow_package.png">
+                                    <div class='flow_num'>
+                                        <h3>1个</h3>
+                                        <p>可用流量包数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md3 layui-col-xs6 layui-col-sm6 flow_div flow_two">
+                                <div class='flow_bor'>
+                                    <img alt="" src="../../img/icon_flow_quantity.png">
+                                    <div class='flow_num'>
+                                        <h3>500G</h3>
+                                        <p>可用流量数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md3 layui-col-xs6 layui-col-sm6 flow_div flow_three">
+                                <div class='flow_bor'>
+                                    <img alt="" src="../../img/icon_flow_consumption.png">
+                                    <div class='flow_num'>
+                                        <h3>500G</h3>
+                                        <p>历史消耗流量数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md3 layui-col-xs6 layui-col-sm6 flow_div flow_four">
+                                <div class='flow_bor'>
+                                    <img alt="" src="../../img/icon_flow_buy.png">
+                                    <div class='flow_num'>
+                                        <h3>1000G</h3>
+                                        <p>历史购买流量数量</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table">
+                        <colgroup>
+                            <col width="150">
+                            <col width="200">
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>流量编号</th>
+                            <th>产品类型</th>
+                            <th>产品规格</th>
+                            <th>可用流量</th>
+                            <th>到期时间</th>
+                            <th>使用范围</th>
+                            <th>产品状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>q0rz658pgv</td>
+                            <td>特惠流量</td>
+                            <td>5.00G</td>
+                            <td>5.00G</td>
+                            <td>2018-05-26 12:15:20</td>
+                            <td>限定产品可用</td>
+                            <td>已启用</td>
+                            <td>
+                                <a href="./flow_magent_details.html">详情</a>
+                                <a href="./flow_magent_config.html">配置</a>
+                                <a href="./flow_statistics.html">流量统计</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../layui/layui.js"></script>
+    <script src="../js/publicAdmin.js"></script>
+</body>
+</html>
