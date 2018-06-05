@@ -1,43 +1,65 @@
-html, body{font-family: "微软雅黑"; font-size: 14px}
+html, body{font-family: "微软雅黑"; font-size: 14px;}
 .box{width:1200px; max-width:1200px; margin: 0 auto;}
 section{width: 100%; /*box-shadow:1px 1px 1px 1px #fff*/}
 /*.layui-btn-primary:hover{border-color: #6CC9EE}*/
+.layui-carousel-arrow:hover{background: #0090ee \9;}
+.layui-carousel:hover .layui-carousel-arrow{background: #0090ee \9;}
 
 /*nav*/
 header{width: 100%; position: fixed; z-index: 99999999; top:0}
 header{height: 60px; line-height:60px; border-bottom: 1px solid #182939}
 /*header .t_head_img{width: 160px; display: inline-block; }*/
-header img{font-size: 0; width: 122px; *float:left; *padding-top:12px}
-header ul{float: right; height: 60px}
-header ul li{float: right; padding: 0 25px\9; padding:0 0 0 4rem;}
-header .t_nav_center{padding-left: 350px}
+header img{font-size: 0; width: 122px; *float:left; *padding-top:12px;}
+header ul.nav{float: right; height: 60px; position: relative}
+header ul.nav>li{float: right;  padding:0 0 0 4rem; padding: 0 25px\9;text-align: center;}
+header ul li.t_nav_center{padding-left: 250px;}
 header ul a{color: #fff}
-header ul a:hover{color: #0090ee}
+header ul.nav a{display: block; padding: 0 10px}
+header ul.nav a:hover{color: #0090ee}
+header ul.nav_list{height: 0; overflow:hidden; opacity: 0; filter: alpha(opacity=0); line-height: 40px; margin-top: 0; background: #061529; /*position: absolute; top:60px*/}
+/*header ul.nav_list a{padding: 0; margin: 0 10px}*/
+.nav_bar{display: block; width: 62px; height: 1px; background: #0090ee; position: absolute; bottom: 0; left: 56px;pointer-events: none}
 
 /*banner*/
 .layui-carousel{position: fixed; height: 640px}
-.layui-carousel img{ height: 640px}
+.layui-carousel img{ width: 100%}
 #cas{position: fixed; top: 0; z-index: 999999}
 .t_content{margin-top: 640px; position: relative; z-index: 9999999; width: 100%;background: #fff;}
 /*.layui-carousel-ind{z-index: 9999999}*/
 .t_carousel_info{position: fixed; top:210px; color: #fff; margin-left: 360px; z-index: 9999999;visibility: hidden}
-.t_carousel_info h2{font-size: 56px; font-weight:600; background: linear-gradient(to right, #57cedf, #0291ee, #0291ee,#0291ee,#0291ee);
-    -webkit-background-clip: text; color: transparent;
-/*background: -moz-radial-gradient(30px 30px, circle farthest-corner, #58ff00 0%, rgba(222, 255, 0, 0) 30%)*/
+.t_carousel_info h2{font-size: 56px; font-weight:600;
+    background: linear-gradient(to right, #57cedf, #0291ee, #0291ee,#0291ee,#0291ee);
+    -webkit-background-clip: text; color: #029bff;
+    background:none\9; color: #0291ee\9;
+    background: -ms-linear-gradient(top, transparent, transparent);
 }
+/*.t_carousel_info h2{*/
+    /*position: relative;*/
+/*}*/
+/*.t_carousel_info h2[data-text]::after {*/
+    /*content: attr(data-text);*/
+    /*color: #0291ee;*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*z-index: 999999999999;*/
+    /*-webkit-mask-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgb(3, 145, 238)), to(rgba(51, 51, 51, 1)));*/
+/*}*/
+
+
 .t_carousel_info p{margin: 20px 0 50px 0; font-size: 24px}
 .t_carousel_btn{display:block; width:140px; height:44px; line-height:44px; border-radius: 25px; background: #0094EF;
     font-size:16px; text-align: center;color: #fff;}
 .t_carousel_info a:hover{background: #2289ef; color: #fff}
+.layui-carousel-ind{z-index: 999999;}
 
 /*.layui-anim{-webkit-animation-duration: 2s !important; animation-duration: 2s !important; -webkit-animation-fill-mode: both; animation-fill-mode: both;}*/
 /*!*.layui-trans,*!*/
 /*.layui-trans a{transition: all 2s !important; -webkit-transition: all 2s !important;}*/
-.layui-carousel{background:none !important;}
-.layui-carousel>[carousel-item]>*{-webkit-transition-duration: 1s; transition-duration: 1s; background: none !important;}
+/*.layui-carousel{background:none !important;}*/
+/*.layui-carousel>[carousel-item]>*{-webkit-transition-duration: 1s; transition-duration: 1s; background: none !important;}*/
 .layui-carousel-ind li{width: 40px; height: 4px; border-radius: 2px}
-.layui-carousel[lay-anim="fade"]>*[carousel-item]>.layui-carousel-next{opacity: 1;}
-.layui-carousel[lay-anim="fade"]>*[carousel-item]>.layui-carousel-next.layui-carousel-left{opacity: 1;}
+.layui-carousel[lay-anim="fade"]>*[carousel-item]>.layui-carousel-next{opacity: 1; filter: alpha(opacity=100)}
+.layui-carousel[lay-anim="fade"]>*[carousel-item]>.layui-carousel-next.layui-carousel-left{opacity: 1; filter: alpha(opacity=100)}
 
 /*safe*/
 .t_safety,.t_solution{text-align: center;padding: 60px 0 90px 0;}
@@ -49,7 +71,7 @@ header ul a:hover{color: #0090ee}
 .t_safe_list h4{margin: 26px 0 18px 0; font-size: 18px}
 .t_safe_list p{color: #666; padding: 0 15px}
 /*.t_safe_list:hover{border:1px solid #05b9ef;!*cursor: pointer;box-shadow: 0 5px 10px -5px #000;transform:translateY(5px);transition:.2s linear;*!}*/
-.t_safe_list:hover, .t_safe_list:hover p{color: #05b9ef;}
+/*.t_safe_list:hover, .t_safe_list:hover p{color: #05b9ef;}*/
 
 .hover-border{display: inline-block;position: absolute;z-index: 100}
 .left-right-border{height: 0;}
@@ -63,7 +85,7 @@ header ul a:hover{color: #0090ee}
 
 
 /*solution*/
-.t_solution{background:rgba(169, 169, 169, 0.16)}
+.t_solution{background:#f4f5f7}
 .t_solution .layui-container{padding: 0}
 .t_solution button{border-radius: 50%; width: 48px; height: 48px; line-height: 48px; text-align: center;}
 .t_solution button i{ font-size: 24px !important;}
@@ -77,40 +99,43 @@ header ul a:hover{color: #0090ee}
 #solutionContent img{width:100%}
 #solutionContent a{position: relative; display: block}
 #solutionContent div{position: absolute; bottom:0; height: 56px; line-height: 56px; width:100%; color:#f3f4f6; font-size: 20px;
-    background: rgba(1,1,37,.5); padding:0 15%; box-sizing: border-box; overflow: hidden}
+    background: rgba(1,1,37,.88); padding:0 15%; box-sizing: border-box; overflow: hidden;
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#c8010125,endColorstr=#c8010125)}
 .t_solution_content span{font-size: 14px; color: #f3f4f6}
 #solutionContent .t_solution_content img{width: 72px; display:block; margin: 30px auto 0}
 
 /*defense*/
-.t_defense_node{position: relative; width:100%; text-align: center; background: url("../../img/defense_bg.png") no-repeat center center;
-    height: 840px; margin-bottom: 66px; }
-.t_defense_node h3{padding-top: 66px; color: #fff}
+.t_defense_node{position: relative; width:100%; text-align: center; height: auto; margin-bottom: 66px;}
+.t_defense_node h3{padding-top: 3.5%/*66px*/; color: #fff}
 .t_defense_node span{font-size: 16px; color: #6e6e88;}
-.t_title p{color: #6e6e88}
-.t_defense_node p{padding-bottom: 20px;}
-p.t_node_hr{width: 60px; height: 1px; background: #6e6e88; margin: 0 auto 16px; padding: 0}
-.t_defense_centent{color: #fff; position: relative; height: 100%}
+.t_defense_node .t_title{background: #050531}
+.t_defense_node .t_title p{color: #6e6e88; padding:.8% 0 1%}
+.t_defense_node p{/*20px*/;}
+.t_defense_node p.t_node_hr{width: 60px; height: 1px; background: #6e6e88; margin: 0 auto 16px; padding: 0}
+.t_defense_centent{color: #fff; position: relative; height: 100%; padding: 17% 0; background: url("../../img/defense.png") no-repeat center center;
+    background-size:cover;}
 .t_place{position: absolute}
-.t_place p{position: absolute; bottom: 46px; left: 86px}
-.t_place1{top:15%; left:64%}
-.t_place2{top:15%; left:63%}
-.t_place3{top:-20%; left:68%}
-.t_place4{top:-9%; left:68%}
-.t_place5{top:-18%; left:31%}
-.t_place6{top:-52%; left:34%}
-.t_place7{top:-67%; left:48%}
-.t_place8{top:-118%; left:57%}
-.t_place9{top:-124%; left:51%}
-.t_place10{top:-147%; left:27%}
-.t_place11{top:-157%; left:63%}
-.t_place12{top:-176%; left:65%}
-.t_place13{top:-205%; left:46%}
+.t_place p{position: absolute; bottom: 44%; left: 59%}
+.t_place1{top:20%; left:64%}
+.t_place2{top:27%; left:65%}
+.t_place3{top:26%; left:63%}
+.t_place4{top:12%; left:46%}
+.t_place5{top:59%; left:68%}
+.t_place6{top:52%; left:33%}
+.t_place7{top:46%; left:48%}
+.t_place8{top:14%; left:26%}
+.t_place9{top:34%; left:63%}
+.t_place10{top:28%; left:43%}
+.t_place11{top:13%; left:58%}
+.t_place12{top:36%; left:58%}
+.t_place13{top:22%; left:68%}
 
+/*.t_place1{top:35%; left:65%}*/
 #serve-img-area .point-area {
     text-align: center;
-    position: relative;
-    width: 150px;
-    height: 150px;
+    position: absolute;
+    width: 7.883%/*150px*/;
+    height: 23.186% /*17.968% 150px*/;
     -webkit-transition: opacity 0.5s ease-out;
     -moz-transition: opacity 0.5s ease-out;
     -o-transition: opacity 0.5s ease-out;
@@ -129,7 +154,7 @@ p.t_node_hr{width: 60px; height: 1px; background: #6e6e88; margin: 0 auto 16px; 
     -webkit-background-clip: padding-box;
     -moz-border-radius: 50%;
     -moz-background-clip: padding;
-    /* border-radius: 50%; */
+     border-radius: 50%;
     background-clip: padding-box;
     background: transparent;
 }
@@ -199,6 +224,7 @@ p.t_node_hr{width: 60px; height: 1px; background: #6e6e88; margin: 0 auto 16px; 
     border-radius: 50%;
     border: 2px solid #00cdec;
     opacity: 0;
+    filter: alpha(opacity=0);
     -webkit-animation: ripple 4500ms ease-out 2025ms infinite;
     -moz-animation: ripple 4500ms ease-out 2025ms infinite;
     -o-animation: ripple 4500ms ease-out 2025ms infinite;
@@ -216,43 +242,37 @@ p.t_node_hr{width: 60px; height: 1px; background: #6e6e88; margin: 0 auto 16px; 
 .t_partner img{width: 280px;}
 
 /*about_login*/
-.t_about_login{position:relative; width: 100%; height:178px; background: url("../../img/blue_bg.png") no-repeat center center; margin-top: 65px }
+.t_about_login{position:relative; width: 100%; background: url("../../img/blue_bg.png") no-repeat center center; background-size: cover;
+    margin-top: 65px; padding-bottom: 45px}
 .t_about_login .layui-container{position: relative; z-index: 99999}
 .t_about_login .layui-btn{width: 162px; background: none; border: 1px solid #fff; font-size: 18px; margin-top: 70px; letter-spacing: 3px;
     height: 46px; line-height: 46px}
 .t_login_dream{margin-top: 44px; color: #fff}
 .t_login_dream h4{font-size: 34px; padding-bottom: 20px; letter-spacing: 5px}
 .t_login_dream p{font-size: 18px; letter-spacing: 10px}
-
-#canvas{
-    width:100%;
-    height:178px;
-    overflow: hidden;
-    position:absolute;
-    top:0;
-    left:0;
-}
-
+/*#casAbout{position: absolute; top:0}*/
 
 /*footer*/
 footer{position: relative; z-index: 9999999}
 .t_footer_info{background: #010f22; color: #fff; width: 100%; padding:60px 0 40px 0}
-.t_footer_list dl{float: left; width:20%; text-align: center}
+.t_footer_list dl{float: left; width:13%; text-align: left; padding-left: 7%}
 footer dt, footer dd{margin-bottom: 20px}
 footer dd, footer a{ font-size: 12px; color: #fff}
 .border{position: relative;}
-.border:after{display: block; width: 1px; content: ""; height: 90%; border-right:1px solid silver; position: absolute; top:0; right: 20%;
+.border:after{display: block; width: 1px; content: ""; height: 90%; border-right:1px solid #4e5765; position: absolute; top:0; right: 14%;
     z-index: 100}
 .t_footer_copyright{background: #142031; color: #fff; padding: 13px 0;}
 .t_footer_copyright a{padding:0 8%;}
 .t_footer_copyright .t_footer_a{ height: 50%;  border-right: 1px solid #fff}
 
+/*to top*/
+/*点击回到顶部*/
+.t_to_top, .t_consultation{position: fixed;z-index: 9999999999;}
+.t_to_top{right: 45px;top: 85%;display: none }
+.t_to_top i{font-weight: 600; font-size: 50px;cursor: pointer; color: #0094EF}
 
-
-
-
-
-
+/*consultation*/
+.t_consultation{top: 45%; right: 0; background:#0094EF; width: 50px }
 
 
 
@@ -260,6 +280,7 @@ footer dd, footer a{ font-size: 12px; color: #fff}
 
 
 @media screen and (max-width: 1600px){
+    .layui-carousel img{width:auto;height: 640px}
     /*#carousel{height: 550px !important;}*/
     /*.t_carousel_info{margin-left: 16%; top:18%}*/
     /*.t_carousel_info>h2{font-size: 40px}*/
@@ -270,7 +291,7 @@ footer dd, footer a{ font-size: 12px; color: #fff}
     .box{width:1000px}
     /*#carousel{height: 446px !important;}*/
     /*header ul li{padding: 0 15px}*/
-    header .t_nav_center {padding-left: 150px;}
+    header ul li.t_nav_center{padding-left: 50px;}
     .t_carousel_info{margin-left: 14%;}
     .t_safe_content.layui-col-space30>*{padding-bottom: 20px;}
     /*.t_carousel_info>h2{font-size: 34px}*/
@@ -280,8 +301,8 @@ footer dd, footer a{ font-size: 12px; color: #fff}
 @media screen and (max-width: 1200px){
     .box{width:750px}
     /*#carousel{height: 388px !important}*/
-    header ul li{padding: 0 15px}
-    header .t_nav_center {padding-left: 50px;}
+    header ul.nav li{padding: 0 10px}
+    header ul li.t_nav_center{padding-left: 20px;}
     .t_safe_content.layui-col-space30>*{padding-bottom: 20px;}
     /*.t_carousel_info{margin-left: 15%; top:11%}*/
     /*.t_carousel_info>h2{font-size: 30px}*/
@@ -292,10 +313,14 @@ footer dd, footer a{ font-size: 12px; color: #fff}
 @media screen and (max-width: 768px){
     .box{width:650px}
     /*#carousel{height: 232px !important}*/
-    header .t_nav_center {padding-left: 20px;}
-    .t_about_login .layui-btn{width: 100%; font-size: 14px}
+    header ul.nav li{padding: 0 5px}
+    header ul li.t_nav_center{padding-left: 5px;}
+    p.point-name{font-size: 12px; bottom: 0;left: 56%;}
+    .t_about_login .layui-btn{ font-size: 14px}
     .t_safe_content.layui-col-space30>*{padding-bottom: 20px;}
     .t_partner img{width: 100%;}
+    .t_footer_copyright p{margin-bottom: 20px}
+    .t_footer_copyright .layui-row{text-align: center}
     /*header ul{display: none}*/
     /*.t_carousel_info{margin-left: 10%; top:10%}*/
     /*.t_carousel_info>h2{font-size: 22px}*/
@@ -308,3 +333,21 @@ footer dd, footer a{ font-size: 12px; color: #fff}
         width: 1200px;
     }
 }
+@media screen and (min-width: 2000px) {
+    .t_content{margin-top:900px}
+    .t_carousel_info{top:30%}
+    .t_body{background: url("../../img/login_register_big.png") no-repeat center center; background-size: cover}
+}
+
+
+/*html,body,div,img,body.t_body{*/
+    /*-webkit-filter: grayscale(100%);*/
+    /*-moz-filter: grayscale(100%);*/
+    /*-ms-filter: grayscale(100%);*/
+    /*-o-filter: grayscale(100%);*/
+
+    /*filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/></filter></svg>#grayscale");*/
+    /*filter: grayscale(100%);*/
+    /*filter: progid: DXImageTransform.Microsoft.BasicImage(grayscale=1);*/
+    /*filter: gray;*/
+/*}*/

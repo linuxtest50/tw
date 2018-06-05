@@ -2,9 +2,10 @@
  * 初始化layui内置模块
  */
 (function (w) {
+    console.time('time')
     w.tTools = {}
     layui.use(['layer', 'form'], function(){
-        var $ = layui.$, layer = layui.layer, form = layui.form;
+        var $ = layui.$, layer = layui.layer, form = layui.form,that = this
         $('.layui-header').load('../public-admin-page/public_header.html', function () {
             $('.layui-side').load('../public-admin-page/public_side.html', function () {
                 layui.use('element')
@@ -69,14 +70,14 @@
                 /**
                  * 鼠标hover显示隐藏小item
                  */
-                $('.hide_side>li').mouseover(function () {
-                    $(this).find('dl').show().addClass('layui-anim-scaleSpring')
-                }).mouseout(function () {
-                    $(this).find('dl').hide().removeClass('layui-anim-scaleSpring')
+                $('.hide_side>li a').mouseenter(function () {
+                    $(this).next('dl').show().addClass('layui-anim-scaleSpring')
+                }).mouseleave(function () {
+                    $(this).next('dl').hide().removeClass('layui-anim-scaleSpring')
                 })
 
                 /**
-                 * 点击每一项展开大item
+                 * 点击子菜单展开当前项
                  */
                 $('.t_item>dd').click(function () {
                     var itemAttr = $(this).parents('li').attr('t-data')
@@ -86,23 +87,39 @@
                     });
                 })
                 var localData = layui.sessionData('t_data').t_key;
-                $('.' + localData).addClass('layui-nav-itemed')
-
+                var  $ddH = $('.' + localData).find('dd').height() * $('.' + localData).find('dd').length + 'px';
+                $('.' + localData).children('dl').height($ddH);
+                setTimeout(function () {
+                    $('.' + localData).find('.layui-nav-more').addClass('icon_more')
+                },50)
                 /**
-                 * 侧边栏收缩时点击展开大item
+                 * 侧边栏收缩时点击子菜单展开当前项
                  */
                 $('.hide_side>li').click(function () {
                     toggleSide()
-                    $('.layui-nav-tree>li').removeClass('layui-nav-itemed')
-                    $('.layui-nav-tree>li:nth-child(' + ($(this).index()+1) +')').addClass('layui-nav-itemed')
+                    $('.layui-nav-tree>li').find('dl').height(0)
+                    var $dl = $('.layui-nav-tree>li:nth-child(' + ($(this).index()+1) +')').find('dl'),
+                    $dlH = $dl.children('dd').length * $dl.children('dd').height() + 'px'
+                    $dl.stop().animate({
+                        height: $dlH
+                    },200)
                 })
-
+                /**
+                 * 侧边栏添加动画
+                 */
                 $('.layui-nav-tree>li').click(function () {
-                    // $(this).find('dl').show().animate({
-                    //     'display': 'block',
-                    //     'opacity': 1
-                    //
-                    // },100)
+                    var $h = $(this).find('dl>dd').length * $(this).find('dl>dd a').height() + 'px'
+                    $(this).siblings('li').find('dl').stop().animate({
+                        height: 0
+                    },200)
+                    $(this).find('dl').stop().animate({
+                        height: $h
+                    },200)
+                    $('.layui-nav-more').removeClass('icon_more')
+                    $(this).find('.layui-nav-more').addClass('icon_more')
+                    // $(this).find('dl').addClass('animate_height')
+                    // console.log($h)
+                    // $(this).find('dl').height($h)
                     // if($(this).hasClass('layui-nav-itemed')){
                     //     $(this).find('dl').removeClass('layui-anim-up')
                     // }else{
@@ -126,7 +143,7 @@
                         ,anim: 0 // 动画
                         ,resize: false //禁止缩放
                         ,scrollbar: false // 禁止浏览器滚动
-                        ,btn: ['去支付','哼，不去']
+                        ,btn: ['去支付']
                         ,btnAlign: 'c'// 对齐方式
                         ,moveType: 1 // 拖拽模式，0或者1
                         ,maxmin: false  // 最大小化
@@ -231,8 +248,96 @@
                 });
             })
         })
-    });
 
+        /*login*/
+        var $bodyWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+            $bodyHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        $('.t_body').css({
+            width: $bodyWidth,
+            height: $bodyHeight
+        })
+        // console.log($bodyWidth,$bodyHeight)
+
+        /*ie placeholder*/
+        if( !('placeholder' in document.createElement('input')) ) {
+            $('input[placeholder],textarea[placeholder]').each(function () {
+                var self = $(this),
+                    text = self.attr('placeholder');
+                // 如果内容为空，则写入
+                if (self.val() === "") {
+                    self.val(text).addClass('placeholder');
+                }
+                // 控件激活，清空placeholder
+                self.focus(function () {
+                    if (self.val() === text) {
+                        self.val("").removeClass('placeholder');
+                    }
+                    // 控件失去焦点，清空placeholder
+                }).blur(function () {
+                    if (self.val() === "") {
+                        self.val(text).addClass('placeholder');
+                    }
+                });
+            });
+        }
+
+        /*ie readonly*/
+        $('.t_register_phone_num input').attr("unselectable","on");
+
+        /*form tips*/
+        this.userObj = {
+            userMsg: ['请输入正确的手机号', '密码长度不够', '两次密码输入不一致'],
+            loginTips:'<p class="t_tips"><i class="layui-icon layui-icon-close-fill"></i>登录名或登录密码不正确</p>',
+            phoneValue: '',
+            passwordValue: '',
+            againwordValue: '',
+            tipsPopupFun: function (userMsg) {
+                layer.msg(userMsg, {
+                    icon:5,
+                    offset: 't',
+                    anim: 5,
+                    time: 2000
+                })
+            },
+            loginPopupFun: function (loginTips) {
+                layer.tips(loginTips, '.t_right_login input[type=text]', {
+                    tips: [2, '#fff'],
+                    time: 110000,
+                    id:'loginTips'
+                });
+            }
+        }
+
+        $('.t_agreed_register').click(function () {
+            that.userObj.phoneValue = $('.t_register input[name=phone]').val()
+            that.userObj.passwordValue = $('.t_register input[name=password]').val()
+            that.userObj.againwordValue = $('.t_register input[name=againword]').val()
+            // console.log($('.t_register input[name=phone]').val())
+            if(!that.userObj.phoneValue){
+                that.userObj.tipsPopupFun(that.userObj.userMsg[0])
+            }else if(!that.userObj.passwordValue){
+                that.userObj.tipsPopupFun(that.userObj.userMsg[1])
+            }else if(that.userObj.againwordValue !== that.userObj.passwordValue)
+                that.userObj.tipsPopupFun(that.userObj.userMsg[2])
+        })
+        $('.t_agreed_login').click(function () {
+            that.userObj.loginPopupFun(that.userObj.loginTips)
+        })
+
+        /*pay*/
+        this.screenH = (document.documentElement.clientHeight || document.body.clientHeight) - 106;
+        $(" .t_pay section").height(this.screenH)
+        this.backNum = 5;
+        function backTimer(){
+            that.backNum--;
+            $(".timer").html(that.backNum);
+            if(that.backNum === 0){
+                window.location.href =  "http://www.baidu.com/";
+            }
+        }
+        // setInterval(backTimer,1000);
+    });
+    console.timeEnd('time')
     return tTools
 }(window))
 

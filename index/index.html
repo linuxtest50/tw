@@ -17,25 +17,12 @@
 </head>
 <body>
     <!--header-->
-    <header>
-        <div class="box">
-            <a href=""><img src="../img/logo.png" alt="天网"></a>
-            <ul class="layui-clear">
-                <li><a href="">注册</a></li>
-                <li><a href="">登录</a></li>
-                <li class="t_nav_center"><a href="../admin/personal-center/personal_info.html">控制台</a></li>
-                <li><a href="">关于我们</a></li>
-                <li><a href="">帮助中心</a></li>
-                <li><a href="">解决方案</a></li>
-                <li><a href="">产品</a></li>
-            </ul>
-        </div>
-    </header>
+    <header></header>
     <!--section-->
     <section>
         <!--banner-->
         <div class="layui-carousel" id="carousel" lay-filter="carousel">
-            <canvas id="cas"></canvas>
+            <canvas id="cas">您的浏览器不支持Canvas</canvas>
             <div carousel-item>
                 <div>
                     <img src="../img/banner_one.png" alt="">
@@ -49,7 +36,7 @@
             </div>
         </div>
         <div class="t_carousel_info">
-            <h2 class="animated">web盾</h2>
+            <h2 class="animated" data-text="web盾">web盾</h2>
             <p class="animated">分布式云节点"安全替身"技术，高效防御超大流量DDOS攻击</p>
             <a class="animated t_carousel_btn" href="http://www.layui.com">查看详情</a>
         </div>
@@ -97,14 +84,14 @@
                     <div class="t_title">
                         <h3>解决方案</h3>
                         <p>SOLUTIONS</p>
-                        <div class="t_solution_btn">
-                            <button class="layui-btn layui-btn-sm layui-btn-primary">
-                                <i class="layui-icon">&#xe603;</i>
-                            </button>
-                            <button class="layui-btn layui-btn-sm layui-btn-primary">
-                                <i class="layui-icon layui-icon-right"></i>
-                            </button>
-                        </div>
+                        <!--<div class="t_solution_btn">-->
+                            <!--<button class="layui-btn layui-btn-sm layui-btn-primary">-->
+                                <!--<i class="layui-icon">&#xe603;</i>-->
+                            <!--</button>-->
+                            <!--<button class="layui-btn layui-btn-sm layui-btn-primary">-->
+                                <!--<i class="layui-icon layui-icon-right"></i>-->
+                            <!--</button>-->
+                        <!--</div>-->
                     </div>
                     <ul class="layui-row layui-col-space18" id="solutionContent">
                         <li class="layui-col-lg4 layui-col-md4 layui-col-sm4 layui-col-xs4">
@@ -250,72 +237,33 @@
             <!--安全守卫梦想-->
             <div class="t_about_login">
                 <div class="layui-container layui-row">
-                    <div class="layui-col-lg10 layui-col-md10 layui-col-sm10 layui-col-xs10 t_login_dream">
+                    <div class="layui-col-lg10 layui-col-md10 layui-col-sm10 layui-col-xs12 t_login_dream">
                         <h4>安全守卫梦想</h4>
                         <p>注册天网卫士账号，乐享免费试用机会</p>
                     </div>
-                    <div class="layui-col-lg2 layui-col-md2 layui-col-sm2 layui-col-xs2">
+                    <div class="layui-col-lg2 layui-col-md2 layui-col-sm2 layui-col-xs12">
                         <div class="layui-btn layui-btn-radius">立即注册</div>
                     </div>
                 </div>
                 <!--<div id="canvas" class="gradient"></div>-->
+                <!--<canvas id="casAbout"></canvas>-->
             </div>
         </div>
+        <!--回到顶部-->
+        <div class="t_to_top">
+            <i class="layui-icon layui-icon-top"></i>
+        </div>
+        <!--咨询中心-->
+        <!--<p class="t_consultation">咨询</p>-->
     </section>
     <!--footer-->
-    <footer>
-        <div class="t_footer_info">
-            <div class="layui-row layui-container">
-                <dl class="t_footer_ask layui-col-lg4 layui-col-md4 layui-col-sm4 layui-col-xs4 border">
-                    <dt>产品咨询</dt>
-                    <dd>售前咨询：400-100-102转1</dd>
-                    <dd>售后服务：400-100-102转2</dd>
-                    <dd>QQ交流群：1392695110</dd>
-                </dl>
-                <div class="t_footer_list layui-col-lg8 layui-col-md8 layui-col-sm8 layui-col-xs8">
-                    <dl>
-                        <dt>解决方案</dt>
-                        <dd><a href="">网站</a></dd>
-                        <dd><a href="">游戏</a></dd>
-                    </dl>
-                    <dl>
-                        <dt>资源与帮助</dt>
-                        <dd><a href="">免费试用</a></dd>
-                        <dd><a href="">产品文档</a></dd>
-                    </dl>
-                    <dl>
-                        <dt>账户管理</dt>
-                        <dd><a href="">控制台</a></dd>
-                        <dd><a href="">合同申请</a></dd>
-                        <dd><a href="">发票索取</a></dd>
-                    </dl>
-                    <dl>
-                        <dt>联系我们</dt>
-                        <dd><a href="">关于我们</a></dd>
-                        <dd><a href="">意见反馈</a></dd>
-                    </dl>
-                    <dl>
-                        <dt>关注天网卫士</dt>
-                        <dd><a href="">微信</a></dd>
-                        <dd><a href="">微博</a></dd>
-                    </dl>
-                </div>
-            </div>
-        </div>
-        <div class="t_footer_copyright">
-            <div class="layui-container layui-row">
-                <p class="layui-col-lg9 layui-col-md7 layui-col-sm7 layui-col-xs7">©2017-2018 supertcn.com 版权所有 ICP证：浙ICP备18003397号</p>
-                <div class="layui-col-lg3 layui-col-md5 layui-col-sm5 layui-col-xs5">
-                    <a class="t_footer_a" href="">法律政策</a><a class="t_footer_a" href="">隐私声明</a><a href="">用户协议</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer></footer>
     <script src="../layui/layui.js"></script>
+    <!--<script src="http://james.padolsey.com/demos/grayscale/grayscale.js"></script>-->
     <script src="./js/publicIndex.js"></script>
     <script src="./js/anim.js"></script>
-    <script src="http://cdn.bootcss.com/three.js/r68/three.min.js"></script>
-    <script src="../utils/canvas-renderer.js"></script>
+    <!--<script src="http://cdn.bootcss.com/three.js/r68/three.min.js"></script>-->
+    <!--<script src="../utils/canvas-renderer.js"></script>-->
     <!--<script src="../utils/3d-lines-animation.js"></script>-->
 </body>
 </html>

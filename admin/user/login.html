@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>天网卫士 - 登录</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/publicAdmin.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="t_body">
+    <div class="t_login layui-row">
+        <div class="t_left layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs6 t_left_login">
+            <h2>欢迎登录</h2>
+            <p>天网卫士控制中心</p>
+            <span>SkyShield Control Center</span>
+        </div>
+        <div class="t_right layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs6 t_right_login">
+            <a href="../../index/index.html"><img src="../../img/logo.png" alt=""></a>
+            <h2>登录账号</h2>
+            <form class="layui-form" action="">
+                <p class="t_tips"><i class="layui-icon layui-icon-close-fill"></i>登录名或登录密码不正确</p>
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-username t_icon"></i>
+                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入手机号" class="layui-input t_name">
+                </div>
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-password t_icon"></i>
+                    <input type="password" name="title" lay-verify="title" autocomplete="off" placeholder="请输入密码" class="layui-input t_name">
+                </div>
+                <p class="t_forgot_password_btn"><a href="./forgot_password.html">忘记密码?</a></p>
+                <p class="t_agreed_login">登 录</p>
+                <p class="t_to_register">还没有账号？<a href="./register.html">立即注册</a></p>
+            </form>
+        </div>
+    </div>
+    <script src="../../layui/layui.js"></script>
+    <script src="../js/publicAdmin.js"></script>
+    <!--<script src="http://james.padolsey.com/demos/grayscale/grayscale.js"></script>-->
+</body>
+</html>
