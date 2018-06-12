@@ -73,7 +73,7 @@ function draw(canvas, height, max, color, length) {
 
                 // 绘制点
                 ctx.fillRect(dot.x - 0.5, dot.y - 0.5, 1, 1, 1);
-                ctx.fillStyle="#007fff";
+                // ctx.fillStyle="#007fff";
                 // ctx.strokeStyle = '#007fff'
                 // 循环比对粒子间的距离
                 for (var i = 0; i < ndots.length; i++) {
@@ -120,7 +120,7 @@ function draw(canvas, height, max, color, length) {
         }
 
     }catch(err){
-        document.getElementById("cas").innerHTML = "html5 canvas is not supported";
+        console.log("html5 canvas is not supported");
     }
 }
 var canvas = document.getElementById("cas");

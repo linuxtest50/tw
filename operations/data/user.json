@@ -1,0 +1,63 @@
+{
+    "code": 0,
+    "msg": "",
+    "count": 1000,
+    "data": [
+        {
+            "id": "07",
+            "username": "小迪迪",
+            "phone": "1383838438",
+            "email": "xiaodidi@138.com",
+            "timer": "2038-03-08 04:38:00",
+            "createman": "小迪迪"
+        },
+        {
+            "id": "06",
+            "username": "小丁丁",
+            "phone": "1383838438",
+            "email": "xiaodidi@138.com",
+            "timer": "2038-03-08 04:38:01",
+            "createman": "小迪迪"
+        },
+        {
+            "id": "05",
+            "username": "小弟弟",
+            "phone": "1383838438",
+            "email": "xiaodidi@138.com",
+            "timer": "2038-03-08 04:38:02",
+            "createman": "小迪迪"
+        },
+        {
+            "id": "04",
+            "username": "小底底",
+            "phone": "1383838438",
+            "email": "xiaodidi@138.com",
+            "timer": "2038-03-08 04:38:03",
+            "createman": "小迪迪"
+        },
+        {
+            "id": "03",
+            "username": "小帝帝",
+            "phone": "1383838438",
+            "email": "xiaodidi@138.com",
+            "timer": "2038-03-08 04:38:04",
+            "createman": "小迪迪"
+        },
+        {
+            "id": "02",
+            "username": "小滴滴",
+            "phone": "1383838438",
+            "email": "xiaodidi@138.com",
+            "timer": "2038-03-08 04:38:05",
+            "createman": "小迪迪"
+        },
+        {
+            "id": "01",
+            "username": "小狄狄",
+            "phone": "1383838438",
+            "email": "xiaodidi@138.com",
+            "timer": "2038-03-08 04:38:06",
+            "createman": "小迪迪"
+        }
+    ]
+}

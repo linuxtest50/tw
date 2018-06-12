@@ -22,7 +22,7 @@
                             var result = str[num].split('.')[0]
                         }
                     }
-                    $('.layui-nav-tree .' + result).css('backgroundColor','#135fdf')
+                    $('.layui-nav-tree .' + result).css('backgroundColor','#0793ee')
                     // $('.' + result).addClass('layui-anim layui-anim-fadein')
                 }
                 setBgColor()

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../layui/css/layui.css">
     <link rel="stylesheet" href="./css/animate.css">
     <link rel="stylesheet" href="./css/publicIndex.css">
+
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -25,7 +26,7 @@
             <canvas id="cas">您的浏览器不支持Canvas</canvas>
             <div carousel-item>
                 <div>
-                    <img src="../img/banner_one.png" alt="">
+                    <img src="../img/banner.png" alt="" class="banner_img"/>
                 </div>
                 <div>
                     <img src="../img/banner_two.png" alt="">
@@ -50,28 +51,28 @@
                 <div class="t_safe_content layui-row layui-col-space30">
                     <div class="layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
                         <div class="t_safe_list animated">
-                            <img src="../img/safe_icon_unlimited.png" alt="">
+                            <img data-src="../img/safe_icon_unlimited.png" class="lazyload" alt="">
                             <h4>无限扩展</h4>
                             <p>分布式产品架构，防御能力可无限扩展，保障业务永久在线</p>
                         </div>
                     </div>
                     <div class="layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
                         <div class="t_safe_list animated">
-                            <img src="../img/safe_icon_defense.png" alt="">
+                            <img data-src="../img/safe_icon_defense.png" class="lazyload" alt="">
                             <h4>全面防御</h4>
                             <p>全面防御各类型DDoS攻击、CC攻击，自动触发，实时防护，无需干预</p>
                         </div>
                     </div>
                     <div class="layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
                         <div class="t_safe_list animated">
-                            <img src="../img/safe_icon_deploy.png" alt="">
+                            <img data-src="../img/safe_icon_deploy.png" class="lazyload" alt="">
                             <h4>极速部署</h4>
                             <p>无需安装软硬件，无需SDK集成，通过云端极速部署，紧急时刻迅速接入</p>
                         </div>
                     </div>
                     <div class="layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
                         <div class="t_safe_list animated">
-                            <img src="../img/safe_icon_profession.png" alt="">
+                            <img data-src="../img/safe_icon_profession.png" class="lazyload" alt="">
                             <h4>专业服务</h4>
                             <p>专家运维团队7×24小时监控服务，随时应对各种复杂攻击</p>
                         </div>
@@ -95,13 +96,12 @@
                     </div>
                     <ul class="layui-row layui-col-space18" id="solutionContent">
                         <li class="layui-col-lg4 layui-col-md4 layui-col-sm4 layui-col-xs4">
-                            <a href=""><img src="../img/solution_electricity.png" alt="">
-                                <div class="t_solution_content">电商解决方案
-                                </div>
+                            <a href=""><img data-src="../img/solution_electricity.png" class="lazyload" />
+                                <div class="t_solution_content">电商解决方案</div>
                             </a>
                         </li>
                         <li class="layui-col-lg4 layui-col-md4 layui-col-sm4 layui-col-xs4">
-                            <a href=""><img src="../img/solution_game.png" alt="">
+                            <a href=""><img data-src="../img/solution_game.png" class="lazyload" />
                                 <div class="t_solution_content">
                                     <p>游戏解决方案</p>
                                     <span>天网卫士针对游戏行业推出的网络安全解决方案，除有效防御大流量DDoS攻击外，还能彻底解决游戏行业特有的TCP协议的CC攻击问题</span>
@@ -110,7 +110,7 @@
                             </a>
                         </li>
                         <li class="layui-col-lg4 layui-col-md4 layui-col-sm4 layui-col-xs4">
-                            <a href=""><img src="../img/solution_enterprise.png" alt="">
+                            <a href=""><img data-src="../img/solution_enterprise.png" class="lazyload" />
                                 <div class="t_solution_content">企业解决方案</div>
                             </a>
                         </li>
@@ -226,12 +226,12 @@
                     <p>COOPERATIVE PARTNER</p>
                 </div>
                 <ul class="t_partner_list layui-row">
-                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img src="../img/partner_ali.png" alt=""></li>
-                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img src="../img/partner_ucloud.png" alt=""></li>
-                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img src="../img/partner_tencent.png" alt=""></li>
-                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img src="../img/partner_baidu.png" alt=""></li>
-                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img src="../img/partner_unicom.png" alt=""></li>
-                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img src="../img/partner_telecom.png" alt=""></li>
+                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img data-src="../img/partner_ali.png" class="lazyload" alt=""></li>
+                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img data-src="../img/partner_ucloud.png" class="lazyload" alt=""></li>
+                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img data-src="../img/partner_tencent.png" class="lazyload" alt=""></li>
+                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img data-src="../img/partner_baidu.png" class="lazyload" alt=""></li>
+                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img data-src="../img/partner_unicom.png" class="lazyload" alt=""></li>
+                    <li class="layui-col-lg4 layui-col-md6 layui-col-sm6 layui-col-xs6"><img data-src="../img/partner_telecom.png" class="lazyload" alt=""></li>
                 </ul>
             </div>
             <!--安全守卫梦想-->
@@ -261,6 +261,7 @@
     <script src="../layui/layui.js"></script>
     <!--<script src="http://james.padolsey.com/demos/grayscale/grayscale.js"></script>-->
     <script src="./js/publicIndex.js"></script>
+    <script src="../utils/lazysizes.min.js"></script>
     <script src="./js/anim.js"></script>
     <!--<script src="http://cdn.bootcss.com/three.js/r68/three.min.js"></script>-->
     <!--<script src="../utils/canvas-renderer.js"></script>-->

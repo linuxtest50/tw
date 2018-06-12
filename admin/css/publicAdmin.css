@@ -7,24 +7,24 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .layui-nav-tree .layui-this>a, .layui-nav-tree .layui-this>a:hover,.layui-nav-tree .layui-nav-bar, .layui-nav .layui-this:after,
 .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after, .layui-form-select dl dd.layui-this, .layui-btn, .layui-form-checked[lay-skin=primary] i,
 .layui-laydate td.layui-this, .layui-laydate li.layui-this, .layui-layer-btn .layui-layer-btn0, .layui-form-onswitch{
-    background-color: #135fdf !important;
+    background-color: #0793ee !important;
 }
 .layui-breadcrumb a:hover, .layui-form-radio>i:hover, .layui-form-radioed>i, .layui-laydate-header i:hover, .layui-laydate-header span:hover,
 .layui-laydate-footer span:hover, .layui-laydate-footer span:hover, .layui-laydate-footer span[lay-type=date], .layui-tab-brief>.layui-tab-title .layui-this
 {
-    color: #135fdf !important;
+    color: #0793ee !important;
 }
 .layui-form-checked[lay-skin=primary] i, .layui-form-checkbox[lay-skin=primary]:hover i, .layui-layer-btn .layui-layer-btn0, .layui-form-onswitch{
-    border-color: #135fdf !important;
+    border-color: #0793ee !important;
 }
 .layui-tab-brief>.layui-tab-more li.layui-this:after, .layui-tab-brief>.layui-tab-title .layui-this:after{
-    border-bottom: 2px solid #135fdf !important;
+    border-bottom: 2px solid #0793ee !important;
 }
 .layui-laydate-content td.laydate-selected {
-    background-color: #9abdf7 !important;
+    background-color: #0793ee !important;
 }
 .layui-form-item{margin-bottom: 25px;}
-
+table a{color: #135fdf !important;}
 /*public左侧边栏*/
 .hide_side{display: none}
 .hide_side>li{position: relative}

@@ -1,0 +1,81 @@
+/*public admin*/
+body{font-family: "微软雅黑"; font-size: 14px;}
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+.layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-nav-child dd.layui-this a, .layui-nav-tree .layui-this,
+.layui-nav-tree .layui-this>a, .layui-nav-tree .layui-this>a:hover, .layui-nav .layui-this:after,
+ .layui-nav-tree .layui-nav-itemed:after, .layui-form-select dl dd.layui-this, .layui-form-checked[lay-skin=primary] i,
+.layui-laydate td.layui-this, .layui-laydate li.layui-this, .layui-layer-btn .layui-layer-btn0, .layui-form-onswitch,.layui-laypage .layui-laypage-curr .layui-laypage-em{
+    background-color: #0793ee !important;
+}
+.layui-breadcrumb a:hover, .layui-form-radio>i:hover, .layui-form-radioed>i, .layui-laydate-header i:hover, .layui-laydate-header span:hover,
+.layui-laydate-footer span:hover, .layui-laydate-footer span:hover, .layui-laydate-footer span[lay-type=date], .layui-tab-brief>.layui-tab-title .layui-this
+{
+    color: #0793ee !important;
+}
+.layui-form-checked[lay-skin=primary] i, .layui-form-checkbox[lay-skin=primary]:hover i, .layui-layer-btn .layui-layer-btn0, .layui-form-onswitch{
+    border-color: #0793ee !important;
+}
+.layui-tab-brief>.layui-tab-more li.layui-this:after, .layui-tab-brief>.layui-tab-title .layui-this:after{
+    border-bottom: 2px solid #0793ee !important;
+}
+.layui-laydate-content td.laydate-selected {
+    background-color: #0793ee !important;
+}
+table a, .layui-laypage a:hover{color: #0793ee !important;}
+
+.layui-btn-primary:hover {
+    border-color: #0793ee;
+    color: #333;
+}
+/*header*/
+.layui-form-item{margin-bottom: 25px;}
+.layui-nav-tree{padding-top: 20px}
+.layui-layout-right a span{color:#444}
+
+/*public左侧边栏*/
+.hide_side{display: none}
+.hide_side>li{position: relative}
+.hide_side>li>a{color: #fff; display: block; height: 60px; line-height: 60px; text-align: center}
+.hide_side_dl{position: absolute; left: 70px; top:20px; width: 80px; display: none; background: #000; border-radius: 2px; padding-top: 10px}
+.hide_side_dl dd{padding-bottom: 10px; text-align: center; position: relative}
+.hide_side_dl a{color: #fff}
+.layui-bg-black, .layui-nav-tree.layui-nav{background: #010125 !important;}
+.layui-nav-itemed>.layui-nav-child{background-color: rgba(0,0,0,0.6)!important;}
+.layui-nav-tree .layui-nav-item a:hover{background: none}
+.layui-layout-admin .layui-header{background-color: #fff;}
+.layui-layout-left a.layui-icon, .layui-layout-left a.layui-icon:hover{color: #3b3b3f}
+.layui-nav-tree .layui-nav-child a, .layui-nav-tree .layui-nav-item a{height: 50px; line-height: 50px}
+.t_icon{padding-right: 10px; font-size: 18px}
+.t_triangle{position:absolute; left: -8px; width: 0; height: 0; border-top: 10px solid #000; border-left: 8px solid transparent;}
+.layui-nav-item .t_item{background: #010117}
+.layui-nav-item .t_item a{padding-left: 45px}
+.layui-nav-tree .layui-nav-more{right: 25px;}
+.layui-nav-child{display: block; overflow-y: hidden; padding: 0}
+.layui-nav-more.icon_more{margin-top: -9px;border-style: dashed dashed solid;border-color: transparent transparent #fff;}
+.layui-nav-bar{background: none !important;}
+
+/*public右侧body*/
+.layui-header{-moz-box-shadow:1px 1px 2px -1px #bfbfbf; -webkit-box-shadow:1px 1px 2px -1px #bfbfbf; box-shadow:1px 1px 2px -1px #bfbfbf;}
+.layui-body{padding: 20px; background: #EDF0F5;}
+.box{background: #fff; padding:10px 10px 50px; border-radius: 2px; box-shadow: -1px 2px 7px #e2e2e2}
+.box h2,.t_bread_nav{font-size: 14px; padding-left: 20px;}
+.t_admin_title{height: 66px; line-height: 66px; border-bottom: 1px solid #e6e6e6}
+/*.t_admin_text{padding: 50px 0 0 50px}*/
+.t_admin_table{padding-top:20px}
+.layui-layout-admin .layui-body{bottom:0}
+
+/*body*/
+.t_admin_content{padding-top: 20px}
+.layui-form-switch{margin:0}
+.layui-tab-content{padding: 20px}
+.layui-tab-title{margin:0 20px}
+.t_user_mangent, .t_products_mangent{padding: 0 20px}
+
+/*add user*/
+.add_user:hover{color:#0793ee}
+.adduser_popup, .addpro_popup {padding:25px 25px 0 25px}
+.t_user_right{float: right;padding-right: 20px;}
+.t_user_right button{width: 85px;float: right;background-color: #0793ee !important;}
+.layui-word-aux{color:red !important;}

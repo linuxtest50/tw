@@ -67,7 +67,7 @@
                 , anim: 'fade'
             });
             if($(window).outerWidth()>2000){
-                $('#carousel').css('height', '900px')
+                $('#carousel').css('height', '850px')
                 console.log($('#carousel').css('height'))
             }
             var $cH2 = $('.t_carousel_info h2'), $cP = $('.t_carousel_info p'), $cA = $('.t_carousel_info a')
@@ -264,5 +264,67 @@
 
         // grayscale(document.getElementById("thisImage"));
     })
+
+
+
+
+
+
+
+    debugger
+    function imageToBase64() {
+        // that.base64Arr.push(dataURL)
+        debugger
+        var that = this
+        this.base64Arr = []
+        this.imgSrcArr = ["../img/banner.png", "../img/defense.png"];// 图片路径
+        this.fun = function getBase64Image(img) {
+            debugger
+            let canvas = document.createElement("canvas");
+            canvas.width = img.width;
+            canvas.height = img.height;
+            let ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, img.width, img.height);
+            let ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();
+            let dataURL = canvas.toDataURL("image/"+ext);
+            // console.log(this.image)
+            return dataURL;
+        }
+        this.img = []
+        // this.flag = false
+        for(let i = 0; i < this.imgSrcArr.length; i++){
+            this.img[i] = new Image();
+            this.img[i].onload = function(){
+                that.base64 = that.fun(that.img[i])
+                // that.flag = true
+                // document.querySelector('.banner_img').setAttribute('src',base64)
+                // var cImg = document.createElement('img')
+                // cImg.setAttribute('src',base64);
+                // document.getElementsByTagName('body')[0].appendChild(cImg)
+                // console.log(that.base64)
+            }
+            // debugger
+            this.img[i].src = this.imgSrcArr[i];
+            // console.log(that.flag)
+
+        }
+        // if(!that.flag){
+            // return
+            // that.base64Arr.push(that.base64);
+            // return that.base64Arr
+        // }else{
+            console.log(that.base64)
+            that.base64Arr.push(that.base64);
+            console.log(that.base64Arr)
+        // }
+        return that.base64Arr
+    }
+    var arrbas = imageToBase64()
+    console.log(arrbas.length)
+    // for(var arrs of arrbas){
+        // console.log(arrs)
+    // }
+
+
     console.timeEnd('t.t')
 }(window))
