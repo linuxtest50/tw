@@ -6,7 +6,7 @@ var startNowDatePoor, startTimeObj, endTimeObj
 layui.use(['laydate', 'form'], function(){
     var laydate = layui.laydate, $ = layui.$
     laydate.render({
-        elem: '.web_date_plugin',
+        elem: '.date_plugin',
         type: 'datetime',
         max: new Date().getTime(),
         value: '',
@@ -238,13 +238,13 @@ var tooltip = {
     //			}],
     // 当x轴为时间轴时 提示框内的时间格式化
     dateTimeLabelFormats: {
+        second: '%H:%M:%S. %Y年%m月%d日',
         minute: '%H:%M. %m月. %d日. %Y年',
         hour: '%H:%M. %m月. %d日. %Y年',
         day: '%m月. %d日. %Y年',
         week: '%d日. %m月',
         month: '%m月 .%y年',
         year: '%Y年'
-
     },
 };
 // 主体配置
@@ -281,3 +281,67 @@ var legend = {
     maxHeight: 50,
     padding: 15
 };
+
+
+function editChart() {
+    var series = arguments[1], arr = [],
+    timeType = [
+        24 * 3600 * 1000, // one day
+        3600 * 1000, // one hours
+        60 * 1000 // one minute
+    ];
+    if(series){
+        for (let i = 0; i < series.length; i++) {
+            for (let j = 0; j < series[i].data.length; j++) {
+                arr.push(series[i].data[j])
+            }
+        }
+        var maxNum = Math.max.apply(this, arr);
+        if (maxNum <= 1048576) { //1M
+            yAxis.tickInterval = 102400 //10K
+        } else if (maxNum > 1048576 && maxNum <= 104857600) { //100M
+            yAxis.tickInterval = 10485760 //10M
+        } else if (maxNum > 104857600 && maxNum <= 1073741824) { //1G
+            yAxis.tickInterval = 104857600 // 100M
+        } else if (maxNum > 1073741824) { // 10G
+            yAxis.tickInterval = 1073741824
+        }
+        // time显示类型
+        switch (series[0].pointInterval){
+            case 0:
+                for (let i = 0; i < series.length; i++) {
+                    series[i].pointInterval = timeType[0];
+                }
+                break;
+            case 1:
+                for (let i = 0; i < series.length; i++) {
+                    series[i].pointInterval = timeType[1];
+                }
+                break;
+            case 2:
+                for (let i = 0; i < series.length; i++) {
+                    series[i].pointInterval = timeType[2];
+                }
+                break;
+            default:
+                alert('no')
+        }
+    }
+    // game图表时间
+    if(series && !series[1].pointStart && arguments[2]){
+        xAxis.categories = arguments[2]
+    }
+    // 初始化game图表
+    var gameFlow = {
+        chart: chart,
+        title: title,
+        xAxis: xAxis,
+        yAxis: yAxis,
+        legend: legend,
+        tooltip: tooltip,
+        plotOptions: plotOptions,
+        credits: credits,
+        series: series
+    };
+    Highcharts.chart(arguments[0], gameFlow)
+}
