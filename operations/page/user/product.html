@@ -54,7 +54,42 @@
                         </div>
                         <button class="layui-btn" id="findById">查询</button>
                     </div>
-                    <table id="productsTab" lay-filter="products_tab"></table>
+                    <table class="layui-table">
+                        <colgroup>
+                            <col width="150">
+                            <col width="200">
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>产品ID</th>
+                            <th>产品配置</th>
+                            <th>有效时间</th>
+                            <th>产品状态</th>
+                            <th>启用状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td>YX10002343939</td>
+                            <td>基础版-http-80端口</td>
+                            <td>2038-03-08 04:38:00 至 2088-03-08 04:38:00</td>
+                            <td>正常使用</td>
+                            <td>启用</td>
+                            <td>
+                                <a href="">配置</a>
+                                <a href="">源机管理</a>
+                                <a href="">流量统计</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                    <!--<table id="productsTab" lay-filter="products_tab"></table>-->
                     <script type="text/html" id="barProductsStatus">
                         {{#  if(d.pstatus){ }}
                         <p class="" lay-event="">正常使用</p>

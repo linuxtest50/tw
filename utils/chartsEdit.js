@@ -132,6 +132,18 @@ layui.use(['laydate', 'form'], function(){
 })
 
 /**
+ * 图表全局配置
+ */
+Highcharts.setOptions({
+    lang: {
+        noData: '暂无数据',
+        loading: '加载中...',
+        numericSymbolMagnitude: 1024, // 自定义基数
+        numericSymbols:["KB" , "MB" , "GB" , "P" , "E"], // 自定义单位
+        thousandsSep: ',' // 千分号
+    }
+});
+/**
  *
  * 图表数据
  * */
@@ -155,15 +167,15 @@ var title = {
 };
 // x轴配置
 var xAxis = {
-    categories: [], // 指定横轴坐标点的值
+    // categories: [], // 指定横轴坐标点的值
     labels: {
         // format: '{value} x',
         x: 0, // 调节x偏移
         rotation: 0,  // 旋转,效果就是影响标签的显示方向
     },
-    //  tickInterval: 5,
     opposite: false,// 时间显示X轴上与下
     type: 'datetime',
+    // minRange: 3600,
     dateTimeLabelFormats: {
         minute: '%H:%M',
         hour: '%H:%M',
@@ -171,7 +183,6 @@ var xAxis = {
         week: '%m月 %d',
         month: '%m月 %y',
         year: '%Y'
-
     },
     title: {
         align: 'high',
@@ -185,13 +196,13 @@ var xAxis = {
 // y轴配置
 var yAxis = {
     min: 0,
-    //  tickPositions: [], // 指定竖轴坐标点的值
+     // tickPositions: [], // 指定竖轴坐标点的值
     labels: {
         //	format: '{value} ',
     },
     title: {
         align: 'high',
-        text: '流量(GB)', // y标题
+        text: '流量', // y标题
         style: {
             color: '#666',
             fontSize: '14px'
@@ -203,7 +214,10 @@ var yAxis = {
             fontWeight: 'bold',
             color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
         }
-    }
+    },
+    tickAmount: 8, // y轴刻度数
+    tickInterval: '', // 刻度间隔
+    // tickPixelInterval: 100 // 间隔px
 };
 // 版权信息
 var credits = {
@@ -212,14 +226,17 @@ var credits = {
 // 数据提示框
 var tooltip = {
     // headerFormat: '时间: {point.x} S<br>',
-    // pointFormat: '流量: {point.y} GB ',
-
-    shared: true,
+    // pointFormat: '{series.color}{series.name}: {point.y} bps <br/>', // 提示框数据内容自定义
+    pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}</b><br/>',
+    shared: true, // 合并显示多条数据
+    valueSuffix: ' bps',//数据后
+    valuePrefix: '共计',// 数据前
     //   crosshairs: true,
     //   crosshairs: [{            // 设置准星线样式
     //  width: 30,
     // color: '#fff'
     //			}],
+    // 当x轴为时间轴时 提示框内的时间格式化
     dateTimeLabelFormats: {
         minute: '%H:%M. %m月. %d日. %Y年',
         hour: '%H:%M. %m月. %d日. %Y年',
@@ -239,6 +256,10 @@ var plotOptions = {
             legendItemClick: function (event) {
                 return true; //return  true 则表示允许切换
             }
+        },
+        marker: {
+            // enabled: false // 数据点标记
+            symbol: 'circle' // 数据点形状
         }
     },
     column: {
@@ -256,5 +277,7 @@ var legend = {
     verticalAlign: 'bottom',
     y: 25,
     backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#fff',
-    shadow: false
+    shadow: false,
+    maxHeight: 50,
+    padding: 15
 };

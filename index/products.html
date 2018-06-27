@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>天网卫士</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="./css/animate.css">
+    <link rel="stylesheet" href="./css/publicIndex.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!--header-->
+<header></header>
+<!--section-->
+<section class="p_section">
+    <!--banner-->
+    <div class="p_banner">
+        <div class="t_carousel_info">
+            <h2 class="animated" data-text="web盾">web盾</h2><a class="t_carousel_help animated">帮助文档></a>
+            <p class="animated">web盾是针对互联网服务器在遭受大流量的DDoS攻击、CC攻击后，导致网站服务不可用而推出的网络安全解决方案。web盾采用分布式产品架构，防护节点可无限扩展，防御能力无上限，保障网站业务永久在线。</p>
+            <a class="animated t_carousel_btn" href="http://www.layui.com">立即购买</a>
+            <a class="animated t_carousel_btn" href="http://www.layui.com">产品价格</a>
+        </div>
+    </div>
+    <div class="p_nav">
+        <div class="layui-container layui-row">
+            <ul class="layui-col-lg8 layui-col-md8 layui-col-sm12 layui-col-xs12 layui-clear">
+                <li t-data="p_feature">产品功能</li>
+                <li t-data="p_framework">产品架构</li>
+                <li t-data="p_application">应用场景</li>
+                <li t-data="p_advantage">产品优势</li>
+                <li t-data="p_process">接入流程</li>
+                <li t-data="p_help">帮助文档</li>
+            </ul>
+            <div class="layui-col-lg4 layui-col-md4">
+                <a href="" class="layui-btn layui-btn-normal buy_now">立即购买</a>
+            </div>
+        </div>
+    </div>
+    <div class="p_feature layui-container">
+        <h3>产品功能</h3>
+        <ul class="layui-row layui-col-space20">
+            <li class="layui-col-lg4 layui-col-md4 layui-col-sm6 layui-col-xs12">
+                <div class="p_feature_item">
+                    <img src="../img/icon_ddos.png" alt=""><h4>防御DDOS攻击</h4>
+                    <p>有效防御SYN Flood、ACK Flood、ICMP Flood、UDP Flood、NTP Flood 、SSDP Flood等各类型的DDoS攻击</p>
+                </div>
+            </li>
+            <li class="layui-col-lg4 layui-col-md4 layui-col-sm6 layui-col-xs12">
+                <div class="p_feature_item">
+                    <img src="../img/icon_cc.png" alt=""><h4>防御CC攻击</h4>
+                    <p>分布式产品架构将海量CC请求与源服务器隔离，用户自定义CC过滤策略全网下发，提高防御效果，保证用户正常访问</p>
+                </div>
+            </li>
+            <li class="layui-col-lg4 layui-col-md4 layui-col-sm6 layui-col-xs12">
+                <div class="p_feature_item">
+                    <img src="../img/icon_ip.png" alt=""><h4>源站隐藏</h4>
+                    <p>隐藏源站IP，使攻击者无法找到源站，防护节点成为源站的“安全替身”，保证系统正常服务</p>
+                </div>
+            </li>
+            <li class="layui-col-lg4 layui-col-md4 layui-col-sm6 layui-col-xs12">
+                <div class="p_feature_item">
+                    <img src="../img/icon_balance.png" alt=""><h4>负载均衡</h4>
+                    <p>智能统计有关数据，动态调节节点权重，引导流量实现负载均衡</p>
+                </div>
+            </li>
+            <li class="layui-col-lg4 layui-col-md4 layui-col-sm6 layui-col-xs12">
+                <div class="p_feature_item">
+                    <img src="../img/icon_secret.png" alt=""><h4>加密传输</h4>
+                    <p>支持HTTPS加密传输,有效保证数据传输安全，分布式产品架构可有效缓解加密传输造成的源站服务器压力</p>
+                </div>
+            </li>
+            <li class="layui-col-lg4 layui-col-md4 layui-col-sm6 layui-col-xs12">
+                <div class="p_feature_item">
+                    <img src="../img/icon_data.png" alt=""><h4>数据统计</h4>
+                    <p>多点数据采集，多维数据统计，提供精准防护流量图示及日志详情</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="p_framework layui-container">
+        <h3>产品架构</h3>
+        <img src="../img/framework.png" alt="">
+    </div>
+    <div class="p_application">
+        <div class="layui-container">
+            <h3>应用场景</h3>
+            <div class="layui-tab">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">电商</li>
+                    <li>网游</li>
+                    <li>互联网金融</li>
+                    <li>政府门户</li>
+                    <li>新零售</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show layui-row">
+                        <div  class="layui-col-lg2">
+                            <img src="../img/scenes_icon_electricity.png" alt="电商"/>
+                        </div>
+                        <div class="p_application_right layui-col-lg10">
+                            <h4>电商</h4>
+                            <p>新品发布、节日促销、竞争者恶意的DDoS攻击、CC攻击都可能导致电商平台的拒绝服务，影响用户购物体验，给平台及商户造成经济损失。</p>
+                        </div>
+                    </div>
+                    <div class="layui-tab-item layui-row">
+                        <div  class="layui-col-lg2">
+                            <img src="../img/scenes_icon_game.png" alt="游戏"/>
+                        </div>
+                        <div class="p_application_right layui-col-lg10">
+                            <h4>游戏</h4>
+                            <p>网页游戏竞争激烈，容易在开服、推广期间遭受大流量DDoS攻击、CC攻击，游戏访问缓慢，掉线率高，用户流失严重，给企业造成巨额经济损失。</p>
+                        </div>
+                    </div>
+                    <div class="layui-tab-item layui-row">
+                        <div  class="layui-col-lg2">
+                            <img src="../img/scenes_icon_electricity.png" alt="互联网金融"/>
+                        </div>
+                        <div class="p_application_right layui-col-lg10">
+                            <h4>互联网金融</h4>
+                            <p>互联网金融蓬勃发展，行业间竞争激烈，金融类网站是DDoS攻击、CC攻击的重灾区，网络攻击导致服务网站无法打开，严重影响投资者信心，甚至引发平台信任危机。</p>
+                        </div>
+                    </div>
+                    <div class="layui-tab-item layui-row">
+                        <div  class="layui-col-lg2">
+                            <img src="../img/scenes_icon_electricity.png" alt="政府门户"/>
+                        </div>
+                        <div class="p_application_right layui-col-lg10">
+                            <h4>政府门户</h4>
+                            <p>随着互联网的普及，越来越多的政府/企业搭建门户网站，不法分子/行业竞争者的DDoS攻击、CC攻击会导致服务网站无法打开，严重影响公众/客户心中的政府/企业形象及公信力。</p>
+                        </div>
+                    </div>
+                    <div class="layui-tab-item layui-row">
+                        <div  class="layui-col-lg2">
+                            <img src="../img/scenes_icon_electricity.png" alt="新零售"/>
+                        </div>
+                        <div class="p_application_right layui-col-lg10">
+                            <h4>新零售</h4>
+                            <p>新零售以互联网为依托，作为线上服务、线下体验以及现代物流进行深度融合的零售新模式，活动促销的海量访问、同行的恶意竞争都会导致网站拒绝服务，业务难以稳定、高效的运行。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p_advantage layui-container">
+        <h3>产品优势</h3>
+        <ul class="layui-row">
+            <li class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <span>0 1</span>
+                <div>
+                    <h4>业务永久在线</h4>
+                    <p>分布式产品架构，防护节点可无限扩展，防御能力无上限，保障用户业务永久在线</p>
+                </div>
+            </li>
+            <li class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <span>0 2</span>
+                <div>
+                    <h4>产品性价比高</h4>
+                    <p>支持个性化定制产品配置，用户按需购买，节省防护成本</p>
+                </div>
+            </li>
+            <li class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <span>0 3</span>
+                <div>
+                    <h4>多线路支持</h4>
+                    <p>全国部署BGP防护节点，覆盖各运营商主要线路，保障稳定、流畅的用户访问体验</p>
+                </div>
+            </li>
+            <li class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <span>0 4</span>
+                <div>
+                    <h4>全业务场景</h4>
+                    <p>支持http、https传输协议，适合互联网金融、电商、网游、门户网站、在线教育、新零售等各类业务场景</p>
+                </div>
+            </li>
+            <li class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <span>0 5</span>
+                <div>
+                    <h4>多转发规则</h4>
+                    <p>支持用户配置多条转发规则，每条规则可为多个源站提供防护，提高业务部署的灵活性</p>
+                </div>
+            </li>
+            <li class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <span>0 6</span>
+                <div>
+                    <h4>接入方便</h4>
+                    <p>无需安装软硬件、无需SDK集成，只需云端配置，CNAME接入防护节点即可</p>
+                </div>
+            </li>
+            <li class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <span>0 7</span>
+                <div>
+                    <h4>自助服务</h4>
+                    <p>用户自助服务平台，随时调整防御策略 ，让配置更自由、防护更安全</p>
+                </div>
+            </li>
+            <li class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <span>0 8</span>
+                <div>
+                    <h4>应急防护</h4>
+                    <p>5分钟即可完成云端部署，实现应急防护，最大限度减少业务损失</p>
+                </div>
+            </li>
+            <li class="layui-col-lg6 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <span>0 9</span>
+                <div>
+                    <h4>可视管理</h4>
+                    <p>多点数据采集，多维数据统计，实时提供统计报表，助力精准分析、有效防御</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="p_process">
+        <div class="layui-container">
+            <h3>接入流程</h3>
+            <ul class="layui-row">
+                <li class="p_process_step">
+                    <div class="p_process_left">
+                        <h4>注册登录</h4>
+                        <p>手机注册天网卫士账号并登录</p>
+                    </div>
+                    <div class="p_process_right loader">
+                        <div class="loader-inner ball-beat">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="p_process_step">
+                    <div class="p_process_left">
+                        <h4>开通服务</h4>
+                        <p>根据业务需求定制产品配置，开通安全防御服务</p>
+                    </div>
+                    <div class="p_process_right loader">
+                        <div class="loader-inner ball-beat">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="p_process_step">
+                    <div class="p_process_left">
+                        <h4>设置规则</h4>
+                        <p>设置原始域名、转发协议、转发端口、源站IP等转发规则</p>
+                    </div>
+                    <div class="p_process_right loader">
+                        <div class="loader-inner ball-beat">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </li>
+                <li class="p_process_step last_li">
+                    <div class="p_process_left">
+                        <h4>修改DNS解析</h4>
+                        <p>将 A 记录指向 IP 地址修改为CNAME指向系统子域名</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="p_help layui-container">
+        <h3>帮助文档</h3>
+        <div class="layui-clear">
+            <dl>
+                <dt>产品介绍</dt>
+                <dd><a href="">产品概述</a></dd>
+                <dd><a href="">产品优势</a></dd>
+            </dl>
+            <dl>
+                <dt>购买指导</dt>
+                <dd><a href="">产品价格</a></dd>
+                <dd><a href="">计费说明</a></dd>
+                <dd><a href="">购买说明</a></dd>
+            </dl>
+            <dl>
+                <dt>使用须知</dt>
+                <dd><a href="">产品接入流程</a></dd>
+                <dd><a href="">查看防护列表</a></dd>
+            </dl>
+            <dl>
+                <dt>操作指南</dt>
+                <dd><a href="">使用教程</a></dd>
+                <dd><a href="">消息设置</a></dd>
+                <dd><a href="">数据统计</a></dd>
+            </dl>
+            <dl>
+                <dt>常见问题</dt>
+                <dd><a href="">计费相关</a></dd>
+                <dd><a href="">功能相关</a></dd>
+            </dl>
+        </div>
+    </div>
+</section>
+<!--footer-->
+<footer></footer>
+<script src="../layui/layui.js"></script>
+<script src="./js/publicIndex.js"></script>
+</body>
+</html>

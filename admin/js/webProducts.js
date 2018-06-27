@@ -1,7 +1,7 @@
 layui.use(['layer', 'form','table', 'upload'], function() {
     var table = layui.table, layer = layui.layer, form = layui.form, $ = layui.$, upload = layui.upload
     // 可直接使用$
-    console.log($)
+    // console.log($)
     //web盾 上传证书 密钥
     upload.render({
         elem: '.web_certificate'
@@ -35,7 +35,7 @@ layui.use(['layer', 'form','table', 'upload'], function() {
         29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1,
         29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1,
         29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1,
-        29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1
+        29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 9999999
     ];
 
     var timeX = ['web', '02', '03', '04', '05', '06', '07', '08', '09', '10','11',

@@ -4,11 +4,15 @@
 (function (w) {
     console.time('time')
     w.tTools = {}
-    layui.use(['layer', 'form'], function(){
-        var $ = layui.$, layer = layui.layer, form = layui.form,that = this
+    layui.use(['layer', 'form', 'laypage'], function(){
+        var $ = layui.$, layer = layui.layer, form = layui.form, laypage = layui.laypage, that = this
         $('.layui-header').load('../public-admin-page/public_header.html', function () {
             $('.layui-side').load('../public-admin-page/public_side.html', function () {
                 layui.use('element')
+                laypage.render({
+                    elem: 'paging'
+                    ,count: $('.t_use_list').length //数据总数
+                });
                 /**
                  * side-bg
                  */
@@ -218,14 +222,19 @@
                 /**
                  * 全选
                  */
+                $('.t_page_count>span:odd').text($('.t_use_list').length)
                 form.on('checkbox(use_scope)', function(data){
                     if(data.elem.checked){
                         $('.t_use_list').prop('checked', true)
+                        console.log($('.t_use_list:checked').length)
+                        $('.t_page_count>span:even').text($('.t_use_list:checked').length)
                         form.render('checkbox', 'scope_filter');
                         console.log($('.t_use_list').prop('checked'))
                     }else{
                         $('.t_use_list').prop('checked', false)
+                        $('.t_page_count>span:even').text($('.t_use_list:checked').length)
                         form.render('checkbox', 'scope_filter');
+                        console.log($('.t_use_list:checked').length)
                         console.log($('.t_use_list').prop('checked'))
                     }
                 });
@@ -235,6 +244,8 @@
                 form.on('checkbox(list_scope)', function(data){
                     if(data.elem.checked){
                         $('.t_use_all').prop('checked', true)
+                        $('.t_page_count>span:even').text($('.t_use_list:checked').length)
+                        console.log($('.t_use_list:checked').length)
                         $('.t_use_list').each(function () {
                             if(!$(this).prop('checked')){
                                 $('.t_use_all').prop('checked', false)
@@ -243,6 +254,8 @@
                         form.render('checkbox', 'scope_filter')
                     }else{
                         $('.t_use_all').prop('checked', false)
+                        $('.t_page_count>span:even').text($('.t_use_list:checked').length)
+                        console.log($('.t_use_list:checked').length)
                         form.render('checkbox', 'scope_filter')
                     }
                 });

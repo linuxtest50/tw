@@ -52,7 +52,7 @@
                         json : 'https://cdn.bootcss.com/requirejs-plugins/1.0.3/json' //alias to plugin
                     }
                 });
-                require(['json!../../data/user.json'],function (dataJson) {
+                require(['json!../../data/user.json'], function (dataJson) {
                     that.tableData = dataJson.data
                     table.render({
                         elem: '#userTab'

@@ -6,12 +6,12 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-nav-child dd.layui-this a, .layui-nav-tree .layui-this,
 .layui-nav-tree .layui-this>a, .layui-nav-tree .layui-this>a:hover,.layui-nav-tree .layui-nav-bar, .layui-nav .layui-this:after,
 .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after, .layui-form-select dl dd.layui-this, .layui-btn, .layui-form-checked[lay-skin=primary] i,
-.layui-laydate td.layui-this, .layui-laydate li.layui-this, .layui-layer-btn .layui-layer-btn0, .layui-form-onswitch{
+.layui-laydate td.layui-this, .layui-laydate li.layui-this, .layui-layer-btn .layui-layer-btn0, .layui-form-onswitch,.layui-laypage .layui-laypage-curr .layui-laypage-em{
     background-color: #0793ee !important;
 }
 .layui-breadcrumb a:hover, .layui-form-radio>i:hover, .layui-form-radioed>i, .layui-laydate-header i:hover, .layui-laydate-header span:hover,
-.layui-laydate-footer span:hover, .layui-laydate-footer span:hover, .layui-laydate-footer span[lay-type=date], .layui-tab-brief>.layui-tab-title .layui-this
-{
+.layui-laydate-footer span:hover, .layui-laydate-footer span:hover, .layui-laydate-footer span[lay-type=date], .layui-tab-brief>.layui-tab-title .layui-this,
+.layui-laypage a:hover{
     color: #0793ee !important;
 }
 .layui-form-checked[lay-skin=primary] i, .layui-form-checkbox[lay-skin=primary]:hover i, .layui-layer-btn .layui-layer-btn0, .layui-form-onswitch{
@@ -25,6 +25,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 }
 .layui-form-item{margin-bottom: 25px;}
 table a{color: #135fdf !important;}
+
 /*public左侧边栏*/
 .hide_side{display: none}
 .hide_side>li{position: relative}
@@ -72,6 +73,18 @@ a.t_num_edit:hover{color: #1053FD}
 .t_send_email{width:300px; margin-top:30px}
 .t_email_vcode{width:150px; display:inline-block;}
 .t_email_btn{background: #1053fd; float:right}
+.layui-btn.layui-btn-primary{background: none !important}
+.layui-btn-primary:hover{border-color: #0793ee; color: #0793ee}
+#paging{float: right}
+.t_page_count{float: left;height: 50px; line-height: 50px}
+a.t_msg_unread{color: #4c4c4c !important;}
+a.t_msg_read{color: #818181 !important;}
+.t_msg_title{text-align: center}
+.t_msg_title h3{font-size: 18px;}
+.t_msg_title p{padding: 20px 0; border-bottom: 1px solid #ececec}
+.t_msg_details h4{margin: 30px;}
+.t_msg_details p{margin-left: 30px;}
+.t_msg_details p a{color:#0793ee}
 
 /*产品购买*/
 .t_admin_table table, .layui-table thead th{text-align: center}
