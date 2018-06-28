@@ -43,36 +43,60 @@ layui.use(['layer', 'form','table', 'upload'], function() {
         '12', '13', '14', '15', '16', '17', '18', '19', '20','21', '22', '23', '24', '25', '26', '27', '28', '29', '30']
 
 
-    editChart('gameStatisChart')
-
+    var initChart = editChart('gameStatisChart')
+    var againChart;
     $('#queryFlowBtn').click(function () {
+        // 隐藏noData
+        $('.highcharts-no-data').css('display', 'none')
+        // 显示loading
+        if(againChart){
+            againChart.showLoading();
+        }else{
+            initChart.showLoading();
+        }
+        var that = this
         this.inputVal = $('.mytime_input').val()
         this.startTimer = this.inputVal.split(' - ')[0]
         this.endTimer = this.inputVal.split(' - ')[1]
 
-        // timeBefore(n, this.startTimer)
-        console.log(timeBefore(0, this.startTimer))
-        console.log(timeBefore(1, this.endTimer))
-        // $.ajax({
-        //     url: 'http://mockjs',
-        //     success: function (data) {
-        //         console.log(data)
-        //     }
-        // })
-        editChart('gameStatisChart', [{
-            name: 'game1',
-            color: '#ff252c',
-            pointStart: Date.UTC(2018, 0, 1, 5, 20, 10),
-            pointInterval: 2,
-            data: product_one_date,
-            visible: false,
-        },{
-            name: 'game2',
-            color: '#2dcbc8',
-            pointStart: Date.UTC(2018, 0, 1, 5, 20, 10),
-            pointInterval: 1,
-            data: product_two_date,
-            // pointIntervalUnit: 'day'
-        }], timeX)
+        this.dateStr = timeBefore(0, this.startTimer)
+        console.log(this.dateStr)
+        $.ajax({
+            url: 'http://mockjs',
+            success: function (data) {
+                this.dataArr = []
+                this.dataObj = JSON.parse(data).result
+                console.log(JSON.parse(data).result)
+                for (var item of this.dataObj) {
+                    this.dataArr.push(item.number)
+                }
+                console.log(this.dataArr)
+
+                againChart = editChart('gameStatisChart', [{
+                    name: 'game1',
+                    color: '#ff252c',
+                    pointStart: Date.UTC(that.dateStr.yearFormat, that.dateStr.monthFormat-1 ,that.dateStr.dayFormat ,
+                        that.dateStr.hoursFormat, that.dateStr.minuteFormat, that.dateStr.secondFormat),
+                    pointInterval: 1,
+                    data: product_one_date,
+                    visible: false,
+                },{
+                    name: 'game2',
+                    color: '#2dcbc8',
+                    pointStart: Date.UTC(that.dateStr.yearFormat, that.dateStr.monthFormat-1 ,that.dateStr.dayFormat ,
+                        that.dateStr.hoursFormat, that.dateStr.minuteFormat, that.dateStr.secondFormat),
+                    pointInterval: 1,
+                    data: this.dataArr,
+                    // pointIntervalUnit: 'day'
+                }], timeX)
+            },
+            error: function () {
+                if(againChart){
+                    againChart.showLoading('网络不稳定，请重试');
+                }else{
+                    initChart.showLoading('网络不稳定，请重试');
+                }
+            }
+        })
     })
 })

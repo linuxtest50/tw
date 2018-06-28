@@ -1,5 +1,4 @@
 /**
- *
  * 日期插件
  */
 var startNowDatePoor, startTimeObj, endTimeObj
@@ -54,7 +53,6 @@ layui.use(['laydate', 'form'], function(){
         range: true //或 range: '~' 来自定义分割字符
     });
 
-
     /**
      * 显示时间范围
      * @param num
@@ -83,7 +81,6 @@ layui.use(['laydate', 'form'], function(){
         $('#layui-laydate1').hide()
         endTimeObj = nowDate
     }
-
 
     /**
      * 根据时间范围选择显示类型
@@ -136,7 +133,7 @@ layui.use(['laydate', 'form'], function(){
  */
 Highcharts.setOptions({
     lang: {
-        noData: '暂无数据',
+        noData: '暂无数据，小迪请选择',
         loading: '加载中...',
         numericSymbolMagnitude: 1024, // 自定义基数
         numericSymbols:["KB" , "MB" , "GB" , "P" , "E"], // 自定义单位
@@ -144,19 +141,15 @@ Highcharts.setOptions({
     }
 });
 /**
- *
- * 图表数据
- * */
-
-var chartTitle = ['产品使用量统计(GB)', '区域使用统计(GB)'];
-/**
- *
  * highchars配置
- */
-    // 图表类型
+ **/
+// 图表标题
+var chartTitle = ['产品使用量统计'];
+// 图表类型
 var chart = {
         type: 'line',
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        zoomType: 'x'
     };
 // 图表标题
 var title = {
@@ -164,6 +157,20 @@ var title = {
     text: '',
     margin: 50,
     style: { "color": "#fff", "fontSize": "16px" }
+};
+// 没有数据时显示
+var noData = {
+    style: {
+        fontSize: '16px'
+    }
+}
+// 加载中选项配置
+var loading = {
+    hideDuration: 500, // 淡出
+    showDuration: 500, // 淡入
+    labelStyle: {
+        fontSize: '16px'
+    }
 };
 // x轴配置
 var xAxis = {
@@ -252,8 +259,9 @@ var plotOptions = {
     series: {
         pointPadding:0.2,
         events: {
-            //控制图标的图例legend不允许切换
+            // 图例legend点击事件
             legendItemClick: function (event) {
+                console.log(event)
                 return true; //return  true 则表示允许切换
             }
         },
@@ -299,12 +307,16 @@ function editChart() {
         var maxNum = Math.max.apply(this, arr);
         if (maxNum <= 1048576) { //1M
             yAxis.tickInterval = 102400 //10K
-        } else if (maxNum > 1048576 && maxNum <= 104857600) { //100M
+        } else if (maxNum > 1048576 && maxNum <= 10485760) { //10M
+            yAxis.tickInterval = 1048576 //1M
+        } else if (maxNum > 10485760 && maxNum <= 104857600) { //100M
             yAxis.tickInterval = 10485760 //10M
-        } else if (maxNum > 104857600 && maxNum <= 1073741824) { //1G
-            yAxis.tickInterval = 104857600 // 100M
-        } else if (maxNum > 1073741824) { // 10G
-            yAxis.tickInterval = 1073741824
+        } else if (maxNum > 104857600 && maxNum <= 1048576000) { //1000M
+            yAxis.tickInterval = 104857600 //100M
+        } else if (maxNum > 1048576000 && maxNum <= 10737418240) { //10G
+            yAxis.tickInterval = 1048576000 // 1000M
+        } else if (maxNum > 10737418240) { // 100G
+            yAxis.tickInterval = 10737418240 // 10G
         }
         // time显示类型
         switch (series[0].pointInterval){
@@ -327,14 +339,16 @@ function editChart() {
                 alert('no')
         }
     }
-    // game图表时间
+    // 图表时间
     if(series && !series[1].pointStart && arguments[2]){
         xAxis.categories = arguments[2]
     }
-    // 初始化game图表
-    var gameFlow = {
+    // 初始化图表
+    var flowObj = {
         chart: chart,
         title: title,
+        noData: noData,
+        loading: loading,
         xAxis: xAxis,
         yAxis: yAxis,
         legend: legend,
@@ -343,5 +357,6 @@ function editChart() {
         credits: credits,
         series: series
     };
-    Highcharts.chart(arguments[0], gameFlow)
+    Highcharts.chart(arguments[0], flowObj)
+    return Highcharts.chart(arguments[0], flowObj)
 }

@@ -79,7 +79,8 @@ function timeBefore(n, timers) {
 		monthFormat: timeFormat(newDate, 'MM'),
 		dayFormat: timeFormat(newDate, 'dd'),
 		hoursFormat: timeFormat(newDate, 'hh'),
-		minuteFormat: timeFormat(newDate, 'mm'),
+        minuteFormat: timeFormat(newDate, 'mm'),
+        secondFormat: timeFormat(newDate, 'ss'),
 	}
 	return dateObj
 	// console.log(timeFormat(newDate,'yyyy-MM-dd hh:mm'))

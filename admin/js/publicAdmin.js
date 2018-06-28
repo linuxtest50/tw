@@ -38,33 +38,34 @@
                 function toggleSide() {
                     if(flag){
                         flag = false
-                        $('.layui-layout-left a').removeClass('layui-icon-shrink-right').addClass('layui-icon-spread-left')
                         $('.layui-side,.layui-side-scroll').css('overflow-x','visible')
-                        $('.layui-side,.layui-logo,.layui-side-scroll').animate({
-                            width: 60
-                        },100)
-                        $('.layui-body,.layui-layout-left').animate({
-                            left: 60
-                        },100)
-                        // $('.layui-nav-tree>li').removeClass('layui-nav-itemed')
-                        // $('.layui-nav-tree>li>dl').hide()
+                        var headerRH = $('.layui-header').width() - 60 + 'px'
+                        $('.layui-side,.layui-logo,.layui-side-scroll').animate({ width: 60 },100)
+                        $('.layui-body').animate({ left: 60 },100)
+                        $('.header_right').animate({ width: headerRH },100)
+
+                        $('.layui-logo img').attr('src', '../../img/logo6.png').width(36)
+                        $('.layui-logo').css('background', '#010125')
+                        $('.layui-layout-left a').removeClass('layui-icon-shrink-right').addClass('layui-icon-spread-left')
+
                         $('.layui-nav-tree').hide()
-                        //,.hide_side>li>dl
-                        $('.hide_side').show()
+                        $('.hide_side').show().css('paddingTop', '11px')
 
                     }else{
                         flag = true
-                        $('.layui-layout-left a').removeClass('layui-icon-spread-left').addClass('layui-icon-shrink-right')
                         $('.layui-side,.layui-side-scroll').css('overflow-x','hidden')
-                        $('.layui-side,.layui-logo,.layui-side-scroll').animate({
-                            width: 200
-                        },100)
-                        $('.layui-body,.layui-layout-left').animate({
-                            left: 200
-                        },100)
+                        $('.header_right').animate({ width: '88%' },100)
+                        $('.layui-side,.layui-logo').animate({ width: '12%' },100)
+                        $('.layui-side-scroll').width('100%')
+                        $('.layui-body').animate({ left: '12%' },100)
+
+                        $('.layui-logo img').attr('src', '../../img/logo7.png').width(110)
+                        $('.layui-logo').css('background', '#fff')
+
+                        $('.layui-layout-left a').removeClass('layui-icon-spread-left').addClass('layui-icon-shrink-right')
+
                         $('.layui-nav-tree').show()
                         $('.hide_side').hide()
-
                     }
                 }
                 $('.layui-layout-left>li').click(function () {
