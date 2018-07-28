@@ -4,8 +4,8 @@
 (function (w) {
     console.time('time')
     w.tTools = {}
-    layui.use(['layer', 'form', 'element', 'table'], function(){
-        var $ = layui.$, layer = layui.layer, form = layui.form, element = layui.element, table = layui.table, that = this
+    layui.use(['layer', 'form', 'element', 'table', 'laypage'], function(){
+        var $ = layui.$, layer = layui.layer, form = layui.form, element = layui.element, table = layui.table, laypage = layui.laypage,that = this
         $('.layui-header').load('../public/header.html', function () {
             $('.layui-side').load('../public/side.html', function () {
                 element.on('tab(productType)', function(data){
@@ -54,6 +54,28 @@
                 });
                 require(['json!../../data/user.json'], function (dataJson) {
                     that.tableData = dataJson.data
+                    // console.log(dataJson.data)
+                    // $('.list').text(dataJson.data.username)
+                    // for (var i = 0; i < dataJson.data.length; i++) {
+                    //
+                    //     $('<p></p>').text(dataJson.data[i].username).appendTo('.list')
+                    // }
+                    // laypage.render({
+                    //     elem: 'test1'
+                    //     ,count: dataJson.data.length //数据总数，从服务端得到
+                    //     ,limit: 2
+                    //     ,jump: function(obj, first){
+                    //         //obj包含了当前分页的所有参数，比如：
+                    //         console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                    //         console.log(obj.limit); //得到每页显示的条数
+                    //
+                    //         //首次不执行
+                    //         if(!first){
+                    //
+                    //         }
+                    //     }
+                    // });
+
                     table.render({
                         elem: '#userTab'
                         ,id: 'userTable'

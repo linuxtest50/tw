@@ -135,6 +135,36 @@ a.t_num_edit:hover{color: #1053FD}
 .t_node_color{color: red}
 .t_node_edit>form>button{margin-left: 132px;}
 
+/*防护策略*/
+
+.t_strategy .layui-form-label{
+    width:50px;
+    padding: 9px 0;
+    text-align: left
+}
+.t_strategy .layui-input-block{
+    margin-left:0;
+}
+.t_strategy p{
+    padding:0 0 10px 0;
+}
+.t_strategy .form-item{
+    padding:20px;
+    border:1px solid #e6e6e6;
+    background:#fff;
+    width:41%;
+    margin-bottom:10px;
+}
+
+.t_strategy .layui-form-onswitch {
+    border-color: #1053FD;
+    background-color: #1053FD;
+}
+.t_strategy .layui-input{
+    width:70px;
+    display: inline-block;
+}
+
 /*流量统计*/
 .t_statistics{margin-top: 20px; padding:0 20px; color: #666}
 .t_statis_span>span{color: #1053FD; display: inline-block; padding-left: 15px}
@@ -290,3 +320,6 @@ img.pay_img_success{padding:126px 74px 0 334px;}
 .pay_text_success span i{color:#1053FD;font-style:normal;font-weight:600;}
 .pay_text_success p{background:#1053FD;color:#fff;width:140px;height:40px;line-height:40px;text-align:center;cursor:pointer;}
 .pay_success_result{border:none;margin-top:15px;}
+
+.laydate-btns-confirm, .laydate-btns-onedayconfirm{color: #0793ee !important;}
+.layui-laydate-hint{text-align: left !important; top:0 !important;}

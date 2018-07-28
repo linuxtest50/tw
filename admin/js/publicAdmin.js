@@ -350,7 +350,27 @@
             }
         }
         // setInterval(backTimer,1000);
+
+        // 图片缓存
+        form.on('switch(photo)', function(data){
+            if(data.elem.checked){
+                $('input[name=timer]').prop("disabled",false)
+            }else{
+                $('input[name=timer]').prop('disabled', true)
+            }
+        })
+
+        // 防护策略表单提交
+        form.on('submit(sub)', function(data){
+            /* console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+            console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回 */
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            return false;  //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
     });
+
+
+
     console.timeEnd('time')
     return tTools
 }(window))

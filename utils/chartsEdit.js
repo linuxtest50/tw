@@ -1,21 +1,23 @@
 /**
  * 日期插件
  */
-var startNowDatePoor, startTimeObj, endTimeObj
+var startNowDatePoor, startEndDatePoorSecond, startDateStr, endDateStr, nowDateStr, startTimeObj, endTimeObj
 layui.use(['laydate', 'form'], function(){
-    var laydate = layui.laydate, $ = layui.$
-    laydate.render({
+    var laydate = layui.laydate, $ = layui.$,
+    mydate = laydate.render({
         elem: '.date_plugin',
         type: 'datetime',
+        show: true,
         max: new Date().getTime(),
         value: '',
-        btns: ['today','sevenday','thirtyday','halfyear','oneyear','clear','confirm'],
-        ready: function(date,value){
+        btns: ['today','sevenday','thirtyday','halfyear','oneyear','clear','confirm','onedayconfirm'],
+        ready: function(date){
             console.log('点击日期')
-            console.log(date)
+            // console.log(date)
             var todayBtn = $(".laydate-btns-today"), sevendayBtn = $(".laydate-btns-sevenday"), thirtydayBtn = $(".laydate-btns-thirtyday"),
-            halfyearBtn = $(".laydate-btns-halfyear"), oneyearBtn = $(".laydate-btns-oneyear");
-            todayBtn.text('今天'); sevendayBtn.text('最近7天'); thirtydayBtn.text('最近30天'); halfyearBtn.text('最近半年');oneyearBtn.text('最近1年')
+            halfyearBtn = $(".laydate-btns-halfyear"), oneyearBtn = $(".laydate-btns-oneyear"), onedayconfirm = $(".laydate-btns-onedayconfirm");
+            todayBtn.text('今天'); sevendayBtn.text('最近7天'); thirtydayBtn.text('最近30天'); halfyearBtn.text('最近半年');
+            oneyearBtn.text('最近1年');onedayconfirm.text('confirm').hide()
             // 今天
             todayBtn.click(function(){ showTimeScope(0) })
             // 最近7天
@@ -26,9 +28,78 @@ layui.use(['laydate', 'form'], function(){
             halfyearBtn.click(function(){ showTimeScope(180) })
             // 最近1年
             oneyearBtn.click(function(){ showTimeScope(365) })
+
+
+            $('.layui-laydate').delegate('td:not(td.laydate-disabled)', 'click',function () {
+                var flag = $('.laydate-btns-confirm').hasClass('laydate-disabled')
+                console.log(flag)
+                // 点击一次
+                if(flag){
+                    onedayconfirm.show()
+                    $('.laydate-btns-confirm').hide()
+                    mydate.hint('若选择当前日期00:00 至 24:00，请点击确认按钮')
+                    // 判断是否为当天
+                    // var selDay = parseInt($(this).text()), selHeader = $(this).parents('.layui-laydate-content').prev(),
+                    //     selMonth = parseInt($(selHeader).find('span[lay-type = month]').text()) - 1,
+                    //     selYear = parseInt($(selHeader).find('span[lay-type = year]').text()), nowTimerObj = mydate.config.max;
+                    // // console.log(selMonth,selYear)
+                    // // console.log(mydate.config.max)
+                    // if(selDay === nowTimerObj.date && selMonth === nowTimerObj.month && nowTimerObj.year){
+                    //     console.log(mydate.config.max)
+                    // }
+                }else{
+                    onedayconfirm.hide()
+                    $('.laydate-btns-confirm').show()
+                }
+            })
+
+            // 当天事件
+            onedayconfirm.click(function () {
+                var selDay = $(this).parents('.layui-laydate').find('td.layui-this').attr('lay-ymd'),nowTimerObj = mydate.config.max,
+                nowTimer = nowTimerObj.year + '-' + parseInt(nowTimerObj.month+1) + '-' + nowTimerObj.date
+                // 判断是否为当天
+                // console.log(timeBefore(0).allFormat)
+                if(selDay === nowTimer){
+                    showTimeScope(0)
+                }else{
+                    var showTimerArr = selDay.split('-')
+                    var showMonth = showTimerArr[1] < 10 ? 0+showTimerArr[1] : showTimerArr[1],
+                        showDay = showTimerArr[2] < 10 ? 0+showTimerArr[2] : showTimerArr[2],
+                        showTimer = showTimerArr[0] + '-' + showMonth + '-' + showDay,
+                        startOnlyTime = showTimer + ' 00:00:00' + ' - ' + showTimer + " 24:00:00",
+                        // 判断是否为一年以上
+                        datePoor = getDateDiff(showTimer, timeBefore(0).allFormat, "day")
+                        if(datePoor>365){
+                            layer.alert("抱歉!您只能查看近期一年内的数据", function () {
+                                window.location.reload()
+                            })
+                        }else{
+                            $('.mytime_input').val(startOnlyTime)
+                        }
+                        console.log(datePoor)
+                    $('.layui-laydate').hide()
+                }
+                // console.log(selDay) //lay-ymd="2018-7-28"
+            })
+
         },
         change: function(value, date, endDate){
             console.log('日期选定')
+            startDateStr = date.year + '-' + date.month + '-' + date.date + ' ' + date.hours + ':' + date.minutes + ':' + date.seconds;
+            endDateStr = endDate.year + '-' + endDate.month + '-' + endDate.date + ' ' + endDate.hours + ':' + endDate.minutes + ':' + endDate.seconds;
+            nowDateStr = timeBefore(0).allFormat
+            startTimeObj = { allFormat : value.split(' - ')[0] }
+            endTimeObj = { allFormat : value.split(' - ')[1] }
+            // 时间差
+            startNowDatePoor = getDateDiff(startDateStr, nowDateStr, "day")
+            startEndDatePoorSecond = getDateDiff(startDateStr, endDateStr, "second");
+            // 判断起始日期是否为同一天
+            if(!startEndDatePoorSecond){
+                mydate.hint('若起始日期为同一天，请在左下角选择不同的起始时间')
+            }else{
+                mydate.hint('您选择的时间范围为：' + '<br/>' + value + '<br/>' + '请点击确定按钮');
+            }
+            // console.log(tool)
         },
         done: function(value, date, endDate){
             if(!value){
@@ -38,23 +109,24 @@ layui.use(['laydate', 'form'], function(){
             //console.log(value); //得到日期生成的值，如：2017-08-18
             //console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
             //console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
-            var startDateStr = date.year + '-' + date.month + '-' + date.date + ' ' + date.hours + ':' + date.minutes + ':' + date.seconds;
-            var endDateStr = endDate.year + '-' + endDate.month + '-' + endDate.date + ' ' + endDate.hours + ':' + endDate.minutes + ':' + endDate.seconds;
-            var nowDateStr = timeBefore(0).allFormat
-            startTimeObj = {
-                allFormat : value.split(' - ')[0]
+            console.log(startEndDatePoorSecond)
+            // mydate.hint(value)
+            if(!startEndDatePoorSecond){
+                layer.alert('若起始日期为同一天，请选择不同的起始时间', function () {
+                    window.location.reload()
+                })
             }
-            endTimeObj = {
-                allFormat : value.split(' - ')[1]
-            }
-            startNowDatePoor = getDateDiff(startDateStr, nowDateStr, "day")
+            // 显示类型
             seleTimeLinkage(startDateStr, endDateStr)
         },
         range: true //或 range: '~' 来自定义分割字符
     });
 
+
+
+
     /**
-     * 显示时间范围
+     * 快捷键显示时间范围
      * @param num
      * @returns
      */
@@ -92,36 +164,35 @@ layui.use(['laydate', 'form'], function(){
         $('#timeType+div dd[lay-value=""]').click()
         // 开始到结束的时间差
         var startEndDatePoor = getDateDiff(startTime, endTime, "hour");
-        var startEndDatePoorSecond = getDateDiff(startTime, endTime, "second");
-        if(!startEndDatePoorSecond){
-            alert('请选择不同的起始时间!')
-        }
+
         // 开始时间距当天的时间差
-        console.log('时间跨度(小时)'+startEndDatePoor)
-        console.log('开始到今天的时间差(天)'+startNowDatePoor);
+        // console.log('时间跨度(小时)'+startEndDatePoor)
+        // console.log('开始到今天的时间差(天)'+startNowDatePoor);
         // 隐藏所有类型
         $('#timeType+div dd[lay-value!=""]').hide()
         if(startNowDatePoor>=0 && startNowDatePoor<=7){
-            console.log('7天之内')
+            // console.log('7天之内')
             if(startEndDatePoor>=0 && startEndDatePoor<=1){
-                console.log('0到1')
+                // console.log('0到1')
                 $('#timeType+div dd[lay-value=2]').show()
             }else if(startEndDatePoor>1 && startEndDatePoor<=24){
-                console.log('1到24')
+                // console.log('1到24')
                 $('#timeType+div dd[lay-value=1],#timeType+div dd[lay-value=2]').show()
             }else{
-                console.log('24到168')
+                // console.log('24到168')
                 $('#timeType+div dd').show()
             }
         }else if(startNowDatePoor>7 && startNowDatePoor<=30){
             startEndDatePoor>=0 && startEndDatePoor<=24 ? $('#timeType+div dd[lay-value=1]').show() : $('#timeType+div dd[lay-value=0],#timeType+div dd[lay-value=1]').show()
-            console.log('7到30天之内')
+            // console.log('7到30天之内')
         }else if(startNowDatePoor>30 && startNowDatePoor<=365){
-            console.log('30到365天之内')
+            // console.log('30到365天之内')
             $('#timeType+div dd[lay-value=0]').show()
         }else{
-            console.log('365天之后')
-            alert("抱歉!您只能查看近期一年内的数据")
+            // console.log('365天之后')
+            layer.alert("抱歉!您只能查看近期一年内的数据", function () {
+                window.location.reload()
+            })
             $('#timeType+div dd').show()
         }
     }
@@ -254,6 +325,7 @@ var tooltip = {
         year: '%Y年'
     },
 };
+// console.log(tooltip)
 // 主体配置
 var plotOptions = {
     series: {

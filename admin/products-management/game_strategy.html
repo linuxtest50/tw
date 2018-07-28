@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>天网卫士 - 产品管理</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/publicAdmin.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header"></div>
+    <div class="layui-side layui-bg-black"></div>
+
+    <!-- 内容主体区域 -->
+    <div class="layui-body web_shield_body">
+        <div class="box">
+            <div class="t_admin_title">
+                    <span class="layui-breadcrumb t_bread_nav">
+                        <a href="./game_magent_list.html">游戏盾管理</a>
+                        <a><cite>防护策略</cite></a>
+                    </span>
+            </div>
+            <div class="t_admin_content t_admin_table t_strategy">
+                <form class='layui-form' action="" >
+                    <div class='form-item'>
+                        <p>直通模式：</p>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">状态</label>
+                            <div class="layui-input-block">
+                                <input type="checkbox" name="module" lay-skin="switch" lay-text="开|关">
+                            </div>
+                        </div>
+                        <span>提示：适用于不支持js解析的API型网站。</span>
+                    </div>
+                    <div class='form-item'>
+                        <p>区域检查：</p>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">状态</label>
+                            <div class="layui-input-block">
+                                <input type="checkbox" name="area" lay-skin="switch" lay-text="开|关">
+                            </div>
+                        </div>
+                        <span>提示：启用后，用户访问IP需与盾节点IP所属区域一致，否则拒绝访问（误封率高）。</span>
+                    </div>
+                    <!-- <div class='form-item'>
+                        <p>尝试次数：</p>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">状态</label>
+                            <div class="layui-input-block">
+                                  <input type="checkbox" name="num" lay-skin="switch" lay-text="开|关" lay-filter="num"/>
+                            </div>
+                        </div>
+                        <p>检查时长: <span>2s</span></p>
+                        <p>单一IP访问字数: <input type="number" name='count' autocomplete="off" placeholder="50" class="layui-input" value='50' disabled/> 次</p>
+                        <span>提示：建立连接间隔在2s内，系统默认连续50次以上，拒绝访问。时长为固定值，次数可自定义设置。</span>
+                    </div> -->
+                    <div class='form-item'>
+                        <p>是否允许IP访问：</p>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">状态</label>
+                            <div class="layui-input-block">
+                                <input type="checkbox" name="ip" lay-skin="switch" lay-text="开|关">
+                            </div>
+                        </div>
+                        <span>提示：只需要设置域名的dns记录，源机地址配置为ip即可，源站无需更改。</span>
+                    </div>
+                    <div class='form-item'>
+                        <p>图片缓存：</p>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">状态</label>
+                            <div class="layui-input-block">
+                                <input type="checkbox" name="photo" lay-skin="switch" lay-text="开|关" lay-filter="photo">
+                            </div>
+                        </div>
+                        <p>缓存时间: <input type="number" name='timer' autocomplete="off" placeholder="" class="layui-input" value='0' disabled/> 小时</p>
+                        <span>提示：启用后，可设置网站图片在盾节点的缓存有效时间，节省回源流量，提升用户访问速度。</span>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="sub">保存</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../layui/layui.js"></script>
+<script src="../js/publicAdmin.js"></script>
+</body>
+</html>
+
+
+
+
