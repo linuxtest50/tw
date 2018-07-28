@@ -1,7 +1,7 @@
 /**
  * 日期插件
  */
-var startNowDatePoor, startEndDatePoorSecond, startDateStr, endDateStr, nowDateStr, startTimeObj, endTimeObj
+var startNowDatePoor, startEndDatePoorSecond, startDateStr, endDateStr, nowDateStr, startTimeObj, endTimeObj, isSelect = false
 layui.use(['laydate', 'form'], function(){
     var laydate = layui.laydate, $ = layui.$,
     mydate = laydate.render({
@@ -31,6 +31,7 @@ layui.use(['laydate', 'form'], function(){
 
 
             $('.layui-laydate').delegate('td:not(td.laydate-disabled)', 'click',function () {
+                isSelect = true
                 var flag = $('.laydate-btns-confirm').hasClass('laydate-disabled')
                 console.log(flag)
                 // 点击一次
@@ -55,6 +56,7 @@ layui.use(['laydate', 'form'], function(){
 
             // 当天事件
             onedayconfirm.click(function () {
+                isSelect = false
                 var selDay = $(this).parents('.layui-laydate').find('td.layui-this').attr('lay-ymd'),nowTimerObj = mydate.config.max,
                 nowTimer = nowTimerObj.year + '-' + parseInt(nowTimerObj.month+1) + '-' + nowTimerObj.date
                 // 判断是否为当天
@@ -76,14 +78,16 @@ layui.use(['laydate', 'form'], function(){
                         }else{
                             $('.mytime_input').val(startOnlyTime)
                         }
-                        console.log(datePoor)
+                        // console.log(datePoor)
                     $('.layui-laydate').hide()
                 }
                 // console.log(selDay) //lay-ymd="2018-7-28"
             })
+            // console.log(isSelect)
 
         },
         change: function(value, date, endDate){
+            isSelect = true
             console.log('日期选定')
             startDateStr = date.year + '-' + date.month + '-' + date.date + ' ' + date.hours + ':' + date.minutes + ':' + date.seconds;
             endDateStr = endDate.year + '-' + endDate.month + '-' + endDate.date + ' ' + endDate.hours + ':' + endDate.minutes + ':' + endDate.seconds;
@@ -102,9 +106,10 @@ layui.use(['laydate', 'form'], function(){
             // console.log(tool)
         },
         done: function(value, date, endDate){
-            if(!value){
+            if(!value || !isSelect){
                 return
             }
+            isSelect = false
             console.log('确定')
             //console.log(value); //得到日期生成的值，如：2017-08-18
             //console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
@@ -391,24 +396,28 @@ function editChart() {
             yAxis.tickInterval = 10737418240 // 10G
         }
         // time显示类型
-        switch (series[0].pointInterval){
-            case 0:
-                for (let i = 0; i < series.length; i++) {
-                    series[i].pointInterval = timeType[0];
-                }
-                break;
-            case 1:
-                for (let i = 0; i < series.length; i++) {
-                    series[i].pointInterval = timeType[1];
-                }
-                break;
-            case 2:
-                for (let i = 0; i < series.length; i++) {
-                    series[i].pointInterval = timeType[2];
-                }
-                break;
-            default:
-                alert('no')
+        if(series[0].pointInterval){
+            switch (series[0].pointInterval){
+                case 0:
+                    for (let i = 0; i < series.length; i++) {
+                        series[i].pointInterval = timeType[0];
+                    }
+                    break;
+                case 1:
+                    for (let i = 0; i < series.length; i++) {
+                        series[i].pointInterval = timeType[1];
+                    }
+                    break;
+                case 2:
+                    for (let i = 0; i < series.length; i++) {
+                        series[i].pointInterval = timeType[2];
+                    }
+                    break;
+                default:
+                    for (let i = 0; i < series.length; i++) {
+                        series[i].pointInterval = timeType[0];
+                    }
+            }
         }
     }
     // 图表时间

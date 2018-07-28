@@ -42,25 +42,27 @@ layui.use(['layer', 'form','table', 'upload'], function() {
         '01', '02', '03', '04', '05', '06', '07', '08', '09', '10','11',
         '12', '13', '14', '15', '16', '17', '18', '19', '20','21', '22', '23', '24', '25', '26', '27', '28', '29', '30']
 
-
+    // 1初始化图表
     var initChart = editChart('gameStatisChart')
     var againChart;
     $('#queryFlowBtn').click(function () {
-        // 隐藏noData
+        // 2隐藏noData
         $('.highcharts-no-data').css('display', 'none')
-        // 显示loading
+        // 3显示loading
         if(againChart){
             againChart.showLoading();
         }else{
             initChart.showLoading();
         }
+        // 获取input选中时间
         var that = this
         this.inputVal = $('.mytime_input').val()
         this.startTimer = this.inputVal.split(' - ')[0]
         this.endTimer = this.inputVal.split(' - ')[1]
-
+        // 将开始时间转化成对象
         this.dateStr = timeBefore(0, this.startTimer)
         console.log(this.dateStr)
+        // 获取数据
         $.ajax({
             url: 'http://mockjs',
             success: function (data) {
@@ -71,26 +73,28 @@ layui.use(['layer', 'form','table', 'upload'], function() {
                     this.dataArr.push(item.number)
                 }
                 console.log(this.dataArr)
-
+                // 4如果不传 选择的pointStart时间和pointInterval显示类型(多条数据需相同)，则按照后台获取的timeX时间显示(此时提示框时间不能格式化)
                 againChart = editChart('gameStatisChart', [{
                     name: 'game1',
                     color: '#ff252c',
-                    pointStart: Date.UTC(that.dateStr.yearFormat, that.dateStr.monthFormat-1 ,that.dateStr.dayFormat ,
-                        that.dateStr.hoursFormat, that.dateStr.minuteFormat, that.dateStr.secondFormat),
-                    pointInterval: 1,
-                    data: product_one_date,
-                    visible: false,
+                    // pointStart: Date.UTC(that.dateStr.yearFormat, that.dateStr.monthFormat-1 ,that.dateStr.dayFormat ,
+                    //     that.dateStr.hoursFormat, that.dateStr.minuteFormat, that.dateStr.secondFormat),
+                    // pointInterval: 1,// 显示时间类型 0->天 1->小时 2->分钟
+                    // data: this.dataArr,
+                    data: product_one_date
                 },{
                     name: 'game2',
                     color: '#2dcbc8',
-                    pointStart: Date.UTC(that.dateStr.yearFormat, that.dateStr.monthFormat-1 ,that.dateStr.dayFormat ,
-                        that.dateStr.hoursFormat, that.dateStr.minuteFormat, that.dateStr.secondFormat),
-                    pointInterval: 1,
-                    data: this.dataArr,
-                    // pointIntervalUnit: 'day'
+                    // pointStart: Date.UTC(that.dateStr.yearFormat, that.dateStr.monthFormat-1 ,that.dateStr.dayFormat ,
+                    //     that.dateStr.hoursFormat, that.dateStr.minuteFormat, that.dateStr.secondFormat),
+                    // pointInterval: 1,
+                    data: product_two_date,
+                    // pointIntervalUnit: 'day' 没用
+                    visible: false,
                 }], timeX)
             },
             error: function () {
+                // 5错误提示
                 if(againChart){
                     againChart.showLoading('网络不稳定，请重试');
                 }else{
