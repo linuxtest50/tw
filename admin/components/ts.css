@@ -1,0 +1,81 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.t-font{
+    font-size: 12px;
+}
+.t-h, .t-m, .t-s{
+    display: inline-block;
+    padding: 5px 3px;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.t-pop{
+    width: 600px;
+    position: fixed;
+    _position:absolute;
+    display: none;
+    padding: 15px;
+    border-radius: 3px;
+    z-index: 9999999;
+    background: #fff;
+}
+.t-success{
+    color:#2b892c;
+    border:1px solid #2b892c;
+    /*top:20px*/
+}
+.t-err{
+    color:#e08989;
+    border:1px solid #e08989;
+    /*top:80px*/
+}
+.t-info{
+    color:#3298b9;
+    border:1px solid #3298b9;
+    /*top:140px*/
+}
+.t-warning{
+    color:#dc9316;
+    border:1px solid #dc9316;
+    /*top:200px*/
+}
+.t-alert{
+    border:1px solid #fff;
+    box-shadow: 1px 2px 3px 0 rgba(0,0,0,.2), 1px 3px 15px 2px rgba(0,0,0,.2);
+}
+
+.t-linkage-parent{
+    position: relative;
+}
+.t-linkage{
+    display: inline-block;
+}
+.t-linkage>p{
+    display: inline-block;
+    padding: 7px 12px;
+    cursor: pointer;
+    border:1px solid #0793ee;
+    border-radius: 3px;
+    color: #0793ee;
+    margin: 10px 0;
+}
+.t-linkage>p:hover, p.t-linkage-select{
+    background: #0793ee;
+    transition: all .2s linear;
+    color: #fff;
+}
+.t-linkage>div{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    display: none;
+}
+
+.t-linkage>div.t-linkage-show{
+    display: block;
+}

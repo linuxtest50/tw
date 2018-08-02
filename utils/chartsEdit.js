@@ -3,15 +3,22 @@
  */
 var startNowDatePoor, startEndDatePoorSecond, startDateStr, endDateStr, nowDateStr, startTimeObj, endTimeObj, isSelect = false
 layui.use(['laydate', 'form'], function(){
-    var laydate = layui.laydate, $ = layui.$,
-    mydate = laydate.render({
+    var laydate = layui.laydate, $ = layui.$;
+    // $('.date_plugin').hide()
+    $('.mytime_input').val('2018-07-10 03:03:03 - 2018-07-10 05:04:07')
+    $('.mytime_input').focus(function () {
+        $(this).val('')
+    })
+    var mydate = laydate.render({
         elem: '.date_plugin',
         type: 'datetime',
-        show: true,
+        show: false,
         max: new Date().getTime(),
-        value: '',
+        value: '', //
         btns: ['today','sevenday','thirtyday','halfyear','oneyear','clear','confirm','onedayconfirm'],
         ready: function(date){
+            // isSelect = true
+            // $('.laydate-btns-confirm').addClass('laydate-disabled')
             console.log('点击日期')
             // console.log(date)
             var todayBtn = $(".laydate-btns-today"), sevendayBtn = $(".laydate-btns-sevenday"), thirtydayBtn = $(".laydate-btns-thirtyday"),
@@ -29,7 +36,7 @@ layui.use(['laydate', 'form'], function(){
             // 最近1年
             oneyearBtn.click(function(){ showTimeScope(365) })
 
-
+            // $('.laydate-btns-confirm').addClass('laydate-disabled')
             $('.layui-laydate').delegate('td:not(td.laydate-disabled)', 'click',function () {
                 isSelect = true
                 var flag = $('.laydate-btns-confirm').hasClass('laydate-disabled')
@@ -38,7 +45,7 @@ layui.use(['laydate', 'form'], function(){
                 if(flag){
                     onedayconfirm.show()
                     $('.laydate-btns-confirm').hide()
-                    mydate.hint('若选择当前日期00:00 至 24:00，请点击确认按钮')
+                    mydate.hint('若选择当前日期00:00 至 24:00，请点击确认按钮，否则再点一次')
                     // 判断是否为当天
                     // var selDay = parseInt($(this).text()), selHeader = $(this).parents('.layui-laydate-content').prev(),
                     //     selMonth = parseInt($(selHeader).find('span[lay-type = month]').text()) - 1,
@@ -127,9 +134,6 @@ layui.use(['laydate', 'form'], function(){
         range: true //或 range: '~' 来自定义分割字符
     });
 
-
-
-
     /**
      * 快捷键显示时间范围
      * @param num
@@ -204,197 +208,223 @@ layui.use(['laydate', 'form'], function(){
 
 })
 
-/**
- * 图表全局配置
- */
-Highcharts.setOptions({
-    lang: {
-        noData: '暂无数据，小迪请选择',
-        loading: '加载中...',
-        numericSymbolMagnitude: 1024, // 自定义基数
-        numericSymbols:["KB" , "MB" , "GB" , "P" , "E"], // 自定义单位
-        thousandsSep: ',' // 千分号
-    }
-});
-/**
- * highchars配置
- **/
+
+
+
+
+function editChart() {
+    var timers = arguments[3]
+    /**
+     * 图表全局配置
+     */
+    Highcharts.setOptions({
+        lang: {
+            noData: '暂无数据，小迪请选择',
+            loading: '加载中...',
+            numericSymbolMagnitude: 1024, // 自定义基数
+            numericSymbols:["KB" , "MB" , "GB" , "TB" , "PB", 'EB', "ZB"], // 自定义单位
+            thousandsSep: ',' // 千分号
+        }
+    });
+
+    /**
+     * highchars配置
+     **/
 // 图表标题
-var chartTitle = ['产品使用量统计'];
+    var chartTitle = ['产品使用量统计'];
 // 图表类型
-var chart = {
+    var chart = {
         type: 'line',
         backgroundColor: '#fff',
         zoomType: 'x'
     };
 // 图表标题
-var title = {
-    align: 'left',
-    text: '',
-    margin: 50,
-    style: { "color": "#fff", "fontSize": "16px" }
-};
+    var title = {
+        align: 'left',
+        text: '',
+        margin: 50,
+        style: { "color": "#fff", "fontSize": "16px" }
+    };
 // 没有数据时显示
-var noData = {
-    style: {
-        fontSize: '16px'
+    var noData = {
+        style: {
+            fontSize: '16px'
+        }
     }
-}
 // 加载中选项配置
-var loading = {
-    hideDuration: 500, // 淡出
-    showDuration: 500, // 淡入
-    labelStyle: {
-        fontSize: '16px'
-    }
-};
+    var loading = {
+        hideDuration: 500, // 淡出
+        showDuration: 500, // 淡入
+        labelStyle: {
+            fontSize: '16px'
+        }
+    };
 // x轴配置
-var xAxis = {
-    // categories: [], // 指定横轴坐标点的值
-    labels: {
-        // format: '{value} x',
-        x: 0, // 调节x偏移
-        rotation: 0,  // 旋转,效果就是影响标签的显示方向
-    },
-    opposite: false,// 时间显示X轴上与下
-    type: 'datetime',
-    // minRange: 3600,
-    dateTimeLabelFormats: {
-        minute: '%H:%M',
-        hour: '%H:%M',
-        day: '%m月%d',
-        week: '%m月 %d',
-        month: '%m月 %y',
-        year: '%Y'
-    },
-    title: {
-        align: 'high',
-        text: '', // x标题
-        style: {
-            color: '#666',
-            fontSize: '14px'
-        }
-    },
-};
-// y轴配置
-var yAxis = {
-    min: 0,
-     // tickPositions: [], // 指定竖轴坐标点的值
-    labels: {
-        //	format: '{value} ',
-    },
-    title: {
-        align: 'high',
-        text: '流量', // y标题
-        style: {
-            color: '#666',
-            fontSize: '14px'
-        }
-    },
-    stackLabels: {
-        enabled: true, // 数字显示
-        style: {
-            fontWeight: 'bold',
-            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-        }
-    },
-    tickAmount: 8, // y轴刻度数
-    tickInterval: '', // 刻度间隔
-    // tickPixelInterval: 100 // 间隔px
-};
-// 版权信息
-var credits = {
-    enabled: false // highcharts网址
-};
-// 数据提示框
-var tooltip = {
-    // headerFormat: '时间: {point.x} S<br>',
-    // pointFormat: '{series.color}{series.name}: {point.y} bps <br/>', // 提示框数据内容自定义
-    pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}</b><br/>',
-    shared: true, // 合并显示多条数据
-    valueSuffix: ' bps',//数据后
-    valuePrefix: '共计',// 数据前
-    //   crosshairs: true,
-    //   crosshairs: [{            // 设置准星线样式
-    //  width: 30,
-    // color: '#fff'
-    //			}],
-    // 当x轴为时间轴时 提示框内的时间格式化
-    dateTimeLabelFormats: {
-        second: '%H:%M:%S. %Y年%m月%d日',
-        minute: '%H:%M. %m月. %d日. %Y年',
-        hour: '%H:%M. %m月. %d日. %Y年',
-        day: '%m月. %d日. %Y年',
-        week: '%d日. %m月',
-        month: '%m月 .%y年',
-        year: '%Y年'
-    },
-};
-// console.log(tooltip)
-// 主体配置
-var plotOptions = {
-    series: {
-        pointPadding:0.2,
-        events: {
-            // 图例legend点击事件
-            legendItemClick: function (event) {
-                console.log(event)
-                return true; //return  true 则表示允许切换
+    var xAxis = {
+        // categories: [], // 指定横轴坐标点的值
+        labels: {
+            // format: '{value} x',
+            x: 0, // 调节x偏移
+            rotation: 0,  // 旋转,效果就是影响标签的显示方向
+        },
+        opposite: false,// 时间显示X轴上与下
+        type: 'datetime',
+        // minRange: 3600,
+        dateTimeLabelFormats: {
+            minute: '%H:%M',
+            hour: '%H:%M',
+            day: '%m月%d',
+            week: '%m月 %d',
+            month: '%m月 %y',
+            year: '%Y'
+        },
+        title: {
+            align: 'high',
+            text: '', // x标题
+            style: {
+                color: '#666',
+                fontSize: '14px'
             }
         },
-        marker: {
-            // enabled: false // 数据点标记
-            symbol: 'circle' // 数据点形状
+    };
+// y轴配置
+    var yAxis = {
+        min: 0,
+        // tickPositions: [], // 指定竖轴坐标点的值
+        labels: {
+            //	format: '{value} ',
+        },
+        title: {
+            align: 'high',
+            text: '流量', // y标题
+            style: {
+                color: '#666',
+                fontSize: '14px'
+            }
+        },
+        stackLabels: {
+            enabled: true, // 数字显示
+            style: {
+                fontWeight: 'bold',
+                color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+            }
+        },
+        tickAmount: 8, // y轴刻度数
+        tickInterval: 1048576, // 刻度间隔
+        // tickPixelInterval: 100 // 间隔px
+    };
+// 版权信息
+    var credits = {
+        enabled: false // highcharts网址
+    };
+// 数据提示框
+    var t = '1';
+    var tooltip = {
+        headerFormat: '时间:',
+        // formatter: function () {
+        //     console.log(this)
+        // },
+        // pointFormat: '{series.color}{series.name}: {point.x} bps1 <br/>', // 提示框数据内容自定义
+        pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}</b><br/>',
+        pointFormatter: function () {
+            console.log(this.series.name)
+            if(timers){
+                var tipsHtml = '<br/><span style="color:' + this.color + ';">\u25CF</span>' + this.series.name + ': <b>' + this.y + ' B</b><br/><br/>'
+                return timers[this.index] + tipsHtml
+                // return tipsHtml
+            }else{
+                return 1
+            }
+        },
+        shared: false, // 合并显示多条数据
+        valueSuffix: ' B',//数据后
+        valuePrefix: '共计',// 数据前
+        //   crosshairs: true,
+        //   crosshairs: [{            // 设置准星线样式
+        //  width: 30,
+        // color: '#fff'
+        //			}],
+        // 当x轴为时间轴时 提示框内的时间格式化
+        dateTimeLabelFormats: {
+            second: '%H:%M:%S. %Y年%m月%d日',
+            minute: '%H:%M. %m月. %d日. %Y年',
+            hour: '%H:%M. %m月. %d日. %Y年',
+            day: '%m月. %d日. %Y年',
+            week: '%d日. %m月',
+            month: '%m月 .%y年',
+            year: '%Y年'
+        },
+    };
+    // tooltip.headerFormat = t
+    // console.log(point.x)
+// 主体配置
+    var plotOptions = {
+        series: {
+            pointPadding:0.2,
+            events: {
+                // 图例legend点击事件
+                legendItemClick: function (event) {
+                    // console.log(event)
+                    // editChart()
+                    return true; //return  true 则表示允许切换
+                }
+            },
+            marker: {
+                // enabled: false // 数据点标记
+                symbol: 'circle' // 数据点形状
+            }
+        },
+        column: {
+            // percent置顶
+            stacking: 'normal',
+            pointPadding: 0.2,
+            pointWidth: 5 , //柱子的宽度
+            // 如果x轴一个点有两个柱，则这个属性设置的是这两个柱的间距。
+            groupPadding : 0.5,
         }
-    },
-    column: {
-        // percent置顶
-        stacking: 'normal',
-        pointPadding: 0.2,
-        pointWidth: 5 , //柱子的宽度
-        // 如果x轴一个点有两个柱，则这个属性设置的是这两个柱的间距。
-        groupPadding : 0.5,
-    }
-};
+    };
 // 底部分类信息
-var legend = {
-    align: 'center',
-    verticalAlign: 'bottom',
-    y: 25,
-    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#fff',
-    shadow: false,
-    maxHeight: 50,
-    padding: 15
-};
+    var legend = {
+        align: 'center',
+        verticalAlign: 'bottom',
+        y: 25,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#fff',
+        shadow: false,
+        maxHeight: 50,
+        padding: 15
+    };
 
 
-function editChart() {
+// 其他
     var series = arguments[1], arr = [],
+    // 显示类型
     timeType = [
         24 * 3600 * 1000, // one day
         3600 * 1000, // one hours
         60 * 1000 // one minute
     ];
     if(series){
+        // 根据数据动态变换Y轴
         for (let i = 0; i < series.length; i++) {
             for (let j = 0; j < series[i].data.length; j++) {
                 arr.push(series[i].data[j])
             }
         }
         var maxNum = Math.max.apply(this, arr);
-        if (maxNum <= 1048576) { //1M
-            yAxis.tickInterval = 102400 //10K
-        } else if (maxNum > 1048576 && maxNum <= 10485760) { //10M
-            yAxis.tickInterval = 1048576 //1M
-        } else if (maxNum > 10485760 && maxNum <= 104857600) { //100M
-            yAxis.tickInterval = 10485760 //10M
-        } else if (maxNum > 104857600 && maxNum <= 1048576000) { //1000M
-            yAxis.tickInterval = 104857600 //100M
-        } else if (maxNum > 1048576000 && maxNum <= 10737418240) { //10G
-            yAxis.tickInterval = 1048576000 // 1000M
-        } else if (maxNum > 10737418240) { // 100G
-            yAxis.tickInterval = 10737418240 // 10G
-        }
+        // if (maxNum <= 1048576) { //1M
+        //     yAxis.tickInterval = 102400 //10K
+        // } else if (maxNum > 1048576 && maxNum <= 10485760) { //10M
+        //     yAxis.tickInterval = 1048576 //1M
+        // } else if (maxNum > 10485760 && maxNum <= 104857600) { //100M
+        //     yAxis.tickInterval = 10485760 //10M
+        // } else if (maxNum > 104857600 && maxNum <= 1048576000) { //1000M
+        //     yAxis.tickInterval = 104857600 //100M
+        // } else if (maxNum > 1048576000 && maxNum <= 10737418240) { //10G
+        //     yAxis.tickInterval = 1048576000 // 1000M
+        // } else if (maxNum > 10737418240) { // 100G
+        //     yAxis.tickInterval = 10737418240 // 10G
+        // }
+
         // time显示类型
         if(series[0].pointInterval){
             switch (series[0].pointInterval){
@@ -419,11 +449,15 @@ function editChart() {
                     }
             }
         }
+
+
+
+        // 图表时间
+        if(!series[1].pointStart && arguments[2]){
+            xAxis.categories = arguments[2]
+        }
     }
-    // 图表时间
-    if(series && !series[1].pointStart && arguments[2]){
-        xAxis.categories = arguments[2]
-    }
+
     // 初始化图表
     var flowObj = {
         chart: chart,

@@ -1,0 +1,17 @@
+body{
+    padding:0 300px 0;
+}
+h2{
+    font-size: 18px;
+    padding: 15px 0;
+    margin: 15px 0;
+}
+hr{
+    border:none;
+    height: 1px;
+    background: #e6e6e6;
+    margin-top: 35px;
+}
+.hr{
+    margin-top: 140px;
+}

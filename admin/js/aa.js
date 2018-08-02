@@ -1,31 +1,8 @@
 layui.use(['layer', 'form','table', 'upload'], function() {
     var table = layui.table, layer = layui.layer, form = layui.form, $ = layui.$, upload = layui.upload
     // 可直接使用$
-    //游戏 上传证书 密钥
-    upload.render({
-        elem: '.game_certificate'
-        ,url: '/upload/'
-        ,auto: false
-        ,accept: 'file'
-        //,multiple: true
-        ,bindAction: '#buttonFile'
-        ,done: function(res){
-            console.log(res)
-        }
-    });
-    upload.render({
-        elem: '.game_secretkey'
-        ,url: '/upload/'
-        ,auto: false
-        ,accept: 'file'
-        //,multiple: true
-        ,bindAction: '#buttonFile'
-        ,done: function(res){
-            console.log(res)
-        }
-    });
 
-    //game图表数据
+    //图表数据
     var product_one_date = [712,722,732,742,752,762,772,782,792,702,712,712,712,522,532,542,532,772,75,726,777,718,722,733,744,755,766,711,766,722,
         712,722,732,742,752,762,772,782,792,702,712,712,712,722,732,742,832,812,815,826,817,818,822,833,844,855,866,811,866,822];
 
@@ -36,10 +13,8 @@ layui.use(['layer', 'form','table', 'upload'], function() {
         29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1,
         29.9, 107374.1824, 30485750, 10240, 10485750, 102400, 4000, 5120, 7000, 1025,
     ];
-    // 未格式化时间
-    var timeX = ['2011-01-01 01:01:01','2012-02-02 02:02:02','2013-03-03 03:03:03']
-    // 格式化时间
-    var formatTimeX = ['01:00', '02:00', '03:00', '04', '05', '06', '07', '08', '09', '10','11',
+
+    var timeX = ['game', '02', '03', '04', '05', '06', '07', '08', '09', '10','11',
         '12', '13', '14', '15', '16', '17', '18', '19', '20','21', '22', '23', '24', '25', '26', '27', '28', '29', '30',
         '01', '02', '03', '04', '05', '06', '07', '08', '09', '10','11',
         '12', '13', '14', '15', '16', '17', '18', '19', '20','21', '22', '23', '24', '25', '26', '27', '28', '29', '30']
@@ -87,13 +62,13 @@ layui.use(['layer', 'form','table', 'upload'], function() {
                 },{
                     name: 'game2',
                     color: '#2dcbc8',
-                    // pointStart: Date.UTC(that.dateStr.yearFormat, that.dateStr.monthFormat-1 ,that.dateStr.dayFormat ,
-                    //     that.dateStr.hoursFormat, that.dateStr.minuteFormat, that.dateStr.secondFormat),
-                    // pointInterval: 1,
+                    pointStart: Date.UTC(that.dateStr.yearFormat, that.dateStr.monthFormat-1 ,that.dateStr.dayFormat ,
+                        that.dateStr.hoursFormat, that.dateStr.minuteFormat, that.dateStr.secondFormat),
+                    pointInterval: 1,
                     data: product_two_date,
                     // pointIntervalUnit: 'day' 没用
                     visible: false,
-                }], formatTimeX, timeX)
+                }], timeX)
             },
             error: function () {
                 // 5错误提示
