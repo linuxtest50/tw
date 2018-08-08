@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ts</title>
+    <!--自适应移动设备-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--作者信息，网站地址-->
+    <meta name="author" content="www.url.com">
+    <!-- 苹果手机是否全屏显示页面-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--控制苹果手机状态栏的颜色-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--数字不能当作电话号码使用-->
+    <meta name="format-detection" content="telephone=no">
+    <!--防止浏览器缓存数据-->
+    <meta http-equiv="Expires" content="-1"><!--数据缓存-->
+    <meta http-equiv="Cache-Control" content="no-cache"><!--所有缓存-->
+    <meta http-equiv="Pragma" content="no-cache"><!--参数缓存-->
+    <!--关键字，描述信息-->
+    <meta name="keywords" content="关键字" />
+    <meta name="description" content="网站描述信息" />
+    <!--网站LOGO-->
+    <!--<link href="img/logo.gif" rel="shortcut icon" type="image/x-icon"/>-->
+    <!--开发中使用ico格式-->
+    <!--<link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon"/>-->
+    <!-- 强制Chromium内核，作用于360浏览器、QQ浏览器等国产双核浏览器：-->
+    <meta name="renderer" content="webkit"/>
+    <!--强制Chromium内核，作用于其他双核浏览器：-->
+    <meta name="force-rendering" content="webkit"/>
+    <!--如果有安装 Google Chrome Frame 插件则强制为Chromium内核，否则强制本机支持的最高版本IE内核，作用于IE浏览器：-->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <link rel="stylesheet" href="./index.css"/>
+    <link rel="stylesheet" href="./ts.css"/>
+    <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/atelier-estuary-dark.min.css" rel="stylesheet">-->
+    <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/default.min.css" rel="stylesheet">-->
+    <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/docco.min.css" rel="stylesheet">-->
+    <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/foundation.min.css" rel="stylesheet">-->
+    <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/github-gist.min.css" rel="stylesheet">-->
+    <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/github.min.css" rel="stylesheet">
+    <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/googlecode.min.css" rel="stylesheet">-->
+    <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/grayscale.min.css" rel="stylesheet">-->
+    <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/vs.min.css" rel="stylesheet">-->
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+<div class="box-all">
+    <div class="box1 boxa">
+        <div class="box2">
+            <div class="box3">
+                <div class="box4">2</div>
+            </div>
+        </div>
+    </div>
+    <div class="box1 boxb">
+        <div class="box2">
+            <div class="box3">
+                <div class="box4">3</div>
+            </div>
+        </div>
+    </div>
+    <div class="box1 boxc">
+        <div class="box2">
+            <div class="box3">
+                <div class="box4">4</div>
+            </div>
+        </div>
+    </div>
+    <div class="box1 boxd">
+        <div class="box2">
+            <div class="box3">
+                <div class="box4">5</div>
+            </div>
+        </div>
+    </div>
+    <div class="box1 boxe">
+        <div class="box2">
+            <div class="box3">
+                <div class="box4">6</div>
+            </div>
+        </div>
+    </div>
+    <div class="box1 boxf">
+        <div class="box2">
+            <div class="box3">
+                <div class="box4">7</div>
+            </div>
+        </div>
+    </div>
+    <div class="box1 boxg">
+        <div class="box2">
+            <div class="box3">
+                <div class="box4">1</div>
+            </div>
+        </div>
+    </div>
+    <div class="box1 boxh">
+        <div class="box2">
+            <div class="box3">
+                <div class="box4">8</div>
+            </div>
+        </div>
+    </div>
+    <div class="box1 boxi">
+        <div class="box2">
+            <div class="box3">
+                <div class="box4">9</div>
+            </div>
+        </div>
+    </div>
+    <div class="box1 boxj">
+        <div class="box2">
+            <div class="box3">
+                <div class="box4">10</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header">TS <span>ui</span></div>
+<ul class="nav">
+    <li id="layout">布局</li>
+    <li id="css">css</li>
+    <li id="components">组件</li>
+</ul>
+<div class="title">
+    <p>引入css：&lt;link rel=&quot;stylesheet&quot; href=&quot;./ts.css&quot;/&gt;</p>
+    <p>引入js：&lt;script type=&quot;text/javascript&quot; src=&quot;./ts.js&quot;&gt;&lt;/script&gt;</p>
+    <p>初始化：var ts = new TS()</p>
+</div>
+<!-- 页面-->
+<section id="page">
+
+</section>
+
+<script type="text/javascript">
+    window.onload = function () {
+        var content = document.querySelector("#page"), lis = document.querySelectorAll(".nav>li"),
+            pages = {
+                index: {
+                    title: "首页",
+                    content: './border-color.html'
+                },
+                about: {
+                    title: "关于",
+                    content: "公司业务介绍"
+                },
+                products: {
+                    title: "产品",
+                    content: "产品介绍页面"
+                },
+                contact: {
+                    title: "联系我们",
+                    content: "客服，公司练习方式展示."
+                },
+            };
+        for(var i=0; i<lis.length; i++){
+            lis[i].onclick = function(){
+                var pageUrl = this.getAttribute("id");
+                if(pageUrl === "layout"){
+                    ajax({
+                        url: 'http://localhost:63342/webstrom/tw/admin/components/layout.html',
+                        callback: function (data) {
+                            // console.log(data)
+                            content.innerHTML = data
+                        }
+                    })
+                    window.history.pushState(pages.index, "", pageUrl + ".html")
+                    // window.location.reload()
+                }
+                if(pageUrl === "css"){
+                    window.history.pushState(pages.about, "", pageUrl + ".html")
+                }
+                if(pageUrl === "components"){
+                    window.history.pushState(pages.products, "", pageUrl + ".html")
+                }
+            }
+        }
+
+        window.onpopstate = function(event) {
+            var state = event.state;
+            console.log(state);
+            if(state != null){
+                content.innerHTML = state.content;
+            }
+        };
+    }
+
+    function ajax(obj) {
+        //1. 创建一个xmlhttpRequest对象
+        var req = createRequest();
+        //2. 设置回调监听
+        req.onreadystatechange = function () {
+            if(req.readyState === 4 && req.status === 200){
+                var result = req.responseText;
+                // alert(result);
+                obj.callback(result)
+            }
+        };
+        //3. 打开一个连接
+        req.open("get", obj.url, false);
+        //4. 发请求
+        // req.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        req.send();
+        function createRequest () {
+            var xmlhttp;
+            if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {// code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            return xmlhttp;
+        }
+    }
+</script>
+<!--<script src="./utils/myTools.js"></script>-->
+<!--<script type="text/javascript" src="./ts.js"></script>-->
+<!--<script src="./index.js"></script>-->
+</body>
+</html>

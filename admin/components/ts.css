@@ -1,10 +1,27 @@
+/*com*/
 *{
     padding: 0;
     margin: 0;
+    font-family: Arial, 微软雅黑, Microsoft yahei, Hiragino Sans GB, STXihei, 华文细黑, SimSun, 宋体, Heiti, 黑体, sans-serif;
+    list-style: none;
+    font-weight: normal;
+    font-size: 14px;
 }
 .t-font{
     font-size: 12px;
 }
+.t-hide{
+    display: none;
+}
+/*keyRight*/
+#keyRight{
+    /*width:100px;*/
+    /*height:300px;*/
+    /*background:cornflowerblue;*/
+    position:absolute;
+    display: none;
+}
+/*time*/
 .t-h, .t-m, .t-s{
     display: inline-block;
     padding: 5px 3px;
@@ -13,7 +30,7 @@
     text-align: center;
     border-radius: 3px;
 }
-
+/*pop*/
 .t-pop{
     width: 600px;
     position: fixed;
@@ -27,28 +44,32 @@
 .t-success{
     color:#2b892c;
     border:1px solid #2b892c;
+    background: #f0fbf2;
     /*top:20px*/
 }
 .t-err{
     color:#e08989;
     border:1px solid #e08989;
+    background: #fdf1f1;
     /*top:80px*/
 }
 .t-info{
     color:#3298b9;
     border:1px solid #3298b9;
+    background: #f0fbff;
     /*top:140px*/
 }
 .t-warning{
     color:#dc9316;
     border:1px solid #dc9316;
+    background: #fff6e6;
     /*top:200px*/
 }
 .t-alert{
     border:1px solid #fff;
     box-shadow: 1px 2px 3px 0 rgba(0,0,0,.2), 1px 3px 15px 2px rgba(0,0,0,.2);
 }
-
+/*linkage*/
 .t-linkage-parent{
     position: relative;
 }
@@ -59,13 +80,13 @@
     display: inline-block;
     padding: 7px 12px;
     cursor: pointer;
-    border:1px solid #0793ee;
+    border:1px solid #05a6ff;
     border-radius: 3px;
-    color: #0793ee;
+    color: #05a6ff;
     margin: 10px 0;
 }
 .t-linkage>p:hover, p.t-linkage-select{
-    background: #0793ee;
+    background: #05a6ff;
     transition: all .2s linear;
     color: #fff;
 }
@@ -78,4 +99,80 @@
 
 .t-linkage>div.t-linkage-show{
     display: block;
+}
+
+/*tabs*/
+.t-tabs-hover{
+    border-bottom: 1px solid #05a6ff;
+    color: #05a6ff;
+}
+.t-tabs>ul{
+    overflow: hidden;
+}
+.t-tabs li{
+    float: left;
+    padding: 10px 15px;
+}
+.t-tabs>div{
+    padding: 10px 15px;
+}
+/*copy*/
+.t-copy>span, .t-copy>input{
+    display: none;
+}
+.t-copy>span{
+    box-shadow: 0 10px 60px 0 rgba(29, 29, 31, 0.09);
+    margin-top: 5px;
+    position: absolute;
+}
+.t-copy{
+    position: relative;
+    width: 100px;
+}
+.t-copy>p{
+    padding: 5px 0;
+    cursor: pointer;
+}
+.t-copy>input{
+    position: absolute;
+    top: 5px;
+    left: 100%;
+    border: 1px solid #05a6ff;
+    background: none;
+}
+/*banner*/
+.t-banner{
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1%;
+}
+.t-banner ul{
+    overflow: hidden;
+}
+.t-banner li{
+    float: left;
+}
+.t-banner .t-banner-nav{
+    position:absolute;
+    bottom: 8%;
+    z-index: 100;
+}
+.t-banner .t-banner-nav a{
+    display: block;
+    float: left;
+    width: 5px;
+    height: 5px;
+    margin-left: 5px;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+/*marquee*/
+.t-marqueebox{
+    border:#bbb 1px solid;
+    overflow:hidden;
+}
+.t-marqueebox li{
+    text-align:center;
 }

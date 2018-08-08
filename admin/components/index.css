@@ -1,10 +1,21 @@
 body{
-    padding:0 300px 0;
+    padding:0 500px 0;
+    color: #666;
 }
 h2{
-    font-size: 18px;
-    padding: 15px 0;
-    margin: 15px 0;
+    font-size: 16px;
+    padding: 4px 20px;
+    margin: 30px 0;
+    border-left: 2px solid #05a6ff;
+    border-right: 2px solid #05a6ff;
+    background: #efefef;
+    /* width: 100px; */
+    /* text-align: center; */
+    font-weight: normal;
+    color: #505050;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
 }
 hr{
     border:none;
@@ -12,6 +23,155 @@ hr{
     background: #e6e6e6;
     margin-top: 35px;
 }
-.hr{
-    margin-top: 140px;
+/*.hr{*/
+    /*margin-top: 140px;*/
+/*}*/
+.header{
+    padding: 70px 0 50px;
+    text-align: center;
+    font-size: 36px;
+    /*font-weight: 600;*/
+    letter-spacing: -9px;
+    color: #252529;
 }
+.header span{
+    letter-spacing: 0px;
+    margin-left: 8px;
+    font-size: 36px;
+}
+ul.nav{
+    overflow: hidden;
+    border-top: 1px solid #e6e6e6;
+    margin-bottom: 50px;
+}
+.nav li{
+    float: left;
+    padding: 2% 3%;
+}
+.title p{
+    margin-bottom: 10px;
+}
+span.my_icon{
+    font-size: 20px;
+    color: #05a6ff;
+    float: right;
+    margin: 30px 20px 30px 0;
+    cursor: pointer;
+}
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+    color: #05a6ff;
+    float: right;
+    margin: 30px 0;
+}
+.t-code{
+    /*background: #dee8ef !important;*/
+    /*background: #eceff1 !important;*/
+    margin-top: 0;
+    color: #05a6ff;
+    height: 0;
+    line-height: 25px;
+    overflow-y: hidden;
+    /*display: none;*/
+    transition: all .2s linear;
+}
+.t-code p{
+    display: inline-block;
+    margin-bottom: 5px;
+}
+.hljs{
+    padding: 15px 10px 10px 15px !important;
+    background: #e9f1f7 !important;
+}
+.hljs-comment{
+    font-style: normal !important;
+}
+
+/**************/
+.linkage_margin{
+    padding-bottom: 100px;
+}
+.t-banner li:nth-of-type(odd){
+    height: 250px;
+    background: #05a6ff;
+}
+.t-banner li:nth-of-type(even){
+    height: 250px;
+    background: #d25c38;
+}
+.t-marqueebox{
+    margin-bottom: 10px;
+}
+/**/
+.box1, .box2, .box3, .box4{
+    width: 100px;
+    height: 50px;
+}
+.box1, .box2, .box3{
+    overflow: hidden;
+}
+.box2, .box3{
+    transform: rotate(60deg);
+}
+.box4{
+    background-color: #05a6ff;
+    text-align: center;
+    line-height: 50px;
+    transform: rotate(-120deg);
+    color: #fff;
+}
+.box-all{
+    position: fixed;
+    right: 8%;
+    top:0;
+    width: 12%;
+    height: 100%;
+}
+.box-all .box1{
+    position: absolute;
+    cursor: pointer;
+}
+.boxa{
+    top: 300px;
+    right: 35px;
+}
+.boxb{
+    top: 249px;
+    right: 35px;
+}
+.boxc{
+    top: 351px;
+    right: 35px;
+}
+.boxd{
+    top: 274px;
+    right: -9px;
+}
+.boxe{
+    top: 325px;
+    right: -9px;
+}
+.boxf{
+    top: 275px;
+    right: 79px;
+}
+.boxg{
+    top: 377px;
+    right: 79px;
+}
+.boxh{
+    top: 428px;
+    right: 79px;
+}
+.boxi{
+    top: 301px;
+    right: 123px;
+}
+.boxj{
+    top: 454px;
+    right: 35px;
+}
+

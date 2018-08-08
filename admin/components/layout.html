@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ts</title>
+    <!--自适应移动设备-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!--作者信息，网站地址-->
+    <meta name="author" content="www.url.com">
+    <!-- 苹果手机是否全屏显示页面-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--控制苹果手机状态栏的颜色-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--数字不能当作电话号码使用-->
+    <meta name="format-detection" content="telephone=no">
+    <!--防止浏览器缓存数据-->
+    <meta http-equiv="Expires" content="-1"><!--数据缓存-->
+    <meta http-equiv="Cache-Control" content="no-cache"><!--所有缓存-->
+    <meta http-equiv="Pragma" content="no-cache"><!--参数缓存-->
+    <!--关键字，描述信息-->
+    <meta name="keywords" content="关键字" />
+    <meta name="description" content="网站描述信息" />
+    <!--网站LOGO-->
+    <!--<link href="img/logo.gif" rel="shortcut icon" type="image/x-icon"/>-->
+    <!--开发中使用ico格式-->
+    <!--<link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon"/>-->
+    <!-- 强制Chromium内核，作用于360浏览器、QQ浏览器等国产双核浏览器：-->
+    <meta name="renderer" content="webkit"/>
+    <!--强制Chromium内核，作用于其他双核浏览器：-->
+    <meta name="force-rendering" content="webkit"/>
+    <!--如果有安装 Google Chrome Frame 插件则强制为Chromium内核，否则强制本机支持的最高版本IE内核，作用于IE浏览器：-->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <link rel="stylesheet" href="./index.css"/>
+    <link rel="stylesheet" href="./ts.css"/>
+    <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/atelier-estuary-dark.min.css" rel="stylesheet">-->
+    <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/default.min.css" rel="stylesheet">-->
+    <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/docco.min.css" rel="stylesheet">-->
+    <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/foundation.min.css" rel="stylesheet">-->
+    <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/github-gist.min.css" rel="stylesheet">-->
+    <link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/github.min.css" rel="stylesheet">
+    <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/googlecode.min.css" rel="stylesheet">-->
+    <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/grayscale.min.css" rel="stylesheet">-->
+    <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/vs.min.css" rel="stylesheet">-->
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<div>
+    <h2>倒计时</h2><span class="my_icon" title="查看代码">☟</span>
+    <!--<svg class="icon" aria-hidden="true"> ◢ ◥ ☶ ︾ ▲ ▼  ☝-->
+    <!--<use xlink:href="#icon-zhedie-jiahao"></use>-->
+    <!--</svg>-->
+    <div class="t-timer"><span class="t-h"></span>：<span class="t-m"></span>：<span class="t-s"></span></div>
+    <!--代码块-->
+    <div class="t-code">
+<pre><code class="html"><p>html代码：</p>
+&lt;div class=&quot;t-timer&quot;&gt;&lt;span class=&quot;t-h&quot;&gt;&lt;/span&gt;：&lt;span class=&quot;t-m&quot;&gt;&lt;/span&gt;：&lt;span class=&quot;t-s&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+</code></pre>
+
+        <pre><code class="lang-javascript"><p>js代码：</p>
+ts.backTimers({
+    timer: '.t-timer',
+    hour: '.t-h',
+    minute: '.t-m',
+    second: '.t-s',
+    date: '2018-8-7 18:30',
+    text: '结束提示',
+    color: 'blue'
+});
+</code></pre>
+    </div>
+    <hr>
+</div>
+
+<div>
+    <h2>弹窗</h2><span class="my_icon" title="查看代码">☟</span>
+    <div class="t-pop t-font"></div>
+    <div>
+        <button>弹窗</button>
+        <button>成功</button>
+        <button>失败</button>
+        <button>提示</button>
+        <button>警告</button>
+    </div>
+    <!--代码块-->
+    <div class="t-code">
+<pre><code class="html"><p>html代码：</p>
+&lt;div class=&quot;t-pop&quot;&gt;&lt;/div&gt;
+</code></pre>
+        <pre><code class="lang-javascript"><p>js代码：</p>
+ts.move({
+    type: 't-alert',    // 可选值：t-alert、t-success、t-err、t-info、t-warnimg
+    attr: 'top',    // 可选值：top、bottom、left、right
+    target: 300,    // 目标值，类型number
+    text: '我是弹窗',   // 提示内容
+    time: 2000,     // 存留时间，单位s
+    callBack: function () {
+        // 回调函数
+    }
+})
+</code></pre>
+    </div>
+    <hr>
+</div>
+
+<div>
+    <h2>联动</h2><span class="my_icon" title="查看代码">☟</span>
+    <div class="t-linkage-parent linkage_margin">
+        <div class="t-linkage">
+            <p class="t-linkage-select">联动选项1</p>
+            <div class="t-linkage-show">
+                <div class="t-linkage">
+                    <p class="t-linkage-select">联动选项11</p>
+                    <div class="t-linkage-show">
+                        <div class="t-linkage"><p class="t-linkage-select">联动选项111</p></div>
+                        <div class="t-linkage"><p>联动选项112</p></div>
+                        <div class="t-linkage"><p>联动选项113</p></div>
+                        <div class="t-linkage"><p>联动选项114</p></div>
+                        <div class="t-linkage"><p>联动选项115</p></div>
+                    </div>
+                </div>
+                <div class="t-linkage">
+                    <p>联动选项12</p>
+                    <div>
+                        <div class="t-linkage"><p>联动选项121</p></div>
+                        <div class="t-linkage"><p>联动选项122</p></div>
+                        <div class="t-linkage"><p>联动选项123</p></div>
+                        <div class="t-linkage"><p>联动选项124</p></div>
+                        <div class="t-linkage"><p>联动选项125</p></div>
+                    </div>
+                </div>
+                <div class="t-linkage">
+                    <p>联动选项13</p>
+                    <div>
+                        <div class="t-linkage"><p>联动选项131</p></div>
+                        <div class="t-linkage"><p>联动选项132</p></div>
+                        <div class="t-linkage"><p>联动选项133</p></div>
+                        <div class="t-linkage"><p>联动选项134</p></div>
+                        <div class="t-linkage"><p>联动选项135</p></div>
+                    </div>
+                </div>
+                <div class="t-linkage">
+                    <p>联动选项14</p>
+                    <div>
+                        <div class="t-linkage"><p>联动选项141</p></div>
+                        <div class="t-linkage"><p>联动选项142</p></div>
+                        <div class="t-linkage"><p>联动选项143</p></div>
+                        <div class="t-linkage"><p>联动选项144</p></div>
+                        <div class="t-linkage"><p>联动选项145</p></div>
+                    </div>
+                </div>
+                <div class="t-linkage">
+                    <p>联动选项15</p>
+                    <div>
+                        <div class="t-linkage"><p>联动选项151</p></div>
+                        <div class="t-linkage"><p>联动选项152</p></div>
+                        <div class="t-linkage"><p>联动选项153</p></div>
+                        <div class="t-linkage"><p>联动选项154</p></div>
+                        <div class="t-linkage"><p>联动选项155</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="t-linkage">
+            <p>联动选项2</p>
+            <div>
+                <div class="t-linkage">
+                    <p>联动选项21</p>
+                    <div>
+                        <div class="t-linkage"><p>联动选项211</p></div>
+                        <div class="t-linkage"><p>联动选项212</p></div>
+                        <div class="t-linkage"><p>联动选项213</p></div>
+                        <div class="t-linkage"><p>联动选项214</p></div>
+                    </div>
+                </div>
+                <div class="t-linkage">
+                    <p>联动选项22</p>
+                    <div>
+                        <div class="t-linkage"><p>联动选项221</p></div>
+                        <div class="t-linkage"><p>联动选项222</p></div>
+                        <div class="t-linkage"><p>联动选项223</p></div>
+                        <div class="t-linkage"><p>联动选项224</p></div>
+                    </div>
+                </div>
+                <div class="t-linkage">
+                    <p>联动选项23</p>
+                    <div>
+                        <div class="t-linkage"><p>联动选项231</p></div>
+                        <div class="t-linkage"><p>联动选项232</p></div>
+                        <div class="t-linkage"><p>联动选项233</p></div>
+                        <div class="t-linkage"><p>联动选项234</p></div>
+                    </div>
+                </div>
+                <div class="t-linkage">
+                    <p>联动选项24</p>
+                    <div>
+                        <div class="t-linkage"><p>联动选项241</p></div>
+                        <div class="t-linkage"><p>联动选项242</p></div>
+                        <div class="t-linkage"><p>联动选项243</p></div>
+                        <div class="t-linkage"><p>联动选项244</p></div>
+                    </div>
+                </div>
+                <div class="t-linkage">
+                    <p>联动选项25</p>
+                    <div>
+                        <div class="t-linkage"><p>联动选项251</p></div>
+                        <div class="t-linkage"><p>联动选项252</p></div>
+                        <div class="t-linkage"><p>联动选项253</p></div>
+                        <div class="t-linkage"><p>联动选项254</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="t-linkage">
+            <p>联动选项3</p>
+            <div>
+                <div class="t-linkage"><p>联动选项31</p></div>
+                <div class="t-linkage"><p>联动选项32</p></div>
+                <div class="t-linkage"><p>联动选项33</p></div>
+                <div class="t-linkage"><p>联动选项34</p></div>
+                <div class="t-linkage"><p>联动选项35</p></div>
+            </div>
+        </div>
+        <div class="t-linkage">
+            <p>联动选项4</p>
+            <div>
+                <div class="t-linkage"><p>联动选项41</p></div>
+                <div class="t-linkage"><p>联动选项42</p></div>
+                <div class="t-linkage"><p>联动选项43</p></div>
+                <div class="t-linkage"><p>联动选项44</p></div>
+                <div class="t-linkage"><p>联动选项45</p></div>
+            </div>
+        </div>
+        <div class="t-linkage">
+            <p>联动选项5</p>
+            <div>
+                <div class="t-linkage"><p>联动选项51</p></div>
+                <div class="t-linkage"><p>联动选项52</p></div>
+                <div class="t-linkage"><p>联动选项53</p></div>
+                <div class="t-linkage"><p>联动选项54</p></div>
+                <div class="t-linkage"><p>联动选项55</p></div>
+            </div>
+        </div>
+
+    </div>
+    <!--代码块-->
+    <div class="t-code">
+<pre><code class="html"><p>html代码：</p>
+&lt;div class=&quot;t-linkage-parent&quot;&gt;
+    &lt;div class=&quot;t-linkage&quot;&gt;
+        &lt;p class=&quot;t-linkage-select&quot;&gt;联动选项1&lt;/p&gt;
+        &lt;div class=&quot;t-linkage-show&quot;&gt;
+            &lt;div class=&quot;t-linkage&quot;&gt;
+                &lt;p class=&quot;t-linkage-select&quot;&gt;联动选项11&lt;/p&gt;
+                &lt;div class=&quot;t-linkage-show&quot;&gt;
+                    &lt;div class=&quot;t-linkage&quot;&gt;&lt;p class=&quot;t-linkage-select&quot;&gt;联动选项111&lt;/p&gt;&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;t-linkage&quot;&gt;
+        &lt;p&gt;联动选项2&lt;/p&gt;
+        &lt;div&gt;
+            &lt;div class=&quot;t-linkage&quot;&gt;
+                &lt;p&gt;联动选项21&lt;/p&gt;
+                &lt;div&gt;
+                    &lt;div class=&quot;t-linkage&quot;&gt;&lt;p&gt;联动选项211&lt;/p&gt;&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+        <pre><code class="lang-javascript"><p>js代码：</p>
+ts.linkage()    // 初始化
+</code></pre>
+    </div>
+    <hr/>
+</div>
+
+
+<div>
+    <h2>选项卡</h2>
+    <div class="t-tabs">
+        <ul>
+            <li class="t-tabs-hover">房产</li>
+            <li>家居</li>
+            <li>二手房</li>
+        </ul>
+        <div>275万购昌平邻铁三居 总价20万买一居</div>
+        <div class="t-hide">40平出租屋大改造 美少女的混搭小窝</div>
+        <div class="t-hide">通州豪华3居260万 二环稀缺2居250w甩</div>
+    </div>
+    <hr>
+</div>
+
+
+<div>
+    <h2>卡号复制</h2>
+    <div class="t-copy">
+        <p title="点击复制">01234567890</p>
+        <span></span>
+    </div>
+    <hr>
+</div>
+
+<div>
+    <h2>轮播</h2>
+    <div class="t-banner">
+        <ul>
+            <li><a href=""><img src="" alt=""></a></li>
+            <li><a href=""><img src="" alt=""></a></li>
+            <li><a href=""><img src="" alt=""></a></li>
+            <li><a href=""><img src="" alt=""></a></li>
+            <li><a href=""><img src="" alt=""></a></li>
+            <li><a href=""><img src="" alt=""></a></li>
+            <li><a href=""><img src="" alt=""></a></li>
+        </ul>
+        <div class="t-banner-nav"></div>
+    </div>
+    <hr>
+</div>
+
+<div>
+    <h2>图片居中</h2>
+    <a style="display:block;text-align: center; width: 500px;height:200px; line-height:200px; border: green solid 1px;">
+        <img alt="" src="https://www.baidu.com/img/baidu_jgylogo3.gif" style="display: inline-block; vertical-align: middle;" />
+    </a>
+    <hr>
+</div>
+
+<div>
+    <h2>滚动信息</h2>
+    <div class="t-marqueebox marqueebox1">
+        <ul>
+            <li>第一行</li>
+            <li>第二行</li>
+            <li>第三行</li>
+        </ul>
+    </div>
+    <div class="t-marqueebox marqueebox2">
+        <ul>
+            <li>你你你你你你</li>
+            <li>是是是是是是</li>
+            <li>一一一一一一</li>
+            <li>个个个个个个</li>
+            <li>小小小小小小</li>
+            <li>傻傻傻傻傻傻</li>
+            <li>瓜瓜瓜瓜瓜瓜</li>
+        </ul>
+    </div>
+    <hr>
+</div>
+
+<div>
+    <h2>右键</h2>
+    <div id="keyRight">禁止右键</div>
+    <hr>
+</div>
+
+<div>
+    <h2>返回顶部</h2>
+    <div>123</div>
+    <hr>
+</div>
+
+<div>
+    <h2>懒加载</h2>
+    <div>123</div>
+    <hr>
+</div>
+
+<div>
+    <h2>表单</h2>
+    <div>123</div>
+    <hr>
+</div>
+
+<div>
+    <h2>导航</h2>
+    <div>123</div>
+    <hr>
+</div>
+
+<div>
+    <h2>锚点</h2>
+    <div>123</div>
+    <hr>
+</div>
+
+<div>
+    <h2>进度条</h2>
+    <div>123</div>
+    <hr>
+</div>
+
+<div>
+    <h2>穿梭框</h2>
+    <div>123</div>
+    <hr>
+</div>
+<script src="./utils/myTools.js"></script>
+<script type="text/javascript" src="./ts.js"></script>
+<script src="./index.js"></script>
