@@ -7,6 +7,10 @@
     font-weight: normal;
     font-size: 14px;
 }
+a, a:link, a:visited, a:hover, a:active{
+   color: #666;
+    text-decoration: none;
+}
 .t-font{
     font-size: 12px;
 }

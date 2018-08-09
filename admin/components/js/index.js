@@ -46,7 +46,7 @@ ts.backTimers({
     hour: '.t-h',
     minute: '.t-m',
     second: '.t-s',
-    date: '2018-8-8 18:30',
+    date: '2018-8-9 18:30',
     text: '结束提示',
     color: 'blue'
 });

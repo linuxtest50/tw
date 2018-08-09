@@ -30,8 +30,8 @@
     <meta name="force-rendering" content="webkit"/>
     <!--如果有安装 Google Chrome Frame 插件则强制为Chromium内核，否则强制本机支持的最高版本IE内核，作用于IE浏览器：-->
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
-    <link rel="stylesheet" href="./index.css"/>
-    <link rel="stylesheet" href="./ts.css"/>
+    <link rel="stylesheet" href="./css/index.css"/>
+    <link rel="stylesheet" href="./utils/ts.css"/>
     <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/atelier-estuary-dark.min.css" rel="stylesheet">-->
     <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/default.min.css" rel="stylesheet">-->
     <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/docco.min.css" rel="stylesheet">-->
@@ -42,7 +42,12 @@
     <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/grayscale.min.css" rel="stylesheet">-->
     <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/vs.min.css" rel="stylesheet">-->
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <!--<script>-->
+        <!--window.onload = function () {-->
+            <!--hljs.initHighlightingOnLoad();-->
+            <!--console.log(hljs)-->
+        <!--}-->
+    <!--</script>-->
 </head>
 <body>
 <div class="box-all">
@@ -122,6 +127,9 @@
     <li id="layout">布局</li>
     <li id="css">css</li>
     <li id="components">组件</li>
+    <li><a href="#/">hash1</a></li>
+    <li><a href="#/orange">hash2</a></li>
+    <li><a href="#/purple">hash3</a></li>
 </ul>
 <div class="title">
     <p>引入css：&lt;link rel=&quot;stylesheet&quot; href=&quot;./ts.css&quot;/&gt;</p>
@@ -134,7 +142,37 @@
 </section>
 
 <script type="text/javascript">
-    window.onload = function () {
+    function Router() {
+        this.routes = {};
+        this.currentUrl = '';
+    }
+    Router.prototype.route = function(path, callback) {
+        this.routes[path] = callback || function(){};
+    };
+    Router.prototype.refresh = function() {
+        this.currentUrl = location.hash.slice(1) || '/';
+        this.routes[this.currentUrl]();
+    };
+    Router.prototype.init = function() {
+        window.addEventListener('load', this.refresh.bind(this), false);
+        window.addEventListener('hashchange', this.refresh.bind(this), false);
+    }
+    window.Router = new Router();
+    window.Router.init();
+    Router.route('/', function() {
+        toUrl('http://localhost:63342/webstrom/tw/admin/components/page/layout.html', location)
+        console.log(111)
+    });
+    Router.route('/orange', function() {
+        toUrl('http://localhost:63342/webstrom/tw/admin/components/page/components.html', location)
+        console.log(222)
+    });
+    Router.route('/purple', function() {
+        console.log(333)
+    });
+
+
+    // window.onload = function () {
         var content = document.querySelector("#page"), lis = document.querySelectorAll(".nav>li"),
             pages = {
                 index: {
@@ -156,23 +194,17 @@
             };
         for(var i=0; i<lis.length; i++){
             lis[i].onclick = function(){
-                var pageUrl = this.getAttribute("id");
-                if(pageUrl === "layout"){
-                    ajax({
-                        url: 'http://localhost:63342/webstrom/tw/admin/components/layout.html',
-                        callback: function (data) {
-                            // console.log(data)
-                            content.innerHTML = data
-                        }
-                    })
-                    window.history.pushState(pages.index, "", pageUrl + ".html")
+                var location = this.getAttribute("id");
+                if(location === "layout"){
+                    toUrl('http://localhost:63342/webstrom/tw/admin/components/page/layout.html', location)
                     // window.location.reload()
+
                 }
-                if(pageUrl === "css"){
-                    window.history.pushState(pages.about, "", pageUrl + ".html")
+                if(location === "css"){
+                    toUrl('http://localhost:63342/webstrom/tw/admin/components/page/css.html', location)
                 }
-                if(pageUrl === "components"){
-                    window.history.pushState(pages.products, "", pageUrl + ".html")
+                if(location === "components"){
+                    toUrl('http://localhost:63342/webstrom/tw/admin/components/page/components.html', location)
                 }
             }
         }
@@ -184,37 +216,85 @@
                 content.innerHTML = state.content;
             }
         };
-    }
+        function toUrl(url, location) {
+            ajax({
+                url: url,
+                success: function (data) {
+                    // addScript("https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", false)
+                    content.innerHTML = data
 
-    function ajax(obj) {
-        //1. 创建一个xmlhttpRequest对象
-        var req = createRequest();
-        //2. 设置回调监听
-        req.onreadystatechange = function () {
-            if(req.readyState === 4 && req.status === 200){
-                var result = req.responseText;
-                // alert(result);
-                obj.callback(result)
-            }
-        };
-        //3. 打开一个连接
-        req.open("get", obj.url, false);
-        //4. 发请求
-        // req.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        req.send();
-        function createRequest () {
-            var xmlhttp;
-            if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp = new XMLHttpRequest();
-            } else {// code for IE6, IE5
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            return xmlhttp;
+                    addScript("./utils/tools.js")
+                    addScript("./utils/ts.js")
+                    addScript("./js/index.js")
+                }
+            })
+            // window.history.pushState(pages.index, "", location + '.html')
         }
-    }
+        function addScript(src) {
+            var script = document.createElement('script')
+            script.setAttribute("type", "text/javascript")
+            script.setAttribute("src", src)
+            document.body.appendChild(script)
+
+            // if(flag){
+            //     script.onload = script.onreadystatechange = function () {
+            //         var headScript = document.createElement('script')
+            //         headScript.setAttribute("type", "text/javascript")
+            //         headScript.setAttribute("src", src)
+            //         document.head.appendChild(headScript)
+            //         if(content.innerHTML){
+            //             // hljs.initHighlightingOnLoad();
+            //             console.log('ss')
+            //             // $('pre code').each(function(i, block) {
+            //             //     hljs.highlightBlock(block);
+            //             // });
+            //
+            //         }
+            //
+            //     }
+
+                var pre = document.querySelectorAll('pre code')
+                console.log(pre)
+                for (var i = 0; i < pre.length; i++) {
+                    hljs.highlightBlock(pre[i]);
+                }
+            // }
+
+        }
+        function ajax(obj) {
+            //1. 创建一个xmlhttpRequest对象
+            var req = createRequest();
+            //2. 设置回调监听
+            req.onreadystatechange = function () {
+                if(req.readyState === 4 && req.status === 200){
+                    var result = req.responseText;
+                    // alert(result);
+                    obj.success(result)
+                }else{
+                    // obj.err(err)
+                    // console.log(111)
+                }
+            };
+            //3. 打开一个连接
+            req.open("get", obj.url, false);
+            //4. 发请求
+            // req.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            req.send();
+            function createRequest () {
+                var xmlhttp;
+                if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else {// code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                return xmlhttp;
+            }
+        }
+    // }
+
 </script>
-<!--<script src="./utils/myTools.js"></script>-->
-<!--<script type="text/javascript" src="./ts.js"></script>-->
-<!--<script src="./index.js"></script>-->
+<!--<script src="./utils/tools.js"></script>-->
+<!--<script type="text/javascript" src="./utils/ts.js"></script>-->
+<!--<script src="./js/index.js"></script>-->
 </body>
 </html>
