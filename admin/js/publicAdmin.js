@@ -367,6 +367,52 @@
             console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
             return false;  //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
+
+        // 移动单元格
+        function addClassForI(){
+            $('i.arrow').first().addClass('gray not-allowed')
+            $('i.arrow').last().addClass('gray not-allowed')
+        }
+        addClassForI()
+
+        $('.source-table').delegate('i.arrow', 'mouseover', function(){
+
+            if(!$(this).parents('tr').index() && !$(this).index()){
+                $(this).attr('title', '').addClass('not-allowed')
+            }else if($(this).parents('tr').index() === $('.source-table>tbody>tr').length - 1 && $(this).index() === 1){
+                $(this).attr('title', '').addClass('not-allowed')
+            }else{
+                $(this).removeClass('black')
+                $(this).addClass('blue')
+            }
+        })
+
+        $('.source-table').delegate('i.arrow', 'mouseout', function(){
+            $(this).removeClass('blue')
+            $(this).addClass('black')
+        })
+
+       $('.source-table').delegate('i.arrow', 'click', function(){
+        var isFirst = !$(this).parents('tr').index() && !$(this).index(), isLast = $(this).parents('tr').index() === $('.source-table>tbody>tr').length - 1 && $(this).index() === 1;
+        if( isFirst || isLast){
+            return false;
+        }
+        var $this = $(this).parents('tr'), $thisNext = $(this).parents('tr').next(),$thisPrev = $(this).parents('tr').prev()
+        console.log($this)
+        console.log($thisNext)
+        if($(this).hasClass('up')){
+    //    		alert('up')
+            $thisPrev.insertAfter($this)
+            addClassForI()
+        }else{
+    //    		alert('down')
+
+            $thisNext.insertBefore($this)
+            addClassForI()
+        }
+
+       })
+
     });
 
 

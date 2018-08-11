@@ -74,7 +74,6 @@ var tjs = {
 	 * @param {Object} attr 获取的样式的名字
 	 */
     getStyle: function (obj, attr) {
-
 		try {
 			return getComputedStyle(obj, null)[attr];
 		} catch (e) {
@@ -116,7 +115,7 @@ var tjs = {
 	 */
     addClass: function (obj, cn) {
 		//如果已经有了该class了，则不再添加
-		if (!hasClass(obj, cn)) {
+		if (!tjs.hasClass(obj, cn)) {
 			//如果没有该class，则添加
 			obj.className += " " + cn;
 		}
@@ -490,7 +489,36 @@ var tjs = {
 				break;
 		}
 		return parseInt((eTime.getTime() - sTime.getTime()) / parseInt(timeType));
+	},
+
+
+    /*requestAnimationFrame*/
+    reqAniFrame: function() {
+		(function() {
+			var lastTime = 0;
+			var vendors = ['webkit', 'moz'];
+			for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+				window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+				window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+			}
+
+			if (!window.requestAnimationFrame)
+				window.requestAnimationFrame = function(callback, element) {
+					var currTime = new Date().getTime();
+					var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+					var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+						timeToCall);
+					lastTime = currTime + timeToCall;
+					return id;
+				};
+
+			if (!window.cancelAnimationFrame)
+				window.cancelAnimationFrame = function(id) {
+					clearTimeout(id);
+				};
+		}());
 	}
+
 }
 
 
@@ -501,27 +529,5 @@ var tjs = {
 
 
 
-/*requestAnimationFrame*/  
-	var lastTime = 0;
-	var vendors = ['webkit', 'moz'];
-	for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-	  window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
-	  window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] ||    // Webkit中此取消方法的名字变了
-	                                window[vendors[x] + 'CancelRequestAnimationFrame'];
-	}
-	if (!window.requestAnimationFrame) {
-	  window.requestAnimationFrame = function(callback, element) {
-	      var currTime = new Date().getTime();
-	      var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
-	      var id = window.setTimeout(function() {
-	          callback(currTime + timeToCall);
-	      }, timeToCall);
-	      lastTime = currTime + timeToCall;
-	      return id;
-	  };
-	}
-	if (!window.cancelAnimationFrame) {
-	  window.cancelAnimationFrame = function(id) {
-	      clearTimeout(id);
-	  };
-	}
+
+

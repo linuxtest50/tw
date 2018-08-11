@@ -321,5 +321,39 @@ img.pay_img_success{padding:126px 74px 0 334px;}
 .pay_text_success p{background:#1053FD;color:#fff;width:140px;height:40px;line-height:40px;text-align:center;cursor:pointer;}
 .pay_success_result{border:none;margin-top:15px;}
 
+/*laydate*/
 .laydate-btns-confirm, .laydate-btns-onedayconfirm{color: #0793ee !important;}
 .layui-laydate-hint{text-align: left !important; top:0 !important;}
+
+/*源机管理*/
+i.arrow{
+    display:inline-block;
+    width:11px;
+    height:22px;
+    cursor:pointer;
+    padding:0 3px;
+    margin-left:8px
+}
+i.arrow.not-allowed{
+    cursor:not-allowed;
+}
+i.arrow.up.black{
+    background:url('../../img/arrow.png') no-repeat -10px -9px;
+}
+i.arrow.up.gray{
+    background:url('../../img/arrow.png') no-repeat -10px -42px;
+}
+i.arrow.up.blue{
+    background:url('../../img/arrow.png') no-repeat -10px -73px;
+}
+
+
+i.arrow.down.black{
+    background:url('../../img/arrow.png') no-repeat -10px -170px;
+}
+i.arrow.down.gray{
+    background:url('../../img/arrow.png') no-repeat -10px -140px;
+}
+i.arrow.down.blue{
+    background:url('../../img/arrow.png') no-repeat -10px -106px;
+}

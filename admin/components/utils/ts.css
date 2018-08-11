@@ -180,3 +180,13 @@ a, a:link, a:visited, a:hover, a:active{
 .t-marqueebox li{
     text-align:center;
 }
+/*pmgressbar*/
+.t-pmgressbar{
+    width: 0;
+    height: 2px;
+    background: #05a6ff;
+    position: fixed;
+    top:0;
+    left:0;
+    right: 0;
+}

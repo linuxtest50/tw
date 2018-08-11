@@ -42,12 +42,6 @@
     <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/grayscale.min.css" rel="stylesheet">-->
     <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/vs.min.css" rel="stylesheet">-->
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-    <!--<script>-->
-        <!--window.onload = function () {-->
-            <!--hljs.initHighlightingOnLoad();-->
-            <!--console.log(hljs)-->
-        <!--}-->
-    <!--</script>-->
 </head>
 <body>
 <div class="box-all">
@@ -122,26 +116,34 @@
         </div>
     </div>
 </div>
-<div class="header">TS <span>ui</span></div>
-<ul class="nav">
-    <li id="layout">布局</li>
-    <li id="css">css</li>
-    <li id="components">组件</li>
-    <li><a href="#/">hash1</a></li>
-    <li><a href="#/orange">hash2</a></li>
-    <li><a href="#/purple">hash3</a></li>
-</ul>
-<div class="title">
-    <p>引入css：&lt;link rel=&quot;stylesheet&quot; href=&quot;./ts.css&quot;/&gt;</p>
-    <p>引入js：&lt;script type=&quot;text/javascript&quot; src=&quot;./ts.js&quot;&gt;&lt;/script&gt;</p>
-    <p>初始化：var ts = new TS()</p>
-</div>
-<!-- 页面-->
-<section id="page">
+<div class="ts">
+    <div class="header">TS <span>ui</span></div>
+    <ul class="nav">
+        <li><a href="#/layout" class="layout">布局</a></li>
+        <li><a href="#/css" class="css">css</a></li>
+        <li><a href="#/components" class="components">组件</a></li>
+        <!--<li id="layout"></li>-->
+        <!--<li id="css"></li>-->
+        <!--<li id="components"></li>-->
+    </ul>
+    <div class="title">
+        <p>引入css：&lt;link rel=&quot;stylesheet&quot; href=&quot;./ts.css&quot;/&gt;</p>
+        <p>引入js：&lt;script type=&quot;text/javascript&quot; src=&quot;./ts.js&quot;&gt;&lt;/script&gt;</p>
+        <p>初始化：var ts = new TS()</p>
+    </div>
+    <!-- 页面-->
+    <section id="page">
 
-</section>
+    </section>
+</div>
+
 
 <script type="text/javascript">
+    if(navigator.appName === "Microsoft Internet Explorer" && parseInt(navigator.appVersion.split(";")[1].replace(/[ ]/g, "").replace("MSIE","")) < 9){
+        alert("您的浏览器版本过低，请安装IE9或以上版本后打开本站");
+        window.location.href = 'https://support.microsoft.com/zh-cn/help/17621/internet-explorer-downloads'
+    }
+    /*hash router*/
     function Router() {
         this.routes = {};
         this.currentUrl = '';
@@ -150,7 +152,7 @@
         this.routes[path] = callback || function(){};
     };
     Router.prototype.refresh = function() {
-        this.currentUrl = location.hash.slice(1) || '/';
+        this.currentUrl = location.hash.slice(1) || '/layout';
         this.routes[this.currentUrl]();
     };
     Router.prototype.init = function() {
@@ -159,142 +161,120 @@
     }
     window.Router = new Router();
     window.Router.init();
-    Router.route('/', function() {
+    Router.route('/layout', function() {
         toUrl('http://localhost:63342/webstrom/tw/admin/components/page/layout.html', location)
-        console.log(111)
     });
-    Router.route('/orange', function() {
+    Router.route('/css', function() {
+        toUrl('http://localhost:63342/webstrom/tw/admin/components/page/css.html', location)
+    });
+    Router.route('/components', function() {
         toUrl('http://localhost:63342/webstrom/tw/admin/components/page/components.html', location)
-        console.log(222)
-    });
-    Router.route('/purple', function() {
-        console.log(333)
     });
 
-
-    // window.onload = function () {
-        var content = document.querySelector("#page"), lis = document.querySelectorAll(".nav>li"),
-            pages = {
-                index: {
-                    title: "首页",
-                    content: './border-color.html'
-                },
-                about: {
-                    title: "关于",
-                    content: "公司业务介绍"
-                },
-                products: {
-                    title: "产品",
-                    content: "产品介绍页面"
-                },
-                contact: {
-                    title: "联系我们",
-                    content: "客服，公司练习方式展示."
-                },
-            };
-        for(var i=0; i<lis.length; i++){
-            lis[i].onclick = function(){
-                var location = this.getAttribute("id");
-                if(location === "layout"){
-                    toUrl('http://localhost:63342/webstrom/tw/admin/components/page/layout.html', location)
-                    // window.location.reload()
-
-                }
-                if(location === "css"){
-                    toUrl('http://localhost:63342/webstrom/tw/admin/components/page/css.html', location)
-                }
-                if(location === "components"){
-                    toUrl('http://localhost:63342/webstrom/tw/admin/components/page/components.html', location)
-                }
-            }
-        }
-
-        window.onpopstate = function(event) {
-            var state = event.state;
-            console.log(state);
-            if(state != null){
-                content.innerHTML = state.content;
+    // h5 router
+    var content = document.querySelector("#page"), lis = document.querySelectorAll(".nav>li"),
+        pages = {
+            index: {
+                title: "",
+                content: ''
+            },
+            about: {
+                title: "",
+                content: ""
+            },
+            products: {
+                title: "",
+                content: ""
+            },
+            contact: {
+                title: "",
+                content: ""
             }
         };
-        function toUrl(url, location) {
-            ajax({
-                url: url,
-                success: function (data) {
-                    // addScript("https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", false)
-                    content.innerHTML = data
+    for(var i=0; i<lis.length; i++){
+        lis[i].onclick = function(){
+            var location = this.getAttribute("id");
+            if(location === "layout"){
+                toUrl('http://localhost:63342/webstrom/tw/admin/components/page/layout.html', location)
+            }
+            if(location === "css"){
+                toUrl('http://localhost:63342/webstrom/tw/admin/components/page/css.html', location)
+            }
+            if(location === "components"){
+                toUrl('http://localhost:63342/webstrom/tw/admin/components/page/components.html', location)
+            }
+        }
+    }
+    window.onpopstate = function(event) {
+        // var state = event.state;
+        // console.log(state);
+        // if(state != null){
+        //     content.innerHTML = state.content;
+        // }
+    };
+
+
+    function toUrl(url) {
+        ajax({
+            url: url,
+            success: function (data) {
+                content.innerHTML = data
 
                     addScript("./utils/tools.js")
                     addScript("./utils/ts.js")
                     addScript("./js/index.js")
-                }
-            })
-            // window.history.pushState(pages.index, "", location + '.html')
-        }
-        function addScript(src) {
-            var script = document.createElement('script')
-            script.setAttribute("type", "text/javascript")
-            script.setAttribute("src", src)
-            document.body.appendChild(script)
+                    // 路由变化
+                    window.addEventListener('hashchange',function(e) {
+                        // console.log(e)
+                        // console.log(e.oldURL);
+                        // console.log(e.newURL)
+                    }, false);
 
-            // if(flag){
-            //     script.onload = script.onreadystatechange = function () {
-            //         var headScript = document.createElement('script')
-            //         headScript.setAttribute("type", "text/javascript")
-            //         headScript.setAttribute("src", src)
-            //         document.head.appendChild(headScript)
-            //         if(content.innerHTML){
-            //             // hljs.initHighlightingOnLoad();
-            //             console.log('ss')
-            //             // $('pre code').each(function(i, block) {
-            //             //     hljs.highlightBlock(block);
-            //             // });
-            //
-            //         }
-            //
-            //     }
-
-                var pre = document.querySelectorAll('pre code')
-                console.log(pre)
-                for (var i = 0; i < pre.length; i++) {
-                    hljs.highlightBlock(pre[i]);
-                }
-            // }
-
-        }
-        function ajax(obj) {
-            //1. 创建一个xmlhttpRequest对象
-            var req = createRequest();
-            //2. 设置回调监听
-            req.onreadystatechange = function () {
-                if(req.readyState === 4 && req.status === 200){
-                    var result = req.responseText;
-                    // alert(result);
-                    obj.success(result)
-                }else{
-                    // obj.err(err)
-                    // console.log(111)
-                }
-            };
-            //3. 打开一个连接
-            req.open("get", obj.url, false);
-            //4. 发请求
-            // req.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            req.send();
-            function createRequest () {
-                var xmlhttp;
-                if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
-                    xmlhttp = new XMLHttpRequest();
-                } else {// code for IE6, IE5
-                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                }
-                return xmlhttp;
             }
+        })
+        // window.history.pushState(pages.index, "", location + '.html')
+    }
+    function addScript(src) {
+        var script = document.createElement('script')
+        script.setAttribute("type", "text/javascript")
+        script.setAttribute("src", src)
+        document.body.appendChild(script)
+        // document.body.removeChild(script)
+        var pre = document.querySelectorAll('pre code')
+        for (var i = 0; i < pre.length; i++) {
+            hljs.highlightBlock(pre[i]);
         }
-    // }
+    }
+    function ajax(obj) {
+        //1. 创建一个xmlhttpRequest对象
+        var req = createRequest();
+        //2. 设置回调监听
+        req.onreadystatechange = function () {
+            if(req.readyState === 4 && req.status === 200){
+                var result = req.responseText;
+                // alert(result);
+                obj.success(result)
+            }else{
+                // obj.err(err)
+                // console.log(111)
+            }
+        };
+        //3. 打开一个连接
+        req.open("get", obj.url, false);
+        //4. 发请求
+        // req.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        req.send();
+        function createRequest () {
+            var xmlhttp;
+            if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {// code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            return xmlhttp;
+        }
+    }
 
 </script>
-<!--<script src="./utils/tools.js"></script>-->
-<!--<script type="text/javascript" src="./utils/ts.js"></script>-->
-<!--<script src="./js/index.js"></script>-->
 </body>
 </html>

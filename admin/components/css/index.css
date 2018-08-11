@@ -1,6 +1,17 @@
 body{
-    padding:0 500px 0;
+
     color: #666;
+    background: #EDF0F5;
+}
+.ts{
+    background: #fff;
+    padding: 0 5%;
+    margin: 0 25% 50px;
+    border-radius: 2px;
+    box-shadow: 0 2px 7px #e2e2e2;
+}
+a.color{
+    color: #05a6ff !important;
 }
 h2{
     font-size: 16px;

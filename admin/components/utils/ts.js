@@ -5,11 +5,10 @@
 //         return false;
 //     }
 // };
-
+tjs.reqAniFrame()
 class TS {
     constructor(){
-        this.popWidth = document.querySelector('.t-pop').offsetWidth
-        this.popHeight = document.querySelector('.t-pop').offsetHeight
+
     }
 
     /**
@@ -44,6 +43,9 @@ class TS {
             hourEle = document.querySelector(obj.hour),
             minuteEle = document.querySelector(obj.minute),
             secondEle = document.querySelector(obj.second);
+        if(!timerEle || !hourEle || !minuteEle || !secondEle){
+            return
+        }
         clearTime = setInterval(function () {
             backTime(obj);
         },1000);
@@ -71,7 +73,7 @@ class TS {
                 clearInterval(clearTime)
             }
         }
-    };
+    }
 
     /**
      * 提示框组件
@@ -83,7 +85,8 @@ class TS {
      */
     move(obj) {
         //需要为每一个元素指定一个自己的timer来保存定时器
-        var ele = document.querySelector('.t-pop'),that = this;
+        var ele = document.querySelector('.t-pop'),that = this,popWidth = document.querySelector('.t-pop').offsetWidth,
+        popHeight = document.querySelector('.t-pop').offsetHeight;
         ele.innerHTML = obj.text;
         obj.speed = 10
         obj.target = obj.target || 10
@@ -91,38 +94,40 @@ class TS {
         // 判断类型
         if(obj.type === 't-success'){
             insertIcon("✔ ")
-            this.addClass(ele, 't-success')
+            obj.speed = 1
+            tjs.addClass(ele, 't-success')
         }else if(obj.type === 't-err'){
             insertIcon("× ")
-            this.addClass(ele, 't-err')
+            obj.speed = 1
+            tjs.addClass(ele, 't-err')
         }else if(obj.type === 't-info'){
             insertIcon("▪ ")
-            this.addClass(ele, 't-info')
+            tjs.addClass(ele, 't-info')
         }else if(obj.type === 't-warning'){
             insertIcon("! ")
-            this.addClass(ele, 't-warning')
+            tjs.addClass(ele, 't-warning')
         }else if(obj.type === 't-alert'){
             obj.speed = 30
-            this.addClass(ele, 't-alert')
+            tjs.addClass(ele, 't-alert')
         }
-        console.log(this.popWidth)
+
         // 判断方向
         if(obj.attr === 'top'){
             ele.style.left = 'calc(50% - 300px)'
-            ele.style.top = -this.popHeight + 'px'
+            ele.style.top = -popHeight + 'px'
         }else if(obj.attr === 'bottom'){
             ele.style.left = 'calc(50% - 300px)'
-            ele.style.bottom = -this.popHeight + 'px'
+            ele.style.bottom = -popHeight + 'px'
         }else if(obj.attr === 'left'){
-            ele.style.top = 500 + 'px'
-            ele.style.left = -this.popWidth + 'px'
+            ele.style.top = 200 + 'px'
+            ele.style.left = -popWidth + 'px'
         }else if(obj.attr === 'right'){
-            ele.style.right = -this.popWidth + 'px'
+            ele.style.right = -popWidth + 'px'
         }
 
         clearInterval(ele.timer);
         ele.timer = setInterval(function() {
-            var oldValue = parseInt(that.getStyle(ele, obj.attr));
+            var oldValue = parseInt(tjs.getStyle(ele, obj.attr));
             //判断元素的移动方向
             if (oldValue > obj.target) {
                 var newValue = oldValue - obj.speed;
@@ -146,7 +151,7 @@ class TS {
                     clearTimeout(ele.timeout)
                     ele.timeout = setTimeout(function () {
                         ele.style.cssText += ';display:none;opacity:0;position:static;left:auto;right:auto;top:auto;bottom:auto';
-                        that.removeClass(ele, obj.type)
+                        tjs.removeClass(ele, obj.type)
                         //判断是否有回调函数
                         if (obj.callBack) {
                             obj.callBack();
@@ -164,7 +169,7 @@ class TS {
             }
         }
 
-    };
+    }
 
     /**
      * 联动菜单组件
@@ -185,18 +190,18 @@ class TS {
         function addSelfClass(siblings, index, cls, self) {
             for (var k = 0; k < siblings.length; k++) {
                 // 判断兄弟的子节点是否有class
-                if(that.hasClass(siblings[k].children[index], cls)){
-                    that.removeClass(siblings[k].children[index], cls)
+                if(tjs.hasClass(siblings[k].children[index], cls)){
+                    tjs.removeClass(siblings[k].children[index], cls)
                 }
             }
-            that.addClass(self, cls)
+            tjs.addClass(self, cls)
         }
         for (var i = 0; i < linkageArr.length; i++) {
             linkageArr[i].onclick = function () {
                 var myself = this.parentNode;
                 if(this.nextElementSibling){
-                    console.log(that.hasClass(this.nextElementSibling, 't-linkage-show'))
-                    if(!that.hasClass(this.nextElementSibling, 't-linkage-show')){
+                    console.log(tjs.hasClass(this.nextElementSibling, 't-linkage-show'))
+                    if(!tjs.hasClass(this.nextElementSibling, 't-linkage-show')){
                         var siblings = getsiblings(myself)
                         addSelfClass(siblings, 0, 't-linkage-select', this)
                         addSelfClass(siblings, 1, 't-linkage-show', this.nextElementSibling)
@@ -386,9 +391,10 @@ class TS {
                 nav_a[0].style.backgroundColor="white";
             }
         }
-    };
+    }
 
     /**
+     * 滚动信息
      * @param height高度
      * @param speed速度
      * @param delay时间
@@ -421,32 +427,56 @@ class TS {
         setTimeout(start, obj.delay);
     }
 
+    /**
+     * 回到顶部
+     */
+    toTop(obj){
+        this.ele = document.querySelector(obj.ele);
+        var bodyScroll = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop, // 可滚动区域/元素的滚动距离
+        //  window.scrollTo(0, 0)
+
+        raf = requestAnimationFrame(function fn(){
+                bodyScroll -= obj.speed
+                console.log(bodyScroll)
+                if(document.documentElement.scrollTop){
+                    document.documentElement.scrollTop = bodyScroll
+                }else if(window.pageYOffset){
+                    window.pageYOffset = bodyScroll
+                }else{
+                    document.body.scrollTop = bodyScroll
+                }
+                raf = requestAnimationFrame(fn)
+            if(bodyScroll < 0){
+                cancelAnimationFrame(raf)
+            }
+        })
 
 
-
+        // var a = 1;
+        // requestAnimationFrame(function aa() {
+        //     a ++
+        //     console.log(a)
+        //     requestAnimationFrame(aa)
+        // })
+    }
 
     /**
-     *  公共方法
+     * 进度条
      */
-    // 获取外部样式
-    getStyle(eleArg, attrArg) {
-        try {
-            return getComputedStyle(eleArg, null)[attrArg];
-        } catch (e) {
-            return eleArg.currentStyle[attrArg];
-        }
+    pmgressbar(obj){
+        var pmgressbar = document.querySelector(obj.ele), pmgressbarWidth = tjs.getStyle(pmgressbar, 'width'), speed = 0,
+        raf = requestAnimationFrame(function fn(){
+            speed += 5
+            pmgressbar.style.width = speed + 'px'
+            console.log(window.innerWidth)
+            // console.log(tjs.getStyle(pmgressbar, 'width'))
+            raf = requestAnimationFrame(fn)
+            if(parseInt(tjs.getStyle(pmgressbar, 'width')) >= window.innerWidth){
+                cancelAnimationFrame(raf)
+                pmgressbar.style.width = window.innerWidth + 'px'
+            }
+        })
+
     }
-    hasClass(eleArg, cn) {
-        var className = eleArg.className,cnReg = new RegExp("\\b" + cn + "\\b");
-        return cnReg.test(className);
-    }
-    addClass(eleArg, cn) {
-        if (!this.hasClass(eleArg, cn)) {
-            eleArg.className += " " + cn;
-        }
-    }
-    removeClass(eleArg, cn) {
-        var cnReg = new RegExp("\\b" + cn + "\\b");
-        eleArg.className = eleArg.className.replace(cnReg, "");
-    }
+
 }
