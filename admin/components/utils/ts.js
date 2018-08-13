@@ -40,10 +40,11 @@ class TS {
         // console.log(this.a)
         let clearTime,
             timerEle = document.querySelector(obj.timer),
+            dayEle = document.querySelector(obj.day),
             hourEle = document.querySelector(obj.hour),
             minuteEle = document.querySelector(obj.minute),
             secondEle = document.querySelector(obj.second);
-        if(!timerEle || !hourEle || !minuteEle || !secondEle){
+        if(!timerEle || !dayEle || !hourEle || !minuteEle || !secondEle){
             return
         }
         clearTime = setInterval(function () {
@@ -53,6 +54,7 @@ class TS {
             let nowDate = new Date(),
                 setDate = new Date(obj.date),
                 newDate = (setDate.getTime() - nowDate.getTime())/1000,
+                d=  parseInt(newDate/(24*60*60)),
                 h = parseInt(newDate/(60*60)%24),
                 m = parseInt((newDate/60)%60),
                 s = parseInt(newDate%60);
@@ -63,6 +65,7 @@ class TS {
                     ele.innerHTML = times;
                 }
             }
+            addZero(dayEle, d);
             addZero(secondEle, s);
             addZero(minuteEle, m);
             addZero(hourEle, h);
@@ -477,6 +480,84 @@ class TS {
             }
         })
 
+    }
+
+    /**
+     *  获取iP地址
+     */
+    getUserIP(onNewIP) {
+        // onNewIp - your listener function for new IPs
+        // compatibility for firefox and chrome
+        var myPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+        var pc = new myPeerConnection({
+                iceServers: []
+            }),
+            noop = function() {},
+            localIPs = {},
+            ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g,
+            key;
+
+        function iterateIP(ip) {
+            if (!localIPs[ip]) onNewIP(ip);
+            localIPs[ip] = true;
+        }
+
+        //create a bogus data channel
+        pc.createDataChannel("");
+
+        // create offer and set local description
+        pc.createOffer().then(function(sdp) {
+            sdp.sdp.split('\n').forEach(function(line) {
+                if (line.indexOf('candidate') < 0) return;
+                line.match(ipRegex).forEach(iterateIP);
+            });
+
+            pc.setLocalDescription(sdp, noop, noop);
+        }).catch(function(reason) {
+            // An error occurred, so handle the failure to connect
+        });
+
+        //sten for candidate events
+        pc.onicecandidate = function(ice) {
+            if (!ice || !ice.candidate || !ice.candidate.candidate || !ice.candidate.candidate.match(ipRegex)) return;
+            ice.candidate.candidate.match(ipRegex).forEach(iterateIP);
+        };
+    }
+
+    /**
+     *  ajax
+     */
+    ajax(obj) {
+        //1. 创建一个xmlhttpRequest对象
+        var req = createRequest();
+        //2. 设置回调监听
+        req.onreadystatechange = function () {
+            if(req.readyState === 4 && req.status === 200){
+                var result = req.responseText;
+                // alert(result);
+                obj.success(result)
+            }
+            if(req.status !== 200){
+                obj.err('err')
+                // console.log(err)
+                // throw new Error(req.responseText)
+            }
+        };
+        //3. 打开一个连接
+        req.open("get", obj.url, true);
+        //4. 发请求
+        req.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        req.setRequestHeader("X-Requested-With", "XMLHttpRequest")
+        req.send();
+        function createRequest () {
+            var xmlhttp;
+            if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {// code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            return xmlhttp;
+        }
     }
 
 }

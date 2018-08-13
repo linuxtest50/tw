@@ -4,7 +4,7 @@
     <!--<svg class="icon" aria-hidden="true"> ◢ ◥ ☶ ︾ ▲ ▼  ☝-->
     <!--<use xlink:href="#icon-zhedie-jiahao"></use>-->
     <!--</svg>-->
-    <div class="t-timer"><span class="t-h"></span>：<span class="t-m"></span>：<span class="t-s"></span></div>
+    <div class="t-timer"><span class="t-d"></span>：<span class="t-h"></span>：<span class="t-m"></span>：<span class="t-s"></span></div>
     <!--代码块-->
     <div class="t-code">
 <pre><code class="html"><p>html代码：</p>
@@ -30,11 +30,11 @@ ts.backTimers({
     <h2>弹窗</h2><span class="my_icon" title="查看代码">☟</span>
     <div class="t-pop t-font"></div>
     <div>
-        <button>弹窗</button>
-        <button>成功</button>
-        <button>失败</button>
-        <button>提示</button>
-        <button>警告</button>
+        <button class="t-btn">弹窗</button>
+        <button class="t-btn">成功</button>
+        <button class="t-btn">失败</button>
+        <button class="t-btn">提示</button>
+        <button class="t-btn">警告</button>
     </div>
     <!--代码块-->
     <div class="t-code">
@@ -306,7 +306,14 @@ ts.linkage()    // 初始化
 
 <div>
     <h2>返回顶部</h2>
-    <div class="t-top">返回</div>
+    <div class="t-top"><p class="t-btn">返回</p></div>
+    <hr>
+</div>
+
+<div>
+    <h2>进度条</h2>
+    <div class="t-pmgressbar"></div>
+    <div class="pmgressbar"><p class="t-btn">点击</p></div>
     <hr>
 </div>
 
@@ -325,13 +332,6 @@ ts.linkage()    // 初始化
 <div>
     <h2>锚点</h2>
     <div>123</div>
-    <hr>
-</div>
-
-<div>
-    <h2>进度条</h2>
-    <div class="t-pmgressbar"></div>
-    <div class="pmgressbar">点击</div>
     <hr>
 </div>
 

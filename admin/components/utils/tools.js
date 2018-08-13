@@ -412,11 +412,11 @@ var tjs = {
 
 			str = str.replace(/d|D/g, this.getDate());
 
-			//str = str.replace(/hh|HH/, this.getHours() > 9 ? fomatHour+this.getHours().toString() : fomatHour+'0' + this.getHours());
-			str = str.replace(/hh|HH/, this.getHours() > 9 ? this.getHours().toString() : '0' + this.getHours());
+			str = str.replace(/hh|HH/, this.getHours() > 9 ? fomatHour+this.getHours().toString() : fomatHour+'0' + this.getHours());
+			// str = str.replace(/hh|HH/, this.getHours() > 9 ? this.getHours().toString() : '0' + this.getHours());
 
-			//str = str.replace(/h|H/g, fomatHour+this.getHours());
-			str = str.replace(/h|H/g, this.getHours());
+			str = str.replace(/h|H/g, fomatHour+this.getHours());
+			// str = str.replace(/h|H/g, this.getHours());
 
 			str = str.replace(/mm/, this.getMinutes() > 9 ? this.getMinutes().toString() : '0' + this.getMinutes());
 
@@ -436,12 +436,11 @@ var tjs = {
 	 * 获取n天前后的时间对象
 	 * @param {Object} n代表天数,加号表示未来n天的此刻时间,减号表示过去n天的此刻时间
 	 */
-    timeBefore: function (n) {
-		var date = new Date();
-		var milliseconds = date.getTime() - 1000 * 60 * 60 * 24 * n;
+    timeBefore: function (n, timers) {
+        var date = timers ? new Date(timers) : new Date(),
+		milliseconds = date.getTime() - 1000 * 60 * 60 * 24 * n;
 		// getTime()方法返回Date对象的毫秒数,但是这个毫秒数不再是Date类型了,而是number类型,所以需要重新转换为Date对象,方便格式化
 		var newDate = new Date(milliseconds);
-		console.log(newDate)
 		var dateObj = {
 			allFormat: timeFormat(newDate, 'yyyy-MM-dd hh:mm:ss'),
 			yearFormat: timeFormat(newDate, 'yyyy'),
@@ -517,7 +516,27 @@ var tjs = {
 					clearTimeout(id);
 				};
 		}());
-	}
+	},
+
+	/**
+	 *  判断浏览器版本
+	 */
+    getBrowserInfo(){
+        var Sys = {}, ua = navigator.userAgent.toLowerCase(), s, result;
+        (s = ua.match(/rv:([\d.]+)\) like gecko/)) ? Sys.ie = s[1] :
+            (s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] :
+                (s = ua.match(/firefox\/([\d.]+)/)) ? Sys.firefox = s[1] :
+                    (s = ua.match(/chrome\/([\d.]+)/)) ? Sys.chrome = s[1] :
+                        (s = ua.match(/opera.([\d.]+)/)) ? Sys.opera = s[1] :
+                            (s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;
+
+        if (Sys.ie) result = 'IE: ' + Sys.ie;
+        if (Sys.firefox) result = 'Firefox: ' + Sys.firefox;
+        if (Sys.chrome) result = 'Chrome: ' + Sys.chrome;
+        if (Sys.opera) result = 'Opera: ' + Sys.opera;
+        if (Sys.safari) result = 'Safari: ' + Sys.safari;
+        return result;
+    }
 
 }
 

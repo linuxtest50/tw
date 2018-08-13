@@ -59,12 +59,13 @@ var ts = new TS()
  */
 ts.backTimers({
     timer: '.t-timer',
+    day: '.t-d',
     hour: '.t-h',
     minute: '.t-m',
     second: '.t-s',
-    date: '2018-8-11 18:30',
+    date: '2018-9-13 18:30',
     text: '结束提示',
-    color: 'blue'
+    color: 'red'
 });
 
 
@@ -220,5 +221,37 @@ if(document.querySelector('.pmgressbar')){
     }
 }
 
+/**
+ *  获取内网IP地址
+ */
+ts.getUserIP(function(ip){
+    document.querySelector('.nip').innerHTML = ip;
+});
 
+/**
+ * 获取外网IP地址
+ */
+document.querySelector('.wip').innerHTML = returnCitySN.cip
+document.querySelector('.address').innerHTML = returnCitySN.cname
 
+// console.log(returnCitySN.cip)
+// var src = 'http://ip.taobao.com/service/getIpInfo.php?ip=' + returnCitySN.cip
+// https://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel= phone
+var src = 'http://whois.pconline.com.cn/ipJson.jsp?ip=' + returnCitySN.cip ,script = document.createElement('script')
+script.setAttribute("type", "text/javascript")
+script.setAttribute("src", src)
+document.body.appendChild(script)
+window.IPCallBack = function (data) {
+    // console.log(data)
+    document.querySelector('.address').innerHTML = data.addr
+}
+
+/**
+ *  当前日期
+ */
+document.querySelector('.newTime').innerHTML = tjs.timeFormat(new Date(), 'yyyy年MM月dd日 hh:mm:ss 星期w')
+
+/**
+ * 浏览器版本
+ */
+console.log(tjs.getBrowserInfo())
