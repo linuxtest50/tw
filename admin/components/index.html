@@ -6,7 +6,7 @@
     <!--自适应移动设备-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!--作者信息，网站地址-->
-    <meta name="author" content="www.url.com">
+    <meta name="author" content="www.ts.com">
     <!-- 苹果手机是否全屏显示页面-->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <!--控制苹果手机状态栏的颜色-->
@@ -42,14 +42,32 @@
     <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/grayscale.min.css" rel="stylesheet">-->
     <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/vs.min.css" rel="stylesheet">-->
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+    <script src="https://at.alicdn.com/t/font_780508_03u05h6p6wud.js"></script>
+
     <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!--[if IE 9]>
+    <style type="text/css" media="screen">
+        body{behavior:url("utils/csshover.htc");}
+        .border-radius{behavior: url("utils/PIE.htc");}
+    </style>
+    <![endif]-->
+    <!--透明照片-->
+    <!--[if IE 6]>
+    <script src="utils/DD_belatedPNG_0.0.8a-min.js"></script>
+    <script type="text/javascript">DD_belatedPNG.fix('img');</script>
+    <![endif]-->
 </head>
 <body>
 <div class="box-all">
     <div class="box1 boxa">
         <div class="box2">
             <div class="box3">
-                <div class="box4">2</div>
+                <div class="box4"><a href="../personal-center/personal_info.html">首页</a></div>
             </div>
         </div>
     </div>
@@ -130,6 +148,7 @@
     <div class="title">
         <p class="userComputerInfo">本地IP：<span class="nip"></span>外网IP：<span class="wip"></span>所在地址：<span class="address"></span></p>
         <p class="newTime"></p>
+        <p class="userBrowserInfo"></p>
         <p>引入css：&lt;link rel=&quot;stylesheet&quot; href=&quot;./ts.css&quot;/&gt;</p>
         <p>引入js：&lt;script type=&quot;text/javascript&quot; src=&quot;./ts.js&quot;&gt;&lt;/script&gt;</p>
         <p>初始化：var ts = new TS()</p>

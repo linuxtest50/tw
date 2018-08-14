@@ -8,7 +8,7 @@
     font-size: 14px;
 }
 a, a:link, a:visited, a:hover, a:active{
-   color: #666;
+    color: #666;
     text-decoration: none;
 }
 .t-font{
@@ -17,6 +17,13 @@ a, a:link, a:visited, a:hover, a:active{
 .t-hide{
     display: none;
 }
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
 /*keyRight*/
 #keyRight{
     /*width:100px;*/
@@ -88,14 +95,16 @@ button{
     outline: none;
 }
 .t-linkage>p, .t-btn{
-    display: inline-block;
     padding: 7px 12px;
     cursor: pointer;
-    border:1px solid #05a6ff;
     border-radius: 3px;
+}
+.t-linkage>p, .t-btn, .t-paging>a{
+    display: inline-block;
+    border:1px solid #05a6ff;
     color: #05a6ff;
 }
-.t-linkage>p:hover, p.t-linkage-select, .t-btn:hover{
+.t-linkage>p:hover, p.t-linkage-select, .t-btn:hover, .t-paging>a:hover{
     background: #05a6ff;
     transition: all .2s linear;
     color: #fff;
@@ -195,4 +204,79 @@ button{
     top:0;
     left:0;
     right: 0;
+}
+/*table*/
+.t-table{
+    margin:auto;
+    width: 100%;
+    /*border-spacing:0;*/
+    border-collapse:collapse;
+}
+.t-table thead{
+    background:#f1f1f1;
+}
+.t-table td,th{
+    border:1px solid #e6e6e6;
+}
+.t-table tr{
+    height:50px;
+    text-align: center;
+}
+/*.t-table tr:nth-child(!*odd*!2n){*/
+    /*background:#B3B1AD;*/
+/*}*/
+/*.t-table tr:nth-of-type(odd):hover{*/
+    /*background: #eaeaea;*/
+/*}*/
+/*.t-table tr:nth-of-type(even):hover{*/
+    /*background:#eaeaea;*/
+/*}*/
+.t-table tr:hover{
+    background: #f3f3f3;
+}
+.t-table a{
+    color: #05a6ff
+}
+.t-table thead th:last-child{
+    width: 150px;
+}
+.t-table tbody td:last-child{
+    position: relative;
+}
+.t-icon{
+    color: #05a6ff;
+    cursor: pointer;
+}
+.t-other-item{
+    position: absolute;
+    top:38px;
+    right: 8px;
+    background: #fff;
+    border: 1px solid #05a6ff;
+    padding: 5px 5px 0;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity .2s linear;
+}
+.t-other-item a{
+    display: block;
+    padding-bottom: 5px;
+}
+.t-table tfoot tr td{
+    text-align: left;
+    padding-left: 3%;
+}
+.t-table tfoot tr:first-child span{
+    padding-right: 2%;
+    color:#05a6ff;
+}
+/*paging*/
+.t-paging a{
+    height: 30px;
+    line-height: 30px;
+    padding:0 12px;
+    border-left: none;
+}
+.t-paging a:first-child{
+    border-left: 1px solid #05a6ff;
 }

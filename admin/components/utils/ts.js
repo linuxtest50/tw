@@ -6,6 +6,32 @@
 //     }
 // };
 tjs.reqAniFrame()
+
+var tableTools = document.querySelectorAll('.t-table .t-icon-item'),moreTools = document.querySelectorAll('.t-other-item')
+for (var i = 0; i < tableTools.length; i++) {
+    (function (i) {
+        tableTools[i].onclick = function () {
+            for (var j = 0; j < moreTools.length; j++) {
+                moreTools[j].style.opacity = 0
+                moreTools[j].style.zIndex = -1
+                tableTools[j].children[0].setAttribute('xlink:href', '#icon-down')
+                // 关闭
+                if(parseInt(tjs.getStyle(moreTools[i], 'opacity'))){
+                    moreTools[i].style.zIndex = 0
+                    this.children[0].setAttribute('xlink:href', '#icon-down')
+                    console.log(1)
+                // 展开
+                }else{
+                    moreTools[i].style.cssText += ';z-index:1;opacity:1'
+                    // moreTools[i].style.opacity = 1
+                    this.children[0].setAttribute('xlink:href', '#icon-up')
+                    console.log(2)
+                }
+            }
+        }
+    }(i))
+}
+
 class TS {
     constructor(){
 

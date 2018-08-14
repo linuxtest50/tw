@@ -234,7 +234,10 @@ ts.getUserIP(function(ip){
 document.querySelector('.wip').innerHTML = returnCitySN.cip
 document.querySelector('.address').innerHTML = returnCitySN.cname
 
-// console.log(returnCitySN.cip)
+/**
+ * 获取地址
+ * @type {string}
+ */
 // var src = 'http://ip.taobao.com/service/getIpInfo.php?ip=' + returnCitySN.cip
 // https://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel= phone
 var src = 'http://whois.pconline.com.cn/ipJson.jsp?ip=' + returnCitySN.cip ,script = document.createElement('script')
@@ -255,3 +258,4 @@ document.querySelector('.newTime').innerHTML = tjs.timeFormat(new Date(), 'yyyy�
  * 浏览器版本
  */
 console.log(tjs.getBrowserInfo())
+document.querySelector('.userBrowserInfo').innerHTML = '浏览器：' + tjs.getBrowserInfo()

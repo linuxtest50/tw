@@ -357,3 +357,19 @@ i.arrow.down.gray{
 i.arrow.down.blue{
     background:url('../../img/arrow.png') no-repeat -10px -106px;
 }
+.layui-textarea.textarea-ip{
+    width:75%;
+    display:inline-block;
+    resize:none;
+}
+.ip-name-div{
+    margin-bottom:15px;
+    display:none;
+}
+.ip-name-div>.layui-form-label{
+    padding-right:15px;
+}
+.ip-name-div>p{
+    margin:5px 0 0 66px;
+    color:#ff0808;
+}

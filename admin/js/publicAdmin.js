@@ -263,7 +263,10 @@
             })
         })
 
-        /*login*/
+        /**
+         * login
+         * @type {number}
+         */
         var $bodyWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
             $bodyHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         $('.t_body').css({
@@ -272,7 +275,9 @@
         })
         // console.log($bodyWidth,$bodyHeight)
 
-        /*ie placeholder*/
+        /**
+         * ie placeholder 兼容性
+         */
         if( !('placeholder' in document.createElement('input')) ) {
             $('input[placeholder],textarea[placeholder]').each(function () {
                 var self = $(this),
@@ -295,10 +300,14 @@
             });
         }
 
-        /*ie readonly*/
+        /**
+         * ie readonly 兼容性 禁止IE触发onblur事件
+         */
         $('.t_register_phone_num input').attr("unselectable","on");
 
-        /*form tips*/
+        /**
+         * form tips 登录提示
+         */
         this.userObj = {
             userMsg: ['请输入正确的手机号', '密码长度不够', '两次密码输入不一致'],
             loginTips:'<p class="t_tips"><i class="layui-icon layui-icon-close-fill"></i>登录名或登录密码不正确</p>',
@@ -338,7 +347,10 @@
             that.userObj.loginPopupFun(that.userObj.loginTips)
         })
 
-        /*pay*/
+        /**
+         * pay 支付成功
+         * @type {number}
+         */
         this.screenH = (document.documentElement.clientHeight || document.body.clientHeight) - 106;
         $(" .t_pay section").height(this.screenH)
         this.backNum = 5;
@@ -351,6 +363,9 @@
         }
         // setInterval(backTimer,1000);
 
+        /**
+         *  防护策略
+         */
         // 图片缓存
         form.on('switch(photo)', function(data){
             if(data.elem.checked){
@@ -359,7 +374,14 @@
                 $('input[name=timer]').prop('disabled', true)
             }
         })
-
+        // 黑白名单ip
+        form.on('switch(ipName)', function(data){
+            if(data.elem.checked){
+                $('.ip-name-div').show()
+            }else{
+                $('.ip-name-div').hide()
+            }
+        })
         // 防护策略表单提交
         form.on('submit(sub)', function(data){
             /* console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
@@ -368,7 +390,9 @@
             return false;  //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
 
-        // 移动单元格
+        /**
+         *  移动单元格
+         */
         function addClassForI(){
             $('i.arrow').first().addClass('gray not-allowed')
             $('i.arrow').last().addClass('gray not-allowed')

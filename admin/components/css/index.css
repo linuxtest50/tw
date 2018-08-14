@@ -69,15 +69,7 @@ span.my_icon{
     margin: 30px 20px 30px 0;
     cursor: pointer;
 }
-.icon {
-    width: 1em; height: 1em;
-    vertical-align: -0.15em;
-    fill: currentColor;
-    overflow: hidden;
-    color: #05a6ff;
-    float: right;
-    margin: 30px 0;
-}
+
 .t-code{
     /*background: #dee8ef !important;*/
     /*background: #eceff1 !important;*/
@@ -186,3 +178,6 @@ span.my_icon{
     right: 35px;
 }
 
+.nip, .wip, .adddress{
+    padding-right: 10px;
+}

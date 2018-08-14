@@ -83,6 +83,25 @@
                         <p>缓存时间: <input type="number" name='timer' autocomplete="off" placeholder="" class="layui-input" value='0' disabled/> 小时</p>
                         <span>提示：启用后，可设置网站图片在盾节点的缓存有效时间，节省回源流量，提升用户访问速度。</span>
                     </div>
+                    <div class='form-item'>
+                        <p class='title'>IP黑白名单设置：</p>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">状态</label>
+                            <div class="layui-input-block">
+                                <input type="checkbox" name="ipName" lay-skin="switch" lay-filter="ipName" lay-text="开|关">
+                            </div>
+                        </div>
+                        <div class='ip-name-div'>
+                            <label class="layui-form-label">黑名单:</label>
+                            <textarea name="" placeholder="请输入黑名单IP" class="layui-textarea textarea-ip"></textarea>
+                        </div>
+                        <div class='ip-name-div'>
+                            <label class="layui-form-label">白名单:</label>
+                            <textarea name="" placeholder="请输入白名单IP" class="layui-textarea textarea-ip"></textarea>
+                            <p>注，黑白名单以IP的格式填写，多条记录之间用英文“,”进行分隔。</p>
+                        </div>
+                        <span>提示：启用后，可配置精准访问控制规则来阻断或放行指定IP的访问请求。</span>
+                    </div>
                     <div class="layui-form-item">
                         <div class="layui-input-block">
                             <button class="layui-btn" lay-submit lay-filter="sub">保存</button>
