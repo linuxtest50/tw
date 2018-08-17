@@ -7,10 +7,12 @@ if(!location.hash){
 var navLi = document.querySelectorAll('.nav>li')
 for (var i = 0; i < navLi.length; i++) {
     navLi[i].querySelector('a').onclick = function () {
+        document.querySelector('aside>ul').innerHTML = ''
         for (var j = 0; j < navLi.length; j++) {
             tjs.removeClass(navLi[j].querySelector('a'), 'color')
         }
         tjs.addClass(this, 'color')
+        // var asideItem = document.querySelectorAll('h2')
     }
 }
 
@@ -63,7 +65,7 @@ ts.backTimers({
     hour: '.t-h',
     minute: '.t-m',
     second: '.t-s',
-    date: '2018-9-13 18:30',
+    date: '2018-9-22 18:30',
     text: '结束提示',
     color: 'red'
 });
@@ -204,8 +206,8 @@ if(document.querySelector(".t-marqueebox")){
 if(document.querySelector('.t-top')){
     document.querySelector('.t-top').onclick = function () {
         ts.toTop({
-            ele: '.t-top',
-            speed: 100
+            speed: 100, // 速度
+            target: 0// 目标位置
         })
     }
 }
@@ -259,3 +261,12 @@ document.querySelector('.newTime').innerHTML = tjs.timeFormat(new Date(), 'yyyy�
  */
 console.log(tjs.getBrowserInfo())
 document.querySelector('.userBrowserInfo').innerHTML = '浏览器：' + tjs.getBrowserInfo()
+
+/**
+ * 滚动监听
+ */
+ts.listenScroll({
+    nav: 'aside', // 导航条
+    item: '#page h2', // 对应内容
+    top: 0 // 暂停位置
+})

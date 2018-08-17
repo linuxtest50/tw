@@ -1,37 +1,4 @@
-
-<div>
-    <h2>图片居中</h2><span class="my_icon" title="查看代码">☟</span>
-    <a style="display:block;text-align: center; width: 500px;height:200px; line-height:200px; border: #05a6ff solid 1px;">
-        <img alt="" src="https://www.baidu.com/img/baidu_jgylogo3.gif" style="display: inline-block; vertical-align: middle;" />
-    </a>
-    <!--代码块-->
-    <div class="t-code">
-<pre><code class="html"><p>html代码：</p>
-&lt;div class=&quot;t-timer&quot;&gt;&lt;span class=&quot;t-h&quot;&gt;&lt;/span&gt;：&lt;span class=&quot;t-m&quot;&gt;&lt;/span&gt;：&lt;span class=&quot;t-s&quot;&gt;&lt;/span&gt;&lt;/div&gt;
-</code></pre>
-
-        <pre><code class="lang-javascript"><p>js代码：</p>
-ts.backTimers({
-    timer: '.t-timer',
-    hour: '.t-h',
-    minute: '.t-m',
-    second: '.t-s',
-    date: '2018-8-7 18:30',
-    text: '结束提示',
-    color: 'blue'
-});
-</code></pre>
-    </div>
-    <hr>
-</div>
-
-<div>
-    <h2>右键</h2>
-    <div id="keyRight">禁止右键</div>
-    <hr>
-</div>
-
-<div>
+<div class="ts_item">
     <h2>表格</h2>
     <table class="t-table">
         <caption>
@@ -73,12 +40,23 @@ ts.backTimers({
                 <td colspan="7"></td>
             </tr>
             <tr>
-                <td rowspan="2">1</td>
+                <td rowspan="2">
+                    <svg class="icon t-icon" aria-hidden="true">
+                        <use xlink:href="#icon-mxz"></use>
+                    </svg>
+                </td>
                 <td>2</td>
                 <td>3</td>
                 <td>4</td>
                 <td>5</td>
-                <td>6</td>
+                <td>
+                    <svg class="icon t-icon-up" aria-hidden="true">
+                        <use xlink:href="#icon-px-up-black"></use>
+                    </svg>
+                    <svg class="icon t-icon-down" aria-hidden="true">
+                        <use xlink:href="#icon-px-down-black"></use>
+                    </svg>
+                </td>
                 <td>
                     <a href="">修改</a>
                     <a href="">删除</a>
@@ -99,7 +77,14 @@ ts.backTimers({
                 <td>3</td>
                 <td>4</td>
                 <td>5</td>
-                <td>6</td>
+                <td>
+                    <svg class="icon t-icon-up" aria-hidden="true">
+                        <use xlink:href="#icon-px-up-black"></use>
+                    </svg>
+                    <svg class="icon t-icon-down" aria-hidden="true">
+                        <use xlink:href="#icon-px-down-black"></use>
+                    </svg>
+                </td>
                 <td>
                     <a href="">修改</a>
                     <a href="">删除</a>
@@ -117,14 +102,41 @@ ts.backTimers({
             <tr>
                 <td>
                     <svg class="icon t-icon" aria-hidden="true">
-                        <use xlink:href="#icon-mxz"></use>
+                        <use xlink:href="#icon-xz"></use>
                     </svg>
                 </td>
                 <td>2</td>
                 <td>3</td>
                 <td>4</td>
                 <td>5</td>
-                <td>6</td>
+                <td>
+                    <svg class="icon t-icon-up" aria-hidden="true">
+                        <use xlink:href="#icon-px-up-black"></use>
+                    </svg>
+                    <svg class="icon t-icon-down" aria-hidden="true">
+                        <use xlink:href="#icon-px-down-black"></use>
+                    </svg>
+                </td>
+                <td>7</td>
+            </tr>
+            <tr>
+                <td>
+                    <svg class="icon t-icon" aria-hidden="true">
+                        <use xlink:href="#icon-xz"></use>
+                    </svg>
+                </td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>
+                    <svg class="icon t-icon-up" aria-hidden="true">
+                        <use xlink:href="#icon-px-up-black"></use>
+                    </svg>
+                    <svg class="icon t-icon-down" aria-hidden="true">
+                        <use xlink:href="#icon-px-down-black"></use>
+                    </svg>
+                </td>
                 <td>7</td>
             </tr>
             <tr>
@@ -154,20 +166,9 @@ ts.backTimers({
                 <td>7</td>
             </tr>
             <tr>
-                <td>
-                    <svg class="icon t-icon" aria-hidden="true">
-                        <use xlink:href="#icon-xz"></use>
-                    </svg>
+                <td colspan="2">
+
                 </td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-                <td>7</td>
-            </tr>
-            <tr>
-                <td colspan="2">1</td>
 
                 <td>3</td>
                 <td>4</td>
@@ -190,12 +191,12 @@ ts.backTimers({
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="7">已选：<span>2</span>共计：<span>10</span></td>
+                <td colspan="7">已选：<span>2</span>条，共计：<span>10</span>条</td>
             </tr>
             <tr>
                 <td colspan="7">
-                    <div class="t-paging">
-                        <a href="">上一页</a><a href="">1</a><a href="">2</a><a href="">···</a><a href="">下一页</a>
+                    <div class="t-paging t-paging-table">
+                        <a href="">上一页</a><a href="" class="t-color">1</a><a href="">2</a><a href="" class="t-not-allowed">···</a><a href="">尾页</a><a href="">下一页</a>
                     </div>
                 </td>
             </tr>
@@ -204,9 +205,14 @@ ts.backTimers({
     <hr>
 </div>
 
-<div>
+<div class="ts_item">
     <h2>表单</h2>
     <div>123</div>
     <hr>
 </div>
 
+<div class="ts_item">
+    <h2>右键</h2>
+    <div id="keyRight">禁止右键</div>
+    <hr>
+</div>

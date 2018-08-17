@@ -116,6 +116,10 @@ class TS {
         //需要为每一个元素指定一个自己的timer来保存定时器
         var ele = document.querySelector('.t-pop'),that = this,popWidth = document.querySelector('.t-pop').offsetWidth,
         popHeight = document.querySelector('.t-pop').offsetHeight;
+        if(tjs.getStyle(ele, 'display') === 'block'){
+            console.log('点快啦')
+            return
+        }
         ele.innerHTML = obj.text;
         obj.speed = 10
         obj.target = obj.target || 10
@@ -460,35 +464,84 @@ class TS {
      * 回到顶部
      */
     toTop(obj){
-        this.ele = document.querySelector(obj.ele);
-        var bodyScroll = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop, // 可滚动区域/元素的滚动距离
+        var bodyScroll = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop; // 可滚动区域/元素的滚动距离
         //  window.scrollTo(0, 0)
+        console.log(bodyScroll)
 
-        raf = requestAnimationFrame(function fn(){
-                bodyScroll -= obj.speed
-                console.log(bodyScroll)
-                if(document.documentElement.scrollTop){
-                    document.documentElement.scrollTop = bodyScroll
-                }else if(window.pageYOffset){
-                    window.pageYOffset = bodyScroll
-                }else{
-                    document.body.scrollTop = bodyScroll
-                }
-                raf = requestAnimationFrame(fn)
-            if(bodyScroll < 0){
-                cancelAnimationFrame(raf)
-            }
-        })
-
-
-        // var a = 1;
-        // requestAnimationFrame(function aa() {
-        //     a ++
-        //     console.log(a)
-        //     requestAnimationFrame(aa)
+        // var raf = requestAnimationFrame(function fn(){
+        //     if(bodyScroll>obj.target){
+        //         // bodyScroll -= obj.speed
+        //         // if(document.documentElement.scrollTop){
+        //         //     document.documentElement.scrollTop = bodyScroll
+        //         // }else if(window.pageYOffset){
+        //         //     window.pageYOffset = bodyScroll
+        //         // }else{
+        //         //     document.body.scrollTop = bodyScroll
+        //         // }
+        //         // raf = requestAnimationFrame(fn)
+        //         // if(bodyScroll <= obj.target){
+        //         //     cancelAnimationFrame(raf)
+        //         // }
+        //     }else{
+        //         console.log(bodyScroll)
+        //         bodyScroll += obj.speed
+        //         if(document.documentElement.scrollTop){
+        //             document.documentElement.scrollTop = bodyScroll
+        //         }else if(window.pageYOffset){
+        //             window.pageYOffset = bodyScroll
+        //         }else{
+        //             document.body.scrollTop = bodyScroll
+        //         }
+        //         raf = requestAnimationFrame(fn)
+        //         // if(bodyScroll >= obj.target){
+        //         //     cancelAnimationFrame(raf)
+        //         // }
+        //     }
         // })
-    }
 
+        if(bodyScroll>obj.target){
+            console.log('向上滚')
+            var raf = requestAnimationFrame(function fn(){
+                bodyScroll -= obj.speed
+                // if(document.documentElement.scrollTop){
+                //     document.documentElement.scrollTop = bodyScroll
+                // }else if(window.pageYOffset){
+                //     window.pageYOffset = bodyScroll
+                // }else{
+                //     document.body.scrollTop = bodyScroll
+                // }
+                window.pageYOffset = bodyScroll
+                document.body.scrollTop = bodyScroll
+                document.documentElement.scrollTop = bodyScroll
+                raf = requestAnimationFrame(fn)
+                if(bodyScroll < obj.target){
+                    cancelAnimationFrame(raf)
+                    window.pageYOffset = obj.target
+                    document.body.scrollTop = obj.target
+                    document.documentElement.scrollTop = obj.target
+                }
+            })
+        }else{
+            console.log('向下滚')
+            var rafs = requestAnimationFrame(function fn(){
+                bodyScroll += obj.speed
+
+                window.pageYOffset = bodyScroll
+                document.body.scrollTop = bodyScroll
+                document.documentElement.scrollTop = bodyScroll
+
+                // console.log(document.documentElement.scrollTop)
+                rafs = requestAnimationFrame(fn)
+                if(bodyScroll > obj.target){
+                    cancelAnimationFrame(rafs)
+                    window.pageYOffset = obj.target
+                    document.body.scrollTop = obj.target
+                    document.documentElement.scrollTop = obj.target
+                }
+            })
+        }
+
+    }
     /**
      * 进度条
      */
@@ -586,4 +639,113 @@ class TS {
         }
     }
 
+    /**
+     * 滚动监听
+     */
+    listenScroll(obj){
+        var aside = document.querySelector(obj.nav), asideItem = document.querySelectorAll(obj.item), asideTop = aside.offsetTop,
+            beforeScroll = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop, that = this;
+        window.onscroll = function () {
+            var afterScroll = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop,
+            scrollDir = afterScroll - beforeScroll;
+            // 元素距离document顶部距离 - 滚动条滚动距离 = 元素距离浏览器顶部距离
+            console.log(document.documentElement.scrollTop)
+            if(asideTop - document.documentElement.scrollTop < obj.top){
+                aside.style.cssText = ';position:fixed;top:'+ obj.top + 'px;'
+            }
+            // 判断滚动条方向
+            if(scrollDir>0){
+                // console.log('下')
+                for (var i = 0; i < asideItem.length; i++) {
+                    if(asideItem[i].parentNode.offsetTop <= document.documentElement.scrollTop){
+                        tjs.addClass(aside.children[0].children[i], 't-color')
+                    }
+                    if(asideItem[i].parentNode.offsetTop <= document.documentElement.scrollTop - parseInt(tjs.getStyle(asideItem[i].parentNode, 'height'))){
+                        tjs.removeClass(aside.children[0].children[i], 't-color')
+                    }
+                }
+            }else{
+                console.log('上')
+                if(afterScroll <= asideTop){
+                    aside.style.cssText = ';position:static;top:auto'
+                }
+                for (var j = 0; j < asideItem.length; j++) {
+                    if(asideItem[j].parentNode.offsetTop >= document.documentElement.scrollTop - parseInt(tjs.getStyle(asideItem[j].parentNode, 'height'))){
+                        tjs.addClass(aside.children[0].children[j], 't-color')
+                    }
+                    if(asideItem[j].parentNode.offsetTop >= document.documentElement.scrollTop){
+                        tjs.removeClass(aside.children[0].children[j], 't-color')
+                    }
+                }
+            }
+            beforeScroll = afterScroll
+        }
+
+        /*锚点定位*/
+        for (var i = 0; i < aside.children[0].children.length; i++) {
+            (function (j) {
+                aside.children[0].children[j].onclick = function () {
+                    // console.log(111)
+
+                    // tjs.addClass(this, 't-color')
+                    console.log(asideItem[j].parentNode.offsetTop)
+                    // document.documentElement.scrollTop = asideItem[j].parentNode.offsetTop
+                    that.toTop({
+                        speed: 30, // 速度
+                        target: asideItem[j].parentNode.offsetTop// 目标位置
+                    })
+                }
+            }(i))
+
+            
+        }
+
+        // //滚动事件 firefox
+        // if (document.addEventListener) {
+        //     document.addEventListener('DOMMouseScroll', scrollFunc, false);
+        // }
+        // //ie 谷歌
+        // window.onmousewheel = document.onmousewheel = scrollFunc;
+        // function scrollFunc(e) {
+        //     e = e || window.event;
+        //     // console.log(asideTop)
+        //     this.bodyTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+        //     // console.log(e)
+        //     if (e.wheelDelta) {  //IE，谷歌
+        //         if (e.wheelDelta > 0) {
+        //             // console.log('上')
+        //             if (this.bodyTop < asideTop) {
+        //                 aside.style.cssText = ';position:static;top:auto'
+        //                 flag = false
+        //             }
+        //         } else {
+        //             flag = true
+        //             // console.log(asideItem.length)
+        //             for (var i = 0; i < asideItem.length; i++) {
+        //                 // console.log(asideItem[0].parentNode.offsetTop)
+        //                 // console.log(this.bodyTop)
+        //                 if (asideItem[i].parentNode.offsetTop < this.bodyTop + 120) {
+        //                     // console.log(tjs.getStyle(asideItem[i].parentNode, 'height'))
+        //                     // console.log(asideItem[i].parentNode.offsetTop)
+        //                     tjs.addClass(aside.children[0].children[i], 't-color')
+        //
+        //                 }
+        //                 // if(asideItem[i].parentNode.offsetTop < this.bodyTop + parseInt(tjs.getStyle(asideItem[i].parentNode, 'height'))){
+        //                 //     console.log(i)
+        //                 //     tjs.removeClass(aside.children[0].children[i], 't-color')
+        //                 // }
+        //             }
+        //         }
+        //     } else if (e.detail) {  //Firefox
+        //         if (e.detail < 0) {
+        //             // console.log('上')
+        //
+        //         } else {
+        //
+        //         }
+        //     }
+        //
+        // }
+
+    }
 }

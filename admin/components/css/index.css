@@ -1,14 +1,7 @@
 body{
-
     color: #666;
     background: #EDF0F5;
-}
-.ts{
-    background: #fff;
-    padding: 0 5%;
-    margin: 0 25% 50px;
-    border-radius: 2px;
-    box-shadow: 0 2px 7px #e2e2e2;
+    /*background: #F4F6F9;*/
 }
 a.color{
     color: #05a6ff !important;
@@ -28,10 +21,30 @@ h2{
     height: 20px;
     line-height: 20px;
 }
+header{
+    background: #fff;
+    box-shadow: 0 2px 7px #e2e2e2;
+}
+.ts{
+    /*background: #fff;*/
+    margin: 0 25% 50px;
+    /*box-shadow: 0 2px 7px #e2e2e2;*/
+}
+.ts_item{
+    /*box-shadow: 0 10px 60px 0 rgba(29, 29, 31, 0.09);*/
+    /*box-shadow: 0 2px 7px #e2e2e2;*/
+    /*box-shadow: 0 0 25px rgba(40, 47, 60, 0.05), 0 20px 25px rgba(40, 47, 60, 0.05), 0 3px 4px rgba(40, 47, 60, 0.05);*/
+    box-shadow: 0 0 25px rgba(81, 85, 99, 0.05), 0 20px 25px rgba(81, 85, 99, 0.05), 0 3px 4px rgba(81, 85, 99, 0.05);
+    padding: 0 5%;
+    margin-bottom: 3%;
+    background: #fff;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
 hr{
     border:none;
     height: 1px;
-    background: #e6e6e6;
+    /*background: #e6e6e6;*/
     margin-top: 35px;
 }
 /*.hr{*/
@@ -44,23 +57,48 @@ hr{
     /*font-weight: 600;*/
     letter-spacing: -9px;
     color: #252529;
+    border-bottom: 1px solid #e6e6e6;
 }
 .header span{
-    letter-spacing: 0px;
+    letter-spacing: 0;
     margin-left: 8px;
     font-size: 36px;
 }
 ul.nav{
     overflow: hidden;
-    border-top: 1px solid #e6e6e6;
-    margin-bottom: 50px;
+    margin: 0 25% 25px;
 }
 .nav li{
     float: left;
-    padding: 2% 3%;
+    padding: 2%;
+}
+aside{
+    padding: 0 0 0 19%;
+    display: inline-block;
+    float: left;
+}
+aside ul{
+    background: #fff;
+    padding:0 15px;
+    box-shadow: 0 0 25px rgba(81, 85, 99, 0.05), 0 20px 25px rgba(81, 85, 99, 0.05), 0 3px 4px rgba(81, 85, 99, 0.05);
+}
+aside ul li{
+    border-bottom: 1px solid #e6e6e6;
+    padding: 12px 0;
+    text-align: center;
+    cursor: pointer;
+    /*margin-bottom: 10px;*/
+}
+aside ul li:hover{
+    color: #05a6ff;
+}
+
+.title{
+    padding-top: 3%;
+    padding-bottom: 3%;
 }
 .title p{
-    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 span.my_icon{
     font-size: 20px;
@@ -69,7 +107,6 @@ span.my_icon{
     margin: 30px 20px 30px 0;
     cursor: pointer;
 }
-
 .t-code{
     /*background: #dee8ef !important;*/
     /*background: #eceff1 !important;*/

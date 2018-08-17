@@ -43,7 +43,7 @@
     <!--<link href="https://cdn.bootcss.com/highlight.js/9.10.0/styles/vs.min.css" rel="stylesheet">-->
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
-    <script src="https://at.alicdn.com/t/font_780508_03u05h6p6wud.js"></script>
+    <script src="https://at.alicdn.com/t/font_780508_924hw93miyv.js"></script>
 
     <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
     <!--[if lt IE 9]>
@@ -135,7 +135,7 @@
         </div>
     </div>
 </div>
-<div class="ts">
+<header>
     <div class="header">TS <span>ui</span></div>
     <ul class="nav">
         <li><a href="#/layout" class="layout">布局</a></li>
@@ -145,18 +145,22 @@
         <!--<li id="css"></li>-->
         <!--<li id="components"></li>-->
     </ul>
-    <div class="title">
+</header>
+<aside>
+    <ul></ul>
+</aside>
+<div class="ts">
+    <div class="title ts_item">
         <p class="userComputerInfo">本地IP：<span class="nip"></span>外网IP：<span class="wip"></span>所在地址：<span class="address"></span></p>
         <p class="newTime"></p>
         <p class="userBrowserInfo"></p>
         <p>引入css：&lt;link rel=&quot;stylesheet&quot; href=&quot;./ts.css&quot;/&gt;</p>
+        <p>引入js：&lt;script type=&quot;text/javascript&quot; src=&quot;./tools.js&quot;&gt;&lt;/script&gt;</p>
         <p>引入js：&lt;script type=&quot;text/javascript&quot; src=&quot;./ts.js&quot;&gt;&lt;/script&gt;</p>
         <p>初始化：var ts = new TS()</p>
     </div>
     <!-- 页面-->
-    <section id="page">
-
-    </section>
+    <section id="page"></section>
 </div>
 
 
@@ -241,17 +245,20 @@
             url: url,
             success: function (data) {
                 content.innerHTML = data
-
-                    addScript("./utils/tools.js")
-                    addScript("./utils/ts.js")
+                for (var k = 0; k < document.querySelectorAll('#page h2').length; k++) {
+                    document.querySelector('aside>ul').innerHTML += '<li>' + document.querySelectorAll('#page h2')[k].innerHTML + '</li>'
+                }
+                addScript("./utils/tools.js")
+                addScript("./utils/ts.js")
+                setTimeout(function () {
                     addScript("./js/index.js")
-                    // 路由变化
-                    window.addEventListener('hashchange',function(e) {
-                        // console.log(e)
-                        // console.log(e.oldURL);
-                        // console.log(e.newURL)
-                    }, false);
-
+                },100)
+                // 路由变化
+                window.addEventListener('hashchange',function(e) {
+                    // console.log(e)
+                    // console.log(e.oldURL);
+                    // console.log(e.newURL)
+                }, false);
             }
         })
         // window.history.pushState(pages.index, "", location + '.html')
@@ -261,7 +268,9 @@
         script.setAttribute("type", "text/javascript")
         script.setAttribute("src", src)
         document.body.appendChild(script)
-        document.body.removeChild(script)
+        setTimeout(function () {
+            document.body.removeChild(script)
+        },500)
         var pre = document.querySelectorAll('pre code')
         for (var i = 0; i < pre.length; i++) {
             hljs.highlightBlock(pre[i]);
@@ -282,7 +291,7 @@
             }
         };
         //3. 打开一个连接
-        req.open("get", obj.url, false);
+        req.open("get", obj.url, true);
         //4. 发请求
         // req.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         req.send();
