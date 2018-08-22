@@ -78,9 +78,9 @@ ts.backTimers({
  * @param {Object} target 目标值
  * @param {Object} callBack 结束回调
  */
-var btn1 = document.querySelectorAll('button')[0], btn2 = document.querySelectorAll('button')[1],
-    btn3 = document.querySelectorAll('button')[2], btn4 = document.querySelectorAll('button')[3],
-    btn5 = document.querySelectorAll('button')[4];
+var btn1 = document.querySelectorAll('.pop-btns>button')[0], btn2 = document.querySelectorAll('.pop-btns>button')[1],
+    btn3 = document.querySelectorAll('.pop-btns>button')[2], btn4 = document.querySelectorAll('.pop-btns>button')[3],
+    btn5 = document.querySelectorAll('.pop-btns>button')[4];
 if(btn1 || btn2 || btn3 || btn4 || btn5){
     btn1.onclick = function () {
         ts.move({
@@ -254,7 +254,9 @@ window.IPCallBack = function (data) {
 /**
  *  当前日期
  */
-document.querySelector('.newTime').innerHTML = tjs.timeFormat(new Date(), 'yyyy年MM月dd日 hh:mm:ss 星期w')
+setInterval(function () {
+    document.querySelector('.newTime').innerHTML = tjs.timeFormat(new Date(), 'yyyy年MM月dd日 hh:mm:ss 星期w')
+},1000)
 
 /**
  * 浏览器版本

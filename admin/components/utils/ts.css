@@ -1,11 +1,17 @@
 /*com*/
-*{
+body, section, div, h1, h3, h4, h5, h6, p, ul, dl, li, a, span, i, input, select, textarea, button{
     padding: 0;
     margin: 0;
     font-family: Arial, 微软雅黑, Microsoft yahei, Hiragino Sans GB, STXihei, 华文细黑, SimSun, 宋体, Heiti, 黑体, sans-serif;
     list-style: none;
     font-weight: normal;
     font-size: 14px;
+    color: #666;
+    box-sizing: border-box;
+    outline: none;
+}
+pre{
+    margin:0 0 1em 0;
 }
 a, a:link, a:visited, a:hover, a:active{
     color: #666;
@@ -98,11 +104,7 @@ a, a:link, a:visited, a:hover, a:active{
 .t-linkage>p{
     margin: 10px 0;
 }
-button{
-    background: none;
-    outline: none;
-}
-.t-linkage>p, .t-btn{
+.t-linkage>p{
     padding: 7px 12px;
     cursor: pointer;
     border-radius: 3px;
@@ -306,4 +308,198 @@ div.t-paging-table>a{
 div.t-paging-table>a:hover{
     background: none;
     color:#05a6ff;
+}
+/*loading*/
+.t-loading{
+    width: 32px;
+    height: 32px;
+    border: 2px solid #05a6ff;
+    border-radius: 100%;
+    border-top-color: transparent;
+    animation: rotate 0.75s 0s linear infinite;
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/*form*/
+.t-input, .t-select, .t-radio-div, .t-checkbox-div, .t-textarea{
+    position: relative;
+    margin-bottom: 25px;
+}
+.t-input-icon{
+    position: absolute;
+    top: 30%;
+    left: 1.5%;
+    font-size: 16px;
+}
+.t-input>input, .t-select, .t-select-div>input, .t-input-verify>label{
+    height: 38px;
+    line-height: 38px;
+    border:1px solid #e6e6e6;
+    background-color: #fff;
+    border-radius: 2px;
+    outline: none;
+}
+.t-input>span{
+    margin-left: 5px;
+}
+.t-input>svg+input{
+    padding-left: 38px;
+}
+.t-input>label+input, .t-input>input{
+    padding-left: 10px;
+}
+.t-select-div{
+    display: inline-block;
+}
+.t-select-div, .t-input-verify{
+    height: 38px;
+    margin-bottom: 25px;
+}
+.t-select-div>.t-select, .t-select-div>input, #t-verify{
+    float: left;
+    display: inline;
+}
+.t-select-div>.t-select{
+    border-right: none;
+    width: 70px;
+}
+.t-select-div>.t-select>p{
+    overflow: hidden;
+    width: 70%;
+    height: 38px;
+}
+.t-select-div>.t-select>ul{
+    width: 200%;
+}
+.t-select{
+    /*width: 150px;*/
+    color:#666;
+    padding: 0 0 0 10px;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    appearance:none;
+}
+.t-select>p{
+    width: 100%;
+    cursor: pointer;
+}
+.t-select>ul{
+    width: 100%;
+    border:1px solid #05a6ff;
+    background-color: #fff;
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    top:43px;
+    z-index: 99;
+    padding: 0 0 0 10px;
+    display: none;
+}
+.t-select>ul>li{
+    /*height: 38px;*/
+    /*line-height: 38px;*/
+}
+.t-select>ul>li:hover{
+    color: #05a6ff;
+    cursor: pointer;
+}
+.t-select-icon{
+    position: absolute;
+    top:12px;
+    right: 8px;
+}
+
+.t-input>input:hover, .t-input>input:focus, .t-select:hover, .t-select-div:hover input, .t-select-div:hover .t-select,
+.t-input-verify>input:hover, .t-input-verify>label, .t-textarea:hover, .t-textarea:focus{
+    border-color:#05a6ff;
+}
+.t-input:hover .t-input-icon, .t-select option:hover{
+    color: #05a6ff;
+}
+.t-select-div:hover .t-select, .t-input-verify>input{
+    border-right: none;
+}
+.t-select-div:hover input, .t-select-div>input{
+    border-left: none;
+}
+.t-input-verify>label{
+    display: inline-block;
+    float: left;
+    background: #05a6ff;
+    padding: 0 8px;
+    color: #fff;
+    cursor: pointer;
+}
+.t-input-verify>input:hover, .t-input-verify>input, .t-select-div>.t-select:hover, .t-select-div>.t-select{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.t-input-verify>label:hover, .t-input-verify>label, .t-select-div>input:hover, .t-select-div>input{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+/*radio*/
+.t-radio, .t-checkbox{
+    height: 20px;
+    display: inline-block;
+    margin-right: 20px;
+}
+.t-radio>label, .t-radio>.t-radio-icon, .t-checkbox>label, .t-checkbox>.t-checkbox-icon{
+    float: left;
+}
+.t-radio>label, .t-checkbox>label{
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    padding-left: 5px;
+    cursor: pointer;
+}
+.t-radio>input, .t-checkbox>input{
+    display: none;
+}
+.t-radio-icon, .t-checkbox-icon{
+    font-size: 20px;
+}
+
+/*textarea*/
+.t-textarea{
+    padding: 6px 10px;
+    resize: none;
+    border:1px solid #e6e6e6;
+    border-radius: 3px;
+    outline: none;
+    display: block;
+}
+.t-btn, .t-btn1, .t-btn2{
+    padding: 8px 20px;
+    border-radius: 3px;
+}
+button{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.t-btn1{
+    border: 1px solid #e6e6e6;
+}
+.t-btn1:hover{
+    border: 1px solid #05a6ff;
+    color: #05a6ff;
+}
+.t-btn2{
+    background: #05a6ff;
+    border: 1px solid #05a6ff;
+    color: #fff;
+}
+.t-btn2:hover{
+    background: rgba(5, 166, 255, 0.87);
 }

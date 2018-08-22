@@ -7,6 +7,7 @@
 // };
 tjs.reqAniFrame()
 
+/*table 更多*/
 var tableTools = document.querySelectorAll('.t-table .t-icon-item'),moreTools = document.querySelectorAll('.t-other-item')
 for (var i = 0; i < tableTools.length; i++) {
     (function (i) {
@@ -31,6 +32,69 @@ for (var i = 0; i < tableTools.length; i++) {
         }
     }(i))
 }
+/*form*/
+var sel = document.querySelectorAll('.t-select>p'), optionItem = document.querySelectorAll('.t-select>ul>li'),
+    option = document.querySelectorAll('.t-select>ul'), optionIcon = document.querySelectorAll('.t-select>.t-select-icon');
+
+for (var j = 0; j < optionItem.length; j++) {
+    (function (i) {
+        optionItem[i].onclick =  function () {
+            // console.log(i);
+            this.parentNode.previousElementSibling.innerHTML = this.innerHTML;
+            this.parentNode.style.display = 'none'
+            tjs.removeClass(this.parentNode, 'slideInUp')
+        }
+    }(j))
+}
+for (var k = 0; k < sel.length; k++) {
+    sel[k].innerHTML = option[k].firstElementChild.innerHTML;
+    (function (i) {
+        optionIcon[i].onclick = sel[i].onclick = function () {
+            option[i].style.display = 'block'
+            tjs.addClass(option[i], 'slideInUp')
+        }
+    }(k))
+}
+
+/*radio*/
+function radioCom() {
+    var radio = document.querySelectorAll('.t-radio');
+    for (var i = 0; i < radio.length; i++) {
+        // (function (j) {
+        //
+        // }(i))
+        console.log(radio[i].querySelector('label'))
+        radio[i].querySelector('label').onclick = function () {
+            // var isChecked = this.nextElementSibling.checked
+            // console.log(isChecked)
+            var use = this.parentNode.parentNode.querySelectorAll('use')
+            for (var j = 0; j < use.length; j++) {
+                use[j].setAttribute('xlink:href', '#icon-mxz1')
+            }
+            this.previousElementSibling.firstElementChild.setAttribute('xlink:href', '#icon-xz1')
+        }
+    }
+}
+radioCom()
+
+/*checkbox*/
+function checkboxCom() {
+    var checkbox = document.querySelectorAll('.t-checkbox');
+    for (var i = 0; i < checkbox.length; i++) {
+        checkbox[i].querySelector('label').onclick = function () {
+            // var use = this.parentNode.parentNode.querySelectorAll('use')
+            if(this.previousElementSibling.firstElementChild.getAttribute('xlink:href') === '#icon-dmxz'){
+                this.previousElementSibling.firstElementChild.setAttribute('xlink:href', '#icon-dxz')
+            }else{
+                this.previousElementSibling.firstElementChild.setAttribute('xlink:href', '#icon-dmxz')
+            }
+        }
+    }
+}
+checkboxCom()
+
+
+
 
 class TS {
     constructor(){
@@ -649,55 +713,54 @@ class TS {
             var afterScroll = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop,
             scrollDir = afterScroll - beforeScroll;
             // 元素距离document顶部距离 - 滚动条滚动距离 = 元素距离浏览器顶部距离
-            console.log(document.documentElement.scrollTop)
+            // console.log(document.documentElement.scrollTop)
             if(asideTop - document.documentElement.scrollTop < obj.top){
                 aside.style.cssText = ';position:fixed;top:'+ obj.top + 'px;'
             }
             // 判断滚动条方向
             if(scrollDir>0){
                 // console.log('下')
-                for (var i = 0; i < asideItem.length; i++) {
-                    if(asideItem[i].parentNode.offsetTop <= document.documentElement.scrollTop){
-                        tjs.addClass(aside.children[0].children[i], 't-color')
-                    }
-                    if(asideItem[i].parentNode.offsetTop <= document.documentElement.scrollTop - parseInt(tjs.getStyle(asideItem[i].parentNode, 'height'))){
-                        tjs.removeClass(aside.children[0].children[i], 't-color')
-                    }
-                }
+                addColor()
+                // for (var i = 0; i < asideItem.length; i++) {
+                //     if(asideItem[i].parentNode.offsetTop <= document.documentElement.scrollTop){
+                //         tjs.addClass(aside.children[0].children[i], 't-color')
+                //     }
+                //     if(asideItem[i].parentNode.offsetTop <= document.documentElement.scrollTop - parseInt(tjs.getStyle(asideItem[i].parentNode, 'height'))){
+                //         tjs.removeClass(aside.children[0].children[i], 't-color')
+                //     }
+                // }
             }else{
-                console.log('上')
+                // console.log('上')
                 if(afterScroll <= asideTop){
                     aside.style.cssText = ';position:static;top:auto'
                 }
-                for (var j = 0; j < asideItem.length; j++) {
-                    if(asideItem[j].parentNode.offsetTop >= document.documentElement.scrollTop - parseInt(tjs.getStyle(asideItem[j].parentNode, 'height'))){
-                        tjs.addClass(aside.children[0].children[j], 't-color')
-                    }
-                    if(asideItem[j].parentNode.offsetTop >= document.documentElement.scrollTop){
-                        tjs.removeClass(aside.children[0].children[j], 't-color')
-                    }
-                }
+                addColor()
             }
             beforeScroll = afterScroll
         }
 
+        function addColor() {
+            for (var i = 0; i < asideItem.length; i++) {
+                var scroll = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop,
+                asideItemTop = asideItem[i].parentNode.offsetTop - scroll
+                // console.log(asideItemTop)
+                if(asideItemTop <= 0 && asideItemTop > -parseInt(tjs.getStyle(asideItem[i].parentNode, 'height'))){
+                    tjs.addClass(aside.children[0].children[i], 't-color')
+                }else{
+                    tjs.removeClass(aside.children[0].children[i], 't-color')
+                }
+            }
+        }
         /*锚点定位*/
         for (var i = 0; i < aside.children[0].children.length; i++) {
             (function (j) {
                 aside.children[0].children[j].onclick = function () {
-                    // console.log(111)
-
-                    // tjs.addClass(this, 't-color')
-                    console.log(asideItem[j].parentNode.offsetTop)
-                    // document.documentElement.scrollTop = asideItem[j].parentNode.offsetTop
                     that.toTop({
-                        speed: 30, // 速度
+                        speed: 50, // 速度
                         target: asideItem[j].parentNode.offsetTop// 目标位置
                     })
                 }
             }(i))
-
-            
         }
 
         // //滚动事件 firefox
@@ -748,4 +811,8 @@ class TS {
         // }
 
     }
+
+
+
+
 }

@@ -521,7 +521,7 @@ var tjs = {
 	/**
 	 *  判断浏览器版本
 	 */
-    getBrowserInfo(){
+    getBrowserInfo: function(){
         var Sys = {}, ua = navigator.userAgent.toLowerCase(), s, result;
         (s = ua.match(/rv:([\d.]+)\) like gecko/)) ? Sys.ie = s[1] :
             (s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] :

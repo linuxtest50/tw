@@ -207,7 +207,150 @@
 
 <div class="ts_item">
     <h2>表单</h2>
-    <div>123</div>
+    <!--input-->
+    <div class="t-input">
+        <svg class="icon t-input-icon" aria-hidden="true">
+            <use xlink:href="#icon-yhm"></use>
+        </svg>
+        <input type="text" autocomplete="off" placeholder="请输入手机号">
+    </div>
+
+    <div class="t-input">
+        <label for="t-input">手机号：</label>
+        <input type="text" id="t-input" autocomplete="off" placeholder="请输入手机号">
+        <span>提示文字</span>
+    </div>
+
+    <div class="t-input t-input-verify">
+        <input type="text" id="t-verify" autocomplete="off" placeholder="请输入验证码">
+        <label for="t-verify">获取验证码</label>
+    </div>
+
+    <!--<select name="" class="t-select">-->
+        <!--<option value="0">+ 86 中国大陆</option>-->
+        <!--<option value="1">+852 中国香港</option>-->
+        <!--<option value="2">+853 中国澳门</option>-->
+        <!--<option value="3">+886 中国台湾</option>-->
+    <!--</select>-->
+
+    <!--select-->
+    <div class="t-select-div">
+        <div class="t-select">
+            <svg class="icon t-select-icon" aria-hidden="true">
+                <use xlink:href="#icon-down"></use>
+            </svg>
+            <p></p>
+            <ul class="animated faster">
+                <li>+ 86 中国大陆</li>
+                <li>+852 中国香港</li>
+                <li>+853 中国澳门</li>
+                <li>+886 中国台湾</li>
+            </ul>
+        </div>
+        <input type="text" autocomplete="off" placeholder="请输入手机号" class="">
+    </div>
+
+    <div class="t-select">
+        <svg class="icon t-select-icon" aria-hidden="true">
+            <use xlink:href="#icon-down"></use>
+        </svg>
+        <p></p>
+        <ul class="animated faster">
+            <li>请选择您的爱好</li>
+            <li>手机</li>
+            <li>笔记本</li>
+            <li>mp3</li>
+        </ul>
+    </div>
+
+    <!--radio-->
+    <div class="t-radio-div">
+        <div class="t-radio">
+            <svg class="icon t-radio-icon" aria-hidden="true">
+                <use xlink:href="#icon-xz1"></use>
+            </svg>
+            <label for="t-radio-one">男</label>
+            <input type="radio" name="t-radio" id="t-radio-one" checked="checked">
+        </div>
+        <div class="t-radio">
+            <svg class="icon t-radio-icon" aria-hidden="true">
+                <use xlink:href="#icon-mxz1"></use>
+            </svg>
+            <label for="t-radio-two">女</label>
+            <input type="radio" name="t-radio" id="t-radio-two">
+        </div>
+        <div class="t-radio">
+            <svg class="icon t-radio-icon" aria-hidden="true">
+                <use xlink:href="#icon-mxz1"></use>
+            </svg>
+            <label for="t-radio-three">不男不女</label>
+            <input type="radio" name="t-radio" id="t-radio-three">
+        </div>
+    </div>
+
+    <div class="t-radio-div">
+        <div class="t-radio">
+            <svg class="icon t-radio-icon" aria-hidden="true">
+                <use xlink:href="#icon-xz1"></use>
+            </svg>
+            <label for="t-radio-one1">老</label>
+            <input type="radio" name="t-radio1" id="t-radio-one1" checked="checked">
+        </div>
+        <div class="t-radio">
+            <svg class="icon t-radio-icon" aria-hidden="true">
+                <use xlink:href="#icon-mxz1"></use>
+            </svg>
+            <label for="t-radio-two1">少</label>
+            <input type="radio" name="t-radio1" id="t-radio-two1">
+        </div>
+    </div>
+
+    <!--checkbox-->
+    <div class="t-checkbox-div">
+        <div class="t-checkbox">
+            <svg class="icon t-checkbox-icon" aria-hidden="true">
+                <use xlink:href="#icon-dxz"></use>
+            </svg>
+            <label for="t-checkbox-one">苹果</label>
+            <input type="checkbox" name="t-checkbox" id="t-checkbox-one" checked="checked">
+        </div>
+        <div class="t-checkbox">
+            <svg class="icon t-checkbox-icon" aria-hidden="true">
+                <use xlink:href="#icon-dmxz"></use>
+            </svg>
+            <label for="t-checkbox-two">橘子</label>
+            <input type="checkbox" name="t-checkbox" id="t-checkbox-two">
+        </div>
+        <div class="t-checkbox">
+            <svg class="icon t-checkbox-icon" aria-hidden="true">
+                <use xlink:href="#icon-dmxz"></use>
+            </svg>
+            <label for="t-checkbox-three">香蕉</label>
+            <input type="checkbox" name="t-checkbox" id="t-checkbox-three">
+        </div>
+        <div class="t-checkbox">
+            <svg class="icon t-checkbox-icon" aria-hidden="true">
+                <use xlink:href="#icon-dmxz"></use>
+            </svg>
+            <label for="t-checkbox-four">水梨</label>
+            <input type="checkbox" name="t-checkbox" id="t-checkbox-four">
+        </div>
+        <div class="t-checkbox">
+            <svg class="icon t-checkbox-icon" aria-hidden="true">
+                <use xlink:href="#icon-dmxz"></use>
+            </svg>
+            <label for="t-checkbox-five">橙子</label>
+            <input type="checkbox" name="t-checkbox" id="t-checkbox-five">
+        </div>
+    </div>
+
+    <!--textarea-->
+    <textarea class="t-textarea" placeholder="请输入内容..." cols="70" rows="7"></textarea>
+
+    <!--btn-->
+    <button class="t-btn">确定</button>
+    <button class="t-btn1">确定</button>
+    <button class="t-btn2">确定</button>
     <hr>
 </div>
 
@@ -216,3 +359,11 @@
     <div id="keyRight">禁止右键</div>
     <hr>
 </div>
+
+<div class="ts_item">
+    <h2>loading</h2>
+    <div class="t-loading"></div>
+    <hr>
+</div>
+
+@import url("copy.css");
