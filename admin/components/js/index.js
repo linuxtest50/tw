@@ -7,11 +7,14 @@ if(!location.hash){
 var navLi = document.querySelectorAll('.nav>li')
 for (var i = 0; i < navLi.length; i++) {
     navLi[i].querySelector('a').onclick = function () {
-        document.querySelector('aside>ul').innerHTML = ''
+        if(!tjs.hasClass(this, 'color')){
+            document.querySelector('aside>ul').innerHTML = ''
+        }
         for (var j = 0; j < navLi.length; j++) {
             tjs.removeClass(navLi[j].querySelector('a'), 'color')
         }
         tjs.addClass(this, 'color')
+
         // var asideItem = document.querySelectorAll('h2')
     }
 }
@@ -50,7 +53,7 @@ function funTransitionHeight(element, time) { // time, 数值，可缺省
 // init
 var ts = new TS()
 
-    // ts.keyRight()
+    ts.keyRight()
 /**
  * 倒计时组件
  * @param timer 结束显示区
@@ -272,3 +275,138 @@ ts.listenScroll({
     item: '#page h2', // 对应内容
     top: 0 // 暂停位置
 })
+
+/*城市联动*/
+/*require*/
+function chinaLinkage() {
+    var province = document.querySelector('.t-china-linkage .province'), city = document.querySelector('.t-china-linkage .city'),
+        area = document.querySelector('.t-china-linkage .area'), street = document.querySelector('.t-china-linkage .street'),
+        cp = document.querySelector('.city').previousElementSibling, ap = document.querySelector('.area').previousElementSibling,
+        sp = document.querySelector('.street').previousElementSibling, cselects = document.querySelectorAll('.t-china-linkage .t-select');
+        require.config({
+        paths : {
+            text : 'https://cdn.bootcss.com/require-text/2.0.12/text',
+            json : 'https://cdn.bootcss.com/requirejs-plugins/1.0.3/json' //alias to plugin
+        }
+    });
+    require(['json!./utils/china.json'], function (dataJson) {
+        console.log(dataJson)
+        for (var i = 0; i < dataJson.length; i++) {
+            province.innerHTML += '<li>'+ dataJson[i].name + '</li>'
+        }
+        // 省
+        var pliIndex, cliIndex;
+        province.onclick = function (event) {
+            var e = event || window.event;
+            cp.innerHTML = '请选择城市';
+            ap.innerHTML = '请选择区县';
+            sp.innerHTML = '请选择乡镇';
+            if(e.target.nodeName.toLowerCase() === "li"){
+                var pliArr = e.target.parentNode.children;
+                pliIndex = Array.prototype.indexOf.call(pliArr, e.target);
+                var thisCityArr = dataJson[pliIndex - 1].children;
+                city.innerHTML = '<li>请选择城市</li>'
+                area.innerHTML = '<li>请选择区县</li>'
+                street.innerHTML = '<li>请选择乡镇</li>'
+                if(thisCityArr.length > 6){
+                    city.style.cssText += ';height:266px; overflow-y:auto'
+                }else{
+                    city.style.cssText += ';height:auto;'
+                }
+                for (var j = 0; j < thisCityArr.length; j++) {
+                    city.innerHTML += '<li>'+ thisCityArr[j].name + '</li>'
+                }
+                // this.style.display = 'none'
+                tjs.removeClass(this, 'transitionDropIn')
+                tjs.addClass(this, 'transitionDropOut')
+                var that = this
+                setTimeout(function () {
+                    that.style.display = 'none'
+                },500)
+                this.previousElementSibling.innerHTML = e.target.innerHTML
+            }
+        }
+        // 市
+        city.onclick = function (event) {
+            var e = event || window.event;
+            ap.innerHTML = '请选择区县';
+            sp.innerHTML = '请选择乡镇';
+            if(e.target.nodeName.toLowerCase() === "li"){
+                var cliArr = e.target.parentNode.children;
+                cliIndex = Array.prototype.indexOf.call(cliArr, e.target);
+                var thisAreaArr = dataJson[pliIndex - 1].children[cliIndex - 1].children;
+                area.innerHTML = '<li>请选择区县</li>'
+                street.innerHTML = '<li>请选择乡镇</li>'
+                if(thisAreaArr.length > 6){
+                    area.style.cssText += ';height:266px; overflow-y:auto'
+                }else{
+                    area.style.cssText += ';height:auto'
+                }
+                for (var j = 0; j < thisAreaArr.length; j++) {
+                    area.innerHTML += '<li>'+ thisAreaArr[j].name + '</li>'
+                }
+                // this.style.display = 'none'
+                tjs.removeClass(this, 'transitionDropIn')
+                tjs.addClass(this, 'transitionDropOut')
+                var that = this
+                setTimeout(function () {
+                    that.style.display = 'none'
+                },500)
+                this.previousElementSibling.innerHTML = e.target.innerHTML
+            }
+        }
+        // 县
+        area.onclick = function (event) {
+            var e = event || window.event;
+            sp.innerHTML = '请选择乡镇';
+            if(e.target.nodeName.toLowerCase() === "li"){
+                var aliArr = e.target.parentNode.children;
+                var aliIndex = Array.prototype.indexOf.call(aliArr, e.target);
+                var thisStreetArr = dataJson[pliIndex - 1].children[cliIndex - 1].children[aliIndex - 1].children;
+                street.innerHTML = '<li>请选择乡镇</li>'
+                if(thisStreetArr.length > 6){
+                    street.style.cssText += ';height:266px; overflow-y:auto'
+                }else{
+                    street.style.cssText += ';height:auto;'
+                }
+                for (var j = 0; j < thisStreetArr.length; j++) {
+                    street.innerHTML += '<li>'+ thisStreetArr[j].name + '</li>'
+                }
+                // this.style.display = 'none'
+                tjs.removeClass(this, 'transitionDropIn')
+                tjs.addClass(this, 'transitionDropOut')
+                var that = this
+                setTimeout(function () {
+                    that.style.display = 'none'
+                },500)
+                this.previousElementSibling.innerHTML = e.target.innerHTML
+            }
+        }
+        // 乡
+        street.onclick = function (event) {
+            var e = event || window.event;
+            if(e.target.nodeName.toLowerCase() === "li"){
+                // this.style.display = 'none'
+                tjs.removeClass(this, 'transitionDropIn')
+                tjs.addClass(this, 'transitionDropOut')
+                var that = this
+                setTimeout(function () {
+                    that.style.display = 'none'
+                },500)
+                this.previousElementSibling.innerHTML = e.target.innerHTML
+            }
+        }
+
+        for (var j = 0; j < cselects.length; j++) {
+            cselects[j].onclick = function () {
+                if(this.querySelector('ul').children.length < 8){
+                    this.querySelector('ul').style.cssText += ';height:auto'
+                }
+                // console.log(this.querySelector('ul').children)
+            };
+            
+        }
+    })
+}
+chinaLinkage()
+

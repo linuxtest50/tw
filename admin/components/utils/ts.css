@@ -340,13 +340,17 @@ div.t-paging-table>a:hover{
     left: 1.5%;
     font-size: 16px;
 }
-.t-input>input, .t-select, .t-select-div>input, .t-input-verify>label{
+.t-input>input, .t-select, .t-select-div>input{
     height: 38px;
     line-height: 38px;
     border:1px solid #e6e6e6;
     background-color: #fff;
     border-radius: 2px;
-    outline: none;
+}
+.t-input-verify>label{
+    height: 38px;
+    line-height: 38px;
+    border-radius: 2px;
 }
 .t-input>span{
     margin-left: 5px;
@@ -364,7 +368,7 @@ div.t-paging-table>a:hover{
     height: 38px;
     margin-bottom: 25px;
 }
-.t-select-div>.t-select, .t-select-div>input, #t-verify{
+.t-select-div>.t-select, .t-select-div>input, .t-input-verify>input{
     float: left;
     display: inline;
 }
@@ -376,12 +380,13 @@ div.t-paging-table>a:hover{
     overflow: hidden;
     width: 70%;
     height: 38px;
+    padding-right: 0; /*111*/
 }
 .t-select-div>.t-select>ul{
     width: 200%;
 }
 .t-select{
-    /*width: 150px;*/
+    /*width: 150px; 555*/
     color:#666;
     padding: 0 0 0 10px;
     -moz-appearance:none;
@@ -389,8 +394,12 @@ div.t-paging-table>a:hover{
     appearance:none;
 }
 .t-select>p{
+    /*width: 90%; 444*/
     width: 100%;
     cursor: pointer;
+    overflow: hidden;
+    height: 38px;
+    padding-right: 50px; /*666*/
 }
 .t-select>ul{
     width: 100%;
@@ -415,7 +424,8 @@ div.t-paging-table>a:hover{
 .t-select-icon{
     position: absolute;
     top:12px;
-    right: 8px;
+    /*right: 8px; 333*/
+    right: 6px;
 }
 
 .t-input>input:hover, .t-input>input:focus, .t-select:hover, .t-select-div:hover input, .t-select-div:hover .t-select,
@@ -438,6 +448,7 @@ div.t-paging-table>a:hover{
     padding: 0 8px;
     color: #fff;
     cursor: pointer;
+    -moz-user-select:none;
 }
 .t-input-verify>input:hover, .t-input-verify>input, .t-select-div>.t-select:hover, .t-select-div>.t-select{
     border-top-right-radius: 0;
@@ -502,4 +513,56 @@ button{
 }
 .t-btn2:hover{
     background: rgba(5, 166, 255, 0.87);
+}
+
+/*provincial-linkage*/
+.t-china-linkage>.t-select{
+    /*width: 150px; 222*/
+    display: inline-block;
+    margin-right: 10px;
+}
+.t-china-linkage .province{
+    width: 132px;
+    height: 266px;
+    overflow-y: auto;
+}
+
+
+
+.transitionDropIn{
+    -webkit-animation-name: transitionDropIn;
+    animation-name: transitionDropIn;
+    transform-origin: center top 0;
+    animation-timing-function: ease-in-out;
+    /*will-change: top, left;硬件加速*/
+}
+@keyframes transitionDropIn {
+    0% {
+        opacity:0;
+        -webkit-transform:scaleY(.8);
+        transform:scaleY(.8)
+    }
+    to {
+        opacity:1;
+        -webkit-transform:scaleY(1);
+        transform:scaleY(1)
+    }
+}
+.transitionDropOut{
+    -webkit-animation-name: transitionDropOut;
+    animation-name: transitionDropOut;
+    transform-origin: center top 0;
+    animation-timing-function: ease-in-out;
+}
+@keyframes transitionDropOut {
+    0% {
+        opacity:1;
+        -webkit-transform:scaleY(1);
+        transform:scaleY(1)
+    }
+    to {
+        opacity:0;
+        -webkit-transform:scaleY(.8);
+        transform:scaleY(.8)
+    }
 }

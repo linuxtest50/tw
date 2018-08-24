@@ -32,41 +32,71 @@ for (var i = 0; i < tableTools.length; i++) {
         }
     }(i))
 }
-/*form*/
-var sel = document.querySelectorAll('.t-select>p'), optionItem = document.querySelectorAll('.t-select>ul>li'),
-    option = document.querySelectorAll('.t-select>ul'), optionIcon = document.querySelectorAll('.t-select>.t-select-icon');
 
-for (var j = 0; j < optionItem.length; j++) {
-    (function (i) {
-        optionItem[i].onclick =  function () {
-            // console.log(i);
-            this.parentNode.previousElementSibling.innerHTML = this.innerHTML;
-            this.parentNode.style.display = 'none'
-            tjs.removeClass(this.parentNode, 'slideInUp')
+/*input*/
+function inputCom() {
+    var sendCode = document.querySelector('.t-input-verify>label');
+    if(!sendCode)return
+    sendCode.onclick = function () {
+        var flag = 60, that = this;
+        if(that.innerHTML !== '获取验证码'){
+            return
         }
-    }(j))
+        that.innerHTML = flag + '秒后重新发送'
+        var timer = setInterval(function () {
+            flag--;
+            that.innerHTML = flag + '秒后重新发送'
+            if(flag === 0){
+                clearInterval(timer)
+                that.innerHTML = '获取验证码'
+            }
+        }, 1000)
+    }
+    // tjs.throttle()
 }
-for (var k = 0; k < sel.length; k++) {
-    sel[k].innerHTML = option[k].firstElementChild.innerHTML;
-    (function (i) {
-        optionIcon[i].onclick = sel[i].onclick = function () {
-            option[i].style.display = 'block'
-            tjs.addClass(option[i], 'slideInUp')
-        }
-    }(k))
+inputCom()
+
+/*select*/
+function selectCom() {
+    var sel = document.querySelectorAll('.t-select>p'), optionItem = document.querySelectorAll('.t-select>ul>li'),
+        option = document.querySelectorAll('.t-select>ul'), optionIcon = document.querySelectorAll('.t-select>.t-select-icon');
+
+    for (var j = 0; j < optionItem.length; j++) {
+        (function (i) {
+            optionItem[i].onclick =  function () {
+                // console.log(i);
+                var that = this
+                this.parentNode.previousElementSibling.innerHTML = this.innerHTML;
+                tjs.removeClass(this.parentNode, 'transitionDropIn')
+                tjs.addClass(this.parentNode, 'transitionDropOut')
+                setTimeout(function () {
+                    that.parentNode.style.display = 'none'
+                },500)
+            }
+        }(j))
+    }
+    for (var k = 0; k < sel.length; k++) {
+        // console.log(option[k])
+        sel[k].innerHTML = option[k].firstElementChild.innerHTML;
+        (function (i) {
+            optionIcon[i].onclick = sel[i].onclick = function () {
+                for (var j = 0; j < sel.length; j++) {
+                    option[j].style.display = 'none'
+                }
+                option[i].style.display = 'block'
+                tjs.removeClass(option[i], 'transitionDropOut')
+                tjs.addClass(option[i], 'transitionDropIn')
+            }
+        }(k))
+    }
 }
+selectCom()
 
 /*radio*/
 function radioCom() {
     var radio = document.querySelectorAll('.t-radio');
     for (var i = 0; i < radio.length; i++) {
-        // (function (j) {
-        //
-        // }(i))
-        console.log(radio[i].querySelector('label'))
         radio[i].querySelector('label').onclick = function () {
-            // var isChecked = this.nextElementSibling.checked
-            // console.log(isChecked)
             var use = this.parentNode.parentNode.querySelectorAll('use')
             for (var j = 0; j < use.length; j++) {
                 use[j].setAttribute('xlink:href', '#icon-mxz1')
@@ -105,8 +135,9 @@ class TS {
      * 右键
      */
     keyRight(){
-        var box=document.getElementById("keyRight");
-        document.oncontextmenu=function(ev){
+        var box=document.getElementById("keyRight"), keybox = document.querySelector('.key_right');
+        if(!keybox)return
+        keybox.oncontextmenu=function(ev){
             console.log(ev)
             box.style.display="block";
             ev=ev||event;
