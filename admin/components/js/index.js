@@ -35,8 +35,8 @@ for (var i = 0; i < tCodeBtn.length; i++) {
             }
         }
     }(i))
-
 }
+
 // 0 - auto height transition
 function funTransitionHeight(element, time) { // time, 数值，可缺省
     if (typeof window.getComputedStyle === "undefined") return;
@@ -101,7 +101,7 @@ if(btn1 || btn2 || btn3 || btn4 || btn5){
         ts.move({
             type: 't-success',
             attr: 'top',
-            target: 10,
+            target: 50,
             text: '我是成功',
             time: 1000,
             callBack: function () {
@@ -113,7 +113,7 @@ if(btn1 || btn2 || btn3 || btn4 || btn5){
         ts.move({
             type: 't-err',
             attr: 'bottom',
-            target: 10,
+            target: 50,
             text: '我是err',
             time: 1000,
             callBack: function () {
@@ -276,137 +276,53 @@ ts.listenScroll({
     top: 0 // 暂停位置
 })
 
-/*城市联动*/
+/**
+ * 城市联动
+ */
 /*require*/
-function chinaLinkage() {
-    var province = document.querySelector('.t-china-linkage .province'), city = document.querySelector('.t-china-linkage .city'),
-        area = document.querySelector('.t-china-linkage .area'), street = document.querySelector('.t-china-linkage .street'),
-        cp = document.querySelector('.city').previousElementSibling, ap = document.querySelector('.area').previousElementSibling,
-        sp = document.querySelector('.street').previousElementSibling, cselects = document.querySelectorAll('.t-china-linkage .t-select');
-        require.config({
-        paths : {
-            text : 'https://cdn.bootcss.com/require-text/2.0.12/text',
-            json : 'https://cdn.bootcss.com/requirejs-plugins/1.0.3/json' //alias to plugin
-        }
-    });
-    require(['json!./utils/china.json'], function (dataJson) {
-        console.log(dataJson)
-        for (var i = 0; i < dataJson.length; i++) {
-            province.innerHTML += '<li>'+ dataJson[i].name + '</li>'
-        }
-        // 省
-        var pliIndex, cliIndex;
-        province.onclick = function (event) {
-            var e = event || window.event;
-            cp.innerHTML = '请选择城市';
-            ap.innerHTML = '请选择区县';
-            sp.innerHTML = '请选择乡镇';
-            if(e.target.nodeName.toLowerCase() === "li"){
-                var pliArr = e.target.parentNode.children;
-                pliIndex = Array.prototype.indexOf.call(pliArr, e.target);
-                var thisCityArr = dataJson[pliIndex - 1].children;
-                city.innerHTML = '<li>请选择城市</li>'
-                area.innerHTML = '<li>请选择区县</li>'
-                street.innerHTML = '<li>请选择乡镇</li>'
-                if(thisCityArr.length > 6){
-                    city.style.cssText += ';height:266px; overflow-y:auto'
-                }else{
-                    city.style.cssText += ';height:auto;'
-                }
-                for (var j = 0; j < thisCityArr.length; j++) {
-                    city.innerHTML += '<li>'+ thisCityArr[j].name + '</li>'
-                }
-                // this.style.display = 'none'
-                tjs.removeClass(this, 'transitionDropIn')
-                tjs.addClass(this, 'transitionDropOut')
-                var that = this
-                setTimeout(function () {
-                    that.style.display = 'none'
-                },500)
-                this.previousElementSibling.innerHTML = e.target.innerHTML
-            }
-        }
-        // 市
-        city.onclick = function (event) {
-            var e = event || window.event;
-            ap.innerHTML = '请选择区县';
-            sp.innerHTML = '请选择乡镇';
-            if(e.target.nodeName.toLowerCase() === "li"){
-                var cliArr = e.target.parentNode.children;
-                cliIndex = Array.prototype.indexOf.call(cliArr, e.target);
-                var thisAreaArr = dataJson[pliIndex - 1].children[cliIndex - 1].children;
-                area.innerHTML = '<li>请选择区县</li>'
-                street.innerHTML = '<li>请选择乡镇</li>'
-                if(thisAreaArr.length > 6){
-                    area.style.cssText += ';height:266px; overflow-y:auto'
-                }else{
-                    area.style.cssText += ';height:auto'
-                }
-                for (var j = 0; j < thisAreaArr.length; j++) {
-                    area.innerHTML += '<li>'+ thisAreaArr[j].name + '</li>'
-                }
-                // this.style.display = 'none'
-                tjs.removeClass(this, 'transitionDropIn')
-                tjs.addClass(this, 'transitionDropOut')
-                var that = this
-                setTimeout(function () {
-                    that.style.display = 'none'
-                },500)
-                this.previousElementSibling.innerHTML = e.target.innerHTML
-            }
-        }
-        // 县
-        area.onclick = function (event) {
-            var e = event || window.event;
-            sp.innerHTML = '请选择乡镇';
-            if(e.target.nodeName.toLowerCase() === "li"){
-                var aliArr = e.target.parentNode.children;
-                var aliIndex = Array.prototype.indexOf.call(aliArr, e.target);
-                var thisStreetArr = dataJson[pliIndex - 1].children[cliIndex - 1].children[aliIndex - 1].children;
-                street.innerHTML = '<li>请选择乡镇</li>'
-                if(thisStreetArr.length > 6){
-                    street.style.cssText += ';height:266px; overflow-y:auto'
-                }else{
-                    street.style.cssText += ';height:auto;'
-                }
-                for (var j = 0; j < thisStreetArr.length; j++) {
-                    street.innerHTML += '<li>'+ thisStreetArr[j].name + '</li>'
-                }
-                // this.style.display = 'none'
-                tjs.removeClass(this, 'transitionDropIn')
-                tjs.addClass(this, 'transitionDropOut')
-                var that = this
-                setTimeout(function () {
-                    that.style.display = 'none'
-                },500)
-                this.previousElementSibling.innerHTML = e.target.innerHTML
-            }
-        }
-        // 乡
-        street.onclick = function (event) {
-            var e = event || window.event;
-            if(e.target.nodeName.toLowerCase() === "li"){
-                // this.style.display = 'none'
-                tjs.removeClass(this, 'transitionDropIn')
-                tjs.addClass(this, 'transitionDropOut')
-                var that = this
-                setTimeout(function () {
-                    that.style.display = 'none'
-                },500)
-                this.previousElementSibling.innerHTML = e.target.innerHTML
-            }
-        }
+ts.chinaLinkage()
 
-        for (var j = 0; j < cselects.length; j++) {
-            cselects[j].onclick = function () {
-                if(this.querySelector('ul').children.length < 8){
-                    this.querySelector('ul').style.cssText += ';height:auto'
-                }
-                // console.log(this.querySelector('ul').children)
-            };
-            
+/**
+ * 文件上传
+ */
+function upLoad(){
+    document.querySelector('.t-input-file').onchange = function (event) {
+        // var e = event || window.event
+        console.log(this.files)
+        var fr = new FileReader(), file = this.files[0];
+        //判断文件的类型
+        if (file.type.match(/^text\//) !== null) {
+            //读取文本文件
+            readText(fr, file);
+        } else if (file.type.match(/^image\//) !== null) {
+            //读取图片
+            readImage(fr, file);
+        } else {
+            alert("你上传的文件格式无法读取");
         }
-    })
+        console.log(fr)
+        document.querySelector('.t-upload span').innerHTML = this.files[0].name
+    }
+
+     // * 读取图片
+    function readImage(frObj, fileObj) {
+        frObj.onload = function(){
+            var img = document.createElement("img");
+            img.src = frObj.result;
+            document.querySelector(".t-upload-div").insertBefore(img, document.querySelector(".t-upload"));
+        }
+        frObj.readAsDataURL(fileObj);
+    }
+
+     // * 读取文本
+    function readText(frObj, fileObj) {
+        frObj.onload = function(){
+            var pre = document.createElement("pre");
+            pre.innerHTML = frObj.result;
+            // document.querySelector(".t-upload").appendChild(pre);
+            document.querySelector(".t-upload-div").insertBefore(pre, document.querySelector(".t-upload"))
+        };
+        frObj.readAsText(fileObj);
+    }
 }
-chinaLinkage()
-
+upLoad()

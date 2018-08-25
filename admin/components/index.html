@@ -248,7 +248,7 @@
             success: function (data) {
                 content.innerHTML = data
                 for (var k = 0; k < document.querySelectorAll('#page h2').length; k++) {
-                    document.querySelector('aside>ul').innerHTML += '<li>' + document.querySelectorAll('#page h2')[k].innerHTML + '</li>'
+                    document.querySelector('aside>ul').innerHTML += '<li>' + (k+1) + '.' + document.querySelectorAll('#page h2')[k].innerHTML + '</li>'
                 }
                 addScript("./utils/tools.js")
                 addScript("./utils/ts.js")

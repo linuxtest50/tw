@@ -209,24 +209,26 @@ class TS {
      */
     move(obj) {
         //需要为每一个元素指定一个自己的timer来保存定时器
-        var ele = document.querySelector('.t-pop'),that = this,popWidth = document.querySelector('.t-pop').offsetWidth,
-        popHeight = document.querySelector('.t-pop').offsetHeight;
+        var ele = document.querySelector('.t-pop'), that = this;
         if(tjs.getStyle(ele, 'display') === 'block'){
             console.log('点快啦')
             return
         }
         ele.innerHTML = obj.text;
-        obj.speed = 10
+        obj.speed = 30
         obj.target = obj.target || 10
-        ele.style.cssText += ';opacity:1;display:block;position:fixed;left:auto;right:auto;top:auto;bottom:auto'
+        ele.style.cssText += ';opacity:1;display:block;position:fixed;left:auto;right:auto;top:auto;bottom:auto';
+        var popWidth = document.querySelector('.t-pop').offsetWidth,
+        popHeight = document.querySelector('.t-pop').offsetHeight; // 不能获取隐藏元素的offsetHeight
         // 判断类型
+        console.log(popWidth)
         if(obj.type === 't-success'){
             insertIcon("✔ ")
-            obj.speed = 1
+            obj.speed = 7
             tjs.addClass(ele, 't-success')
         }else if(obj.type === 't-err'){
             insertIcon("× ")
-            obj.speed = 1
+            obj.speed = 5
             tjs.addClass(ele, 't-err')
         }else if(obj.type === 't-info'){
             insertIcon("▪ ")
@@ -235,16 +237,16 @@ class TS {
             insertIcon("! ")
             tjs.addClass(ele, 't-warning')
         }else if(obj.type === 't-alert'){
-            obj.speed = 30
+            obj.speed = 25
             tjs.addClass(ele, 't-alert')
         }
 
         // 判断方向
         if(obj.attr === 'top'){
-            ele.style.left = 'calc(50% - 300px)'
+            ele.style.left = 'calc(50% - '+ popWidth/2 +'px)'
             ele.style.top = -popHeight + 'px'
         }else if(obj.attr === 'bottom'){
-            ele.style.left = 'calc(50% - 300px)'
+            ele.style.left = 'calc(50% - '+ popWidth/2 +'px)'
             ele.style.bottom = -popHeight + 'px'
         }else if(obj.attr === 'left'){
             ele.style.top = 200 + 'px'
@@ -278,7 +280,7 @@ class TS {
                 if(obj.time){
                     clearTimeout(ele.timeout)
                     ele.timeout = setTimeout(function () {
-                        ele.style.cssText += ';display:none;opacity:0;position:static;left:auto;right:auto;top:auto;bottom:auto';
+                        ele.style.cssText += ';display:none;opacity:0;position:static;left:auto;right:auto;top:auto;bottom:auto'
                         tjs.removeClass(ele, obj.type)
                         //判断是否有回调函数
                         if (obj.callBack) {
@@ -657,7 +659,7 @@ class TS {
     }
 
     /**
-     *  获取iP地址
+     * 获取iP地址
      */
     getUserIP(onNewIP) {
         // onNewIp - your listener function for new IPs
@@ -699,7 +701,7 @@ class TS {
     }
 
     /**
-     *  ajax
+     * ajax
      */
     ajax(obj) {
         //1. 创建一个xmlhttpRequest对象
@@ -843,6 +845,140 @@ class TS {
 
     }
 
+    /**
+     * 城市联动
+     */
+    chinaLinkage() {
+        var province = document.querySelector('.t-china-linkage .province'), city = document.querySelector('.t-china-linkage .city'),
+            area = document.querySelector('.t-china-linkage .area'), street = document.querySelector('.t-china-linkage .street'),
+            cp = document.querySelector('.city').previousElementSibling, ap = document.querySelector('.area').previousElementSibling,
+            sp = document.querySelector('.street').previousElementSibling, cselects = document.querySelectorAll('.t-china-linkage .t-select');
+        require.config({
+            paths : {
+                text : 'https://cdn.bootcss.com/require-text/2.0.12/text',
+                json : 'https://cdn.bootcss.com/requirejs-plugins/1.0.3/json' //alias to plugin
+            }
+        });
+        require(['json!./utils/china.json'], function (dataJson) {
+            // console.log(dataJson)
+            for (var i = 0; i < dataJson.length; i++) {
+                province.innerHTML += '<li>'+ dataJson[i].name + '</li>'
+            }
+            // 省
+            var pliIndex, cliIndex;
+            province.onclick = function (event) {
+                var e = event || window.event;
+                cp.innerHTML = '请选择城市';
+                ap.innerHTML = '请选择区县';
+                sp.innerHTML = '请选择乡镇';
+                if(e.target.nodeName.toLowerCase() === "li"){
+                    var pliArr = e.target.parentNode.children;
+                    pliIndex = Array.prototype.indexOf.call(pliArr, e.target);
+                    console.log(pliIndex)
+                    city.innerHTML = '<li>请选择城市</li>'
+                    area.innerHTML = '<li>请选择区县</li>'
+                    street.innerHTML = '<li>请选择乡镇</li>'
+                    if(pliIndex){
+                        var thisCityArr = dataJson[pliIndex - 1].children;
+                        if(thisCityArr.length > 6){
+                            city.style.cssText += ';height:266px; overflow-y:auto'
+                        }else{
+                            city.style.cssText += ';height:auto;'
+                        }
+                        for (var j = 0; j < thisCityArr.length; j++) {
+                            city.innerHTML += '<li>'+ thisCityArr[j].name + '</li>'
+                        }
+                    }
+                    tjs.removeClass(this, 'transitionDropIn')
+                    tjs.addClass(this, 'transitionDropOut')
+                    var that = this
+                    setTimeout(function () {
+                        that.style.display = 'none'
+                    },500)
+                    this.previousElementSibling.innerHTML = e.target.innerHTML
+                }
+            }
+            // 市
+            city.onclick = function (event) {
+                var e = event || window.event;
+                ap.innerHTML = '请选择区县';
+                sp.innerHTML = '请选择乡镇';
+                if(e.target.nodeName.toLowerCase() === "li"){
+                    var cliArr = e.target.parentNode.children;
+                    cliIndex = Array.prototype.indexOf.call(cliArr, e.target);
+                    area.innerHTML = '<li>请选择区县</li>'
+                    street.innerHTML = '<li>请选择乡镇</li>'
+                    if(cliIndex){
+                        var thisAreaArr = dataJson[pliIndex - 1].children[cliIndex - 1].children;
+                        if(thisAreaArr.length > 6){
+                            area.style.cssText += ';height:266px; overflow-y:auto'
+                        }else{
+                            area.style.cssText += ';height:auto'
+                        }
+                        for (var j = 0; j < thisAreaArr.length; j++) {
+                            area.innerHTML += '<li>'+ thisAreaArr[j].name + '</li>'
+                        }
+                    }
+                    tjs.removeClass(this, 'transitionDropIn')
+                    tjs.addClass(this, 'transitionDropOut')
+                    var that = this
+                    setTimeout(function () {
+                        that.style.display = 'none'
+                    },500)
+                    this.previousElementSibling.innerHTML = e.target.innerHTML
+                }
+            }
+            // 县
+            area.onclick = function (event) {
+                var e = event || window.event;
+                sp.innerHTML = '请选择乡镇';
+                if(e.target.nodeName.toLowerCase() === "li"){
+                    var aliArr = e.target.parentNode.children;
+                    var aliIndex = Array.prototype.indexOf.call(aliArr, e.target);
+                    street.innerHTML = '<li>请选择乡镇</li>'
+                    if(aliIndex){
+                        var thisStreetArr = dataJson[pliIndex - 1].children[cliIndex - 1].children[aliIndex - 1].children;
+                        if(thisStreetArr.length > 6){
+                            street.style.cssText += ';height:266px; overflow-y:auto'
+                        }else{
+                            street.style.cssText += ';height:auto;'
+                        }
+                        for (var j = 0; j < thisStreetArr.length; j++) {
+                            street.innerHTML += '<li>'+ thisStreetArr[j].name + '</li>'
+                        }
+                    }
+                    tjs.removeClass(this, 'transitionDropIn')
+                    tjs.addClass(this, 'transitionDropOut')
+                    var that = this
+                    setTimeout(function () {
+                        that.style.display = 'none'
+                    },500)
+                    this.previousElementSibling.innerHTML = e.target.innerHTML
+                }
+            }
+            // 乡
+            street.onclick = function (event) {
+                var e = event || window.event;
+                if(e.target.nodeName.toLowerCase() === "li"){
+                    tjs.removeClass(this, 'transitionDropIn')
+                    tjs.addClass(this, 'transitionDropOut')
+                    var that = this
+                    setTimeout(function () {
+                        that.style.display = 'none'
+                    },500)
+                    this.previousElementSibling.innerHTML = e.target.innerHTML
+                }
+            }
+
+            for (var j = 0; j < cselects.length; j++) {
+                cselects[j].onclick = function () {
+                    if(this.querySelector('ul').children.length < 8){
+                        this.querySelector('ul').style.cssText += ';height:auto'
+                    }
+                };
+            }
+        })
+    }
 
 
 
