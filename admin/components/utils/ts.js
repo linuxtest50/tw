@@ -135,18 +135,18 @@ class TS {
      * 右键
      */
     keyRight(){
-        var box=document.getElementById("keyRight"), keybox = document.querySelector('.key_right');
-        if(!keybox)return
-        keybox.oncontextmenu=function(ev){
-            console.log(ev)
-            box.style.display="block";
-            ev=ev||event;
-            box.style.left=ev.pageX+"px";
-            box.style.top=ev.pageY+"px";
+        var box = document.getElementById("keyRight"), keybox = document.querySelector('.key_right');
+        if(!keybox) return
+        keybox.oncontextmenu = function(ev){
+            // console.log(ev)
+            box.style.display = "block";
+            ev = ev || event;
+            box.style.left = ev.pageX+"px";
+            box.style.top = ev.pageY+"px";
             return false;
         }
-        document.onclick=function(){
-            box.style.display="none";
+        document.onclick = function(){
+            box.style.display = "none";
         }
     }
     /**

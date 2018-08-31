@@ -491,7 +491,9 @@ var tjs = {
 	},
 
 
-    /*requestAnimationFrame*/
+    /**
+	 * requestAnimationFrame
+     */
     reqAniFrame: function() {
 		(function() {
 			var lastTime = 0;
@@ -519,7 +521,7 @@ var tjs = {
 	},
 
 	/**
-	 *  判断浏览器版本
+	 * 判断浏览器版本
 	 */
     getBrowserInfo: function(){
         var Sys = {}, ua = navigator.userAgent.toLowerCase(), s, result;
@@ -536,8 +538,19 @@ var tjs = {
         if (Sys.opera) result = 'Opera: ' + Sys.opera;
         if (Sys.safari) result = 'Safari: ' + Sys.safari;
         return result;
-    }
+    },
 
+	/**
+	 * 去字符串两端空格
+	 */
+    trim : function(str) {
+        // var str = this,
+	  	var str = str.replace(/^\s\s*/, ''),
+            ws = /\s/,
+            i = str.length;
+        while (ws.test(str.charAt(--i)));
+        return str.slice(0, i + 1);
+    }
 }
 
 

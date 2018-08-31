@@ -26,9 +26,14 @@ a, a:link, a:visited, a:hover, a:active{
 .t-color{
     color: #05a6ff !important;
 }
-.t-not-allowed:hover{
+.t-bg{
+    background: #05a6ff;
+    color: #fff !important;
+}
+
+.t-not-allowed, .t-not-allowed:hover{
     background: none !important;
-    color: #ccc !important;
+    color: #05a6ff !important;
     cursor:not-allowed !important;
 }
 .icon {
@@ -291,9 +296,11 @@ a, a:link, a:visited, a:hover, a:active{
 }
 
 /*paging*/
+.t-paging{
+    height: 32px;
+    line-height: 32px;
+}
 .t-paging a{
-    height: 30px;
-    line-height: 30px;
     padding:0 12px;
     border-left: none;
 }
@@ -309,6 +316,34 @@ div.t-paging-table>a:hover{
     background: none;
     color:#05a6ff;
 }
+.t-paging select{
+    vertical-align: top;
+    border: 1px solid #05a6ff;
+    margin:0 10px;
+    cursor: pointer;
+    color: #05a6ff;
+    padding: 0 5px;
+}
+.t-paging input{
+    width: 38px;
+    border: 1px solid #05a6ff;
+    border-radius: 2px;
+    margin:0 6px;
+    vertical-align: top;
+    text-align: center;
+}
+.t-paging button{
+    padding:0 20px ;
+    margin-left: 10px;
+}
+.t-paging a, .t-paging select, .t-paging input, .t-paging button{
+    height: 100%;
+    line-height: 32px;
+}
+a.first-item, a.not-allowed-first{
+    display: none;
+}
+
 /*loading*/
 .t-loading{
     width: 32px;
@@ -530,17 +565,21 @@ button{
 /*upload*/
 .t-upload{
     position: relative;
+    display: inline-block;
+    overflow: hidden;
+    margin-top: 20px;
 }
 .t-upload input{
-    /*display: none;*/
-    width: 110px;
     position: absolute;
-    left: 0;
+    right: 0;
+    top: 0;
     height: 38px;
     opacity: 0;
     cursor: pointer;
 }
-
+.t-upload-div img, .t-upload-div pre{
+    display: block;
+}
 
 
 
