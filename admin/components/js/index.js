@@ -354,158 +354,228 @@ function nextAllUntil(elem, until) { // 获取后面兄弟元素,直到为until
     return dir( elem, "nextElementSibling", until);
 }
 var ele = document.querySelector('.pagData')
-var arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,
-51,52,53,54,55,56];
+var arr = [];
+for (var i = 1; i < 70; i++) {
+    arr.push(i)
+}
+var n = 15
+// console.log(n - 4 * Math.ceil( n/4 - 1 ))
+// 09/5  1.8 4 1  -8  2.25
+// 10/5  2.0 0 2
+// 11/5  2.2 1 3                -0   n- 4*2 Math.ceil(n/4 - 1)
+// 12/5  2.4 2 4       3
+
+// 13/5  2.6 3 1  -12  3.25              n- 4*3
+// 14/5  2.8 4 2
+// 15/5  3.0 0 3
+// 16    3.2 1 4        4        -4
+
+// 17/5  3.4 2 1  -16  4.25         -8   n- 4*4
+// 18    3.6 3 2
+// 19    3.8 4 3
+// 20    4.0 0 4        5        -8
+// if(pagNum - 8 > 4){
+//     n = pagNum - 8 -4n
+// }else{
+//     n = pagNum - 8
+// }
 function paging(obj) {
     var pagEle = document.querySelector('.t-paging'), dataArr, targetBgNum, pageSize = obj.pageSize || 10, pageNum = Math.ceil(obj.totalSize/pageSize);
     pagEle.onclick = function (event) {
         var e = event || window.event, pagEleA = document.querySelectorAll('.t-paging a');
         if(e.target.nodeName === 'A'){ // 点击数字btn
             var pagingPre = document.querySelector('.paging-pre'),
-                pagingNext = document.querySelector('.paging-next');
-            for (var i = 0; i < pagEleA.length; i++) {
-                tjs.removeClass(pagEleA[i], 't-bg')
+                pagingNext = document.querySelector('.paging-next'),
+                targetIndex;
+            for (var j = 0; j < pagEleA.length; j++) {
+                // 找到有bg的a
+                if (tjs.hasClass(pagEleA[j], 't-bg')) {
+                    targetBgNum = parseInt(pagEleA[j].innerText)
+                    targetIndex = j
+                }
             }
-            if(!tjs.trim(e.target.className)){
-                var isLastPre = tjs.hasClass(e.target.nextElementSibling, 'not-allowed-last'),
-                    isFirstNext = tjs.hasClass(e.target.previousElementSibling, 'not-allowed-first'),
-                    naFirst = document.querySelector('.not-allowed-first'),
-                    naLast = document.querySelector('.not-allowed-last'),
-                    firstItem = document.querySelector('.first-item');
-                if(naLast){
-                    var allA = prevAllUntil(naLast, 'not-allowed-first'); // 获取两个···中间的a
+            // console.log(targetIndex)
+            if(tjs.hasClass(e.target, 'paging-pre')){ // 上一页
+                if(tjs.hasClass(pagEleA[targetIndex].previousElementSibling, 'not-allowed-first')){
+                    setPag(pagEleA[targetIndex], pagEleA, pagingNext)
+                    // console.log('点击上一页（当前页的前面是···）')
+                }else{
+                    if(targetBgNum !== 1){
+                        // console.log('点击上一页（当前页的前面不是first···也不是1）')
+                        setPag(pagEleA[targetIndex].previousElementSibling, pagEleA, pagingNext)
+                    }
                 }
-
-                if(isLastPre){ // 判断是否是last···前一位a
-                    // console.log(e.target.innerHTML)
-
-                    // var allA = prevAllUntil(naLast, 'not-allowed-first');
-                    // 自动页数++
-                    for (var k = 0; k < allA.length; k++) {
-                        allA[k].innerHTML = e.target.innerHTML++
+            }else if(tjs.hasClass(e.target, 'paging-next')){ // 下一页
+                if(tjs.hasClass(pagEleA[targetIndex].nextElementSibling, 'not-allowed-last')){
+                    setPag(pagEleA[targetIndex], pagEleA, pagingNext)
+                    // console.log('点击下一页（当前页的后面是···）')
+                }else{
+                    if(targetBgNum !== pageNum){
+                        // console.log('点击下一页（当前页的后面不是last···也不是尾页）')
+                        setPag(pagEleA[targetIndex].nextElementSibling, pagEleA, pagingNext)
                     }
-                    // 设置bg
-                    tjs.addClass(allA[0], 't-bg')
-                    dataArr = showData(allA[0].innerHTML)
-                    // 显示first···
-                    firstItem.style.display = 'inline-block'
-                    naFirst.style.display = 'inline-block'
-                    // 判断是否翻页到结尾
-                    if(parseInt(e.target.innerText) + 5 > pageNum){
-                        var pagEndingArr = prevAllUntil(naLast, 't-bg')
-                        // console.log(pagEndingArr)
-                        // 隐藏多余的a
-                        for (var m = 0; m < pagEndingArr.length; m++) {
-                            if(parseInt(pagEndingArr[m].innerText) === pageNum){
-                                var hideAArr = nextAllUntil(pagEndingArr[m], 'paging-next');
-                                for (var n = 0; n < hideAArr.length; n++) {
-                                    hideAArr[n].style.display = 'none';
-                                }
-                            }
-                        }
-                    }
-                }else if(isFirstNext && tjs.getStyle(naFirst, 'display') === 'inline-block'){// 判断是否是first···后一位a
-                    // 自动页数--
-                    console.log(allA)
-                    // 判断是否翻页到开头
-                    if(parseInt(e.target.innerText) - 5 < 1){
-                        // 隐藏first···
-                        firstItem.style.display = 'none'
-                        naFirst.style.display = 'none'
-                    }
-                    // 显示隐藏的a
-                    // var showAArr = nextAllUntil(naFirst, 'paging-next');
-                    for (var p = allA.length - 1; p > 0; p--) {
-                        allA[p].innerHTML = e.target.innerHTML--
-                        if(tjs.getStyle(allA[p], 'display') === 'none'){
-                            allA[p].style.display = 'inline-block'
-                        }
-                    }
-                    pagingNext.previousElementSibling.style.display = 'inline-block'
-                    naLast.style.display = 'inline-block'
-
-                    console.log(allA)
-                    // 设置bg
-                    tjs.addClass(allA[allA.length - 1], 't-bg')
-                    dataArr = showData(allA[allA.length - 1].innerHTML)
-
-                }else{ // 其他无class的a 包括pagNum位即末位a
-                    tjs.addClass(e.target, 't-bg')
-                    dataArr = showData(e.target.innerHTML)
-                    console.log(2222222222)
                 }
-
-                // console.log(e.target.innerHTML)
-                // obj.callBack(dataArr)
-
-            }else{ // 点击有class的a
-
-                if(e.target.className === 'paging-pre'){ // 上一页
-                    // for (var j = 0; j < pagEleA.length; j++) {
-                    //     // 找到有bg的a
-                    //     if (tjs.hasClass(pagEleA[j], 't-bg')) {
-                    //         targetBgNum = parseInt(pagEleA[j].innerText)
-                    //         console.log(targetBgNum)
-                    //         if (targetBgNum === 1) {
-                    //             // dataArr = showData(targetBgNum--)
-                    //             tjs.addClass(pagEleA[targetBgNum], 't-bg')
-                    //             return
-                    //         }
-                    //     }
-                    // }
-                            // // 判断当前a是否是···
-                            // if(targetNum === document.querySelector('.t-not-allowed').innerHTML){
-                            //     return
-                            // }
-
-                            // tjs.removeClass(pagEleA[j], 't-bg')
-                            // tjs.addClass(pagEleA[targetNum], 't-bg')
-                        // }
-                    // }
-                }else if(e.target.className === 'paging-next'){ // 下一页
-
-                }else{ // 点击first-item 首位a
-                    if(tjs.hasClass(e.target, 't-not-allowed'))return // 略过首尾···
-                    tjs.addClass(e.target, 't-bg')
-                    dataArr = showData(e.target.innerHTML)
-                }
-
+            }else{
+                setPag(e.target, pagEleA, pagingNext)
+                // console.log('点击其他数字页')
             }
+
             obj.callBack(dataArr)
-
             // 判断当前页是否为首尾页
             for (var q = 0; q < pagEleA.length; q++) {
                 // 找到有bg的a
                 if(tjs.hasClass(pagEleA[q], 't-bg')){
                     targetBgNum = parseInt(pagEleA[q].innerText)
-                    console.log(targetBgNum)
+                    // console.log(targetBgNum)
                     if(targetBgNum === 1){
                         tjs.addClass(pagingPre, 't-not-allowed')
-                        return
-                    }else if(targetBgNum === pageNum){
+                    }else{
+                        if(tjs.hasClass(pagingPre, 't-not-allowed')){
+                            tjs.removeClass(pagingPre, 't-not-allowed')
+                        }
+                    }
+                    if(targetBgNum === pageNum){
                         tjs.addClass(pagingNext, 't-not-allowed')
-                        return
+                    }else{
+                        if(tjs.hasClass(pagingNext, 't-not-allowed')){
+                            tjs.removeClass(pagingNext, 't-not-allowed')
+                        }
                     }
-                    // console.log(pagingPre)
-                    if(tjs.hasClass(pagingPre, 't-not-allowed')){
-                        tjs.removeClass(pagingPre, 't-not-allowed')
-                    }
-                    if(tjs.hasClass(pagingNext, 't-not-allowed')){
-                        tjs.removeClass(pagingNext, 't-not-allowed')
-                    }
-
-                    // // 判断当前a是否是···
-                    // if(targetNum === document.querySelector('.t-not-allowed').innerHTML){
-                    //     return
-                    // }
-
-                    // tjs.removeClass(pagEleA[j], 't-bg')
-                    // tjs.addClass(pagEleA[targetNum], 't-bg')
                 }
             }
 
         }
     }
+
+    function setPag(target, pagEleA, pagingNext) {
+        if(tjs.hasClass(target, 't-not-allowed'))return
+        for (var i = 0; i < pagEleA.length; i++) { // 此处重点
+            tjs.removeClass(pagEleA[i], 't-bg')
+        }
+        var isLastPre = tjs.hasClass(target.nextElementSibling, 'not-allowed-last'),
+            isFirstNext = tjs.hasClass(target.previousElementSibling, 'not-allowed-first'),
+            // isFirstPre = tjs.hasClass(target.nextElementSibling, 'not-allowed-first'),
+            naFirst = document.querySelector('.not-allowed-first'),
+            naLast = document.querySelector('.not-allowed-last'),
+            firstItem = document.querySelector('.first-item');
+        if(naLast){
+            var allA = prevAllUntil(naLast, 'not-allowed-first'); // 获取两个···中间的a
+        }
+        if(isLastPre && tjs.getStyle(naLast, 'display') === 'inline-block'){ // 判断是否是last···前一位a
+            console.log('是后面省略号的前一位,并且省略号显示')
+            // 自动页数++
+            for (var k = 0; k < allA.length; k++) {
+                allA[k].innerHTML = target.innerHTML++
+            }
+            // 设置bg
+            tjs.addClass(allA[0], 't-bg')
+            dataArr = showData(allA[0].innerHTML)
+            // 显示first···
+            firstItem.style.display = 'inline-block'
+            naFirst.style.display = 'inline-block'
+            console.log(parseInt(target.innerText))
+            if(parseInt(target.innerText) === pageNum){
+                naLast.style.display = 'none'
+                naLast.previousElementSibling.style.display = 'none'
+            }
+            // 判断是否翻页到结尾
+            if(parseInt(target.innerText) > pageNum){
+                var pagEndingArr = prevAllUntil(naLast, 't-bg')
+                // 隐藏多余的a
+                for (var m = 0; m < pagEndingArr.length; m++) {
+                    if(parseInt(pagEndingArr[m].innerText) > pageNum){
+                        var hideAArr = nextAllUntil(pagEndingArr[m], 'paging-next');
+                        for (var n = 0; n < hideAArr.length; n++) {
+                            pagEndingArr[m].style.display = 'none';
+                        }
+                    }
+                }
+                naLast.style.display = 'none'
+                pagingNext.previousElementSibling.style.display = 'none'
+                // console.log(parseInt(target.innerText) - pageNum)
+            }
+
+        }else if(isFirstNext && tjs.getStyle(naFirst, 'display') === 'inline-block'){// 判断是否是first···后一位a
+            console.log('是前面省略号的后一位,并且省略号显示')
+            // 判断是否翻页到开头
+            if(parseInt(target.innerText) - 5 < 1){
+                // 隐藏first···
+                firstItem.style.display = 'none'
+                naFirst.style.display = 'none'
+            }
+            // 显示隐藏的a
+            if(parseInt(target.innerText) !== 1){
+                for (var p = allA.length - 1; p > 0; p--) {
+                    // 自动页数--
+                    allA[p].innerHTML = target.innerHTML--
+                    if(tjs.getStyle(allA[p], 'display') === 'none'){
+                        allA[p].style.display = 'inline-block'
+                    }
+                }
+            }
+            pagingNext.previousElementSibling.style.display = 'inline-block'
+            naLast.style.display = 'inline-block'
+            console.log(allA)
+            // 设置bg
+            tjs.addClass(allA[allA.length - 1], 't-bg')
+            dataArr = showData(allA[allA.length - 1].innerHTML)
+
+        }else{ // 其他class的a
+            console.log('是其他a')
+            // console.log(target.innerHTML)
+            if(parseInt(target.innerText) === 1){
+                console.log('首位a')
+                // 隐藏first···
+                firstItem.style.display = 'none'
+                naFirst.style.display = 'none'
+                for (var q = 0; q < allA.length; q++) {
+                    allA[q].innerHTML = q + 1
+                    if(parseInt(allA[q].innerHTML) === 1){
+                        tjs.addClass(allA[q], 't-bg')
+                    }
+                    // 显示隐藏的a
+                    if(tjs.getStyle(allA[q], 'display') === 'none'){
+                        allA[q].style.display = 'inline-block'
+                    }
+                }
+                pagingNext.previousElementSibling.style.display = 'inline-block'
+                naLast.style.display = 'inline-block'
+            }
+            if(parseInt(target.innerText) === pageNum){
+                console.log('末位a')
+                firstItem.style.display = 'inline-block'
+                naFirst.style.display = 'inline-block'
+                naLast.style.display = 'none'
+                pagingNext.previousElementSibling.style.display = 'none'
+                // 显示first···
+                // 隐藏last
+                // console.log(pagEndingArr)
+                var length = pageNum - 4 * Math.ceil( pageNum/4 - 1 )
+                var arr1 = []
+                for (var x = 0; x < length; x++) {
+                    arr1.unshift(pageNum--)
+                }
+                console.log(arr1)
+                pageNum = Math.ceil(obj.totalSize/pageSize)
+                for (var y = 0; y < arr1.length; y++) {
+                    allA[y].innerHTML = arr1[y]
+                    if(parseInt(allA[y].innerHTML) === pageNum){
+                        tjs.addClass(allA[y], 't-bg')
+                        var hideA = nextAllUntil(allA[y], 't-not-allowed')
+                        for (var z = 0; z < hideA.length; z++) {
+                            hideA[z].style.display = 'none';
+                        }
+                    }
+                }
+            }
+            if(parseInt(target.innerText) !== pageNum){
+                tjs.addClass(target, 't-bg')
+            }
+            dataArr = showData(target.innerHTML)
+        }
+    }
+
+
 
     dataArr = showData()
     obj.callBack(dataArr)
