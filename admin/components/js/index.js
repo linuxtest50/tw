@@ -355,37 +355,18 @@ function nextAllUntil(elem, until) { // 获取后面兄弟元素,直到为until
 }
 var ele = document.querySelector('.pagData')
 var arr = [];
-for (var i = 1; i < 70; i++) {
+for (var i = 1; i < 171; i++) {
     arr.push(i)
 }
-var n = 15
+// var n = 15
 // console.log(n - 4 * Math.ceil( n/4 - 1 ))
-// 09/5  1.8 4 1  -8  2.25
-// 10/5  2.0 0 2
-// 11/5  2.2 1 3                -0   n- 4*2 Math.ceil(n/4 - 1)
-// 12/5  2.4 2 4       3
 
-// 13/5  2.6 3 1  -12  3.25              n- 4*3
-// 14/5  2.8 4 2
-// 15/5  3.0 0 3
-// 16    3.2 1 4        4        -4
-
-// 17/5  3.4 2 1  -16  4.25         -8   n- 4*4
-// 18    3.6 3 2
-// 19    3.8 4 3
-// 20    4.0 0 4        5        -8
-// if(pagNum - 8 > 4){
-//     n = pagNum - 8 -4n
-// }else{
-//     n = pagNum - 8
-// }
 function paging(obj) {
     var pagEle = document.querySelector('.t-paging'), dataArr, targetBgNum, pageSize = obj.pageSize || 10, pageNum = Math.ceil(obj.totalSize/pageSize);
     pagEle.onclick = function (event) {
-        var e = event || window.event, pagEleA = document.querySelectorAll('.t-paging a');
+        var e = event || window.event, pagEleA = document.querySelectorAll('.t-paging a'), pagingNext = document.querySelector('.paging-next');
         if(e.target.nodeName === 'A'){ // 点击数字btn
             var pagingPre = document.querySelector('.paging-pre'),
-                pagingNext = document.querySelector('.paging-next'),
                 targetIndex;
             for (var j = 0; j < pagEleA.length; j++) {
                 // 找到有bg的a
@@ -445,6 +426,65 @@ function paging(obj) {
             }
 
         }
+        // 定点跳转
+        if(obj.assign){
+            var assign = document.querySelector('.t-paging>input').value, hasArr = [];
+
+            if(e.target.nodeName === 'BUTTON'){
+                for (var i = 0; i < pagEleA.length; i++) {
+                    // console.log(parseInt(pagEleA[i].innerText))
+                    hasArr.push(pagEleA[i].innerText)
+                }
+                if(assign !==1){
+                    tjs.removeClass(document.querySelector('.paging-pre'), 't-not-allowed')
+                }
+                // console.log(hasArr.indexOf(assign)=== -1)
+                if(hasArr.indexOf(assign) === -1){
+                    if(assign > pageNum){
+                        alert('查无此页')
+                        return
+                    }
+                    for (var i = 0; i < pagEleA.length; i++) { // 此处重点
+                        tjs.removeClass(pagEleA[i], 't-bg')
+                    }
+                    var naFirst = document.querySelector('.not-allowed-first'),
+                        naLast = document.querySelector('.not-allowed-last'),
+                        firstItem = document.querySelector('.first-item'),
+                        target = document.createElement('a');
+                    target.innerHTML = assign
+                    // console.log(target)
+                    if(naLast){
+                        var allA = prevAllUntil(naLast, 'not-allowed-first'); // 获取两个···中间的a
+                    }
+                    lastBefore(allA, target, pagingNext, firstItem, naFirst, naLast)
+                    if(assign <= pageNum - 5){
+                        naLast.style.display = 'inline-block'
+                        pagingNext.previousElementSibling.style.display = 'inline-block'
+                    }
+                }else{
+                    setPag(pagEleA[hasArr.indexOf(assign)], pagEleA, pagingNext)
+                }
+                obj.callBack(dataArr)
+                // seag(pagEleA[i], pagEleA, pagingNext)
+
+            }
+        }
+
+    }
+    if(obj.limit){
+        pagEle.onchange = function (event) {
+            var e = event || window.event;
+            if(e.target.nodeName === 'SELECT'){
+                var selVal = document.querySelector('.t-paging>select')
+                // console.log(selVal)
+                pageSize = selVal.options[selVal.selectedIndex].value
+                pageNum = Math.ceil(obj.totalSize/pageSize)
+                console.log(pageSize)
+                dataArr = showData(1, true)
+                obj.callBack(dataArr)
+                document.querySelector('.t-paging>select').options[selVal.options[selVal.selectedIndex].index].setAttribute('selected', 'selected')
+            }
+        }
     }
 
     function setPag(target, pagEleA, pagingNext) {
@@ -462,39 +502,7 @@ function paging(obj) {
             var allA = prevAllUntil(naLast, 'not-allowed-first'); // 获取两个···中间的a
         }
         if(isLastPre && tjs.getStyle(naLast, 'display') === 'inline-block'){ // 判断是否是last···前一位a
-            console.log('是后面省略号的前一位,并且省略号显示')
-            // 自动页数++
-            for (var k = 0; k < allA.length; k++) {
-                allA[k].innerHTML = target.innerHTML++
-            }
-            // 设置bg
-            tjs.addClass(allA[0], 't-bg')
-            dataArr = showData(allA[0].innerHTML)
-            // 显示first···
-            firstItem.style.display = 'inline-block'
-            naFirst.style.display = 'inline-block'
-            console.log(parseInt(target.innerText))
-            if(parseInt(target.innerText) === pageNum){
-                naLast.style.display = 'none'
-                naLast.previousElementSibling.style.display = 'none'
-            }
-            // 判断是否翻页到结尾
-            if(parseInt(target.innerText) > pageNum){
-                var pagEndingArr = prevAllUntil(naLast, 't-bg')
-                // 隐藏多余的a
-                for (var m = 0; m < pagEndingArr.length; m++) {
-                    if(parseInt(pagEndingArr[m].innerText) > pageNum){
-                        var hideAArr = nextAllUntil(pagEndingArr[m], 'paging-next');
-                        for (var n = 0; n < hideAArr.length; n++) {
-                            pagEndingArr[m].style.display = 'none';
-                        }
-                    }
-                }
-                naLast.style.display = 'none'
-                pagingNext.previousElementSibling.style.display = 'none'
-                // console.log(parseInt(target.innerText) - pageNum)
-            }
-
+            lastBefore(allA, target, pagingNext, firstItem, naFirst, naLast)
         }else if(isFirstNext && tjs.getStyle(naFirst, 'display') === 'inline-block'){// 判断是否是first···后一位a
             console.log('是前面省略号的后一位,并且省略号显示')
             // 判断是否翻页到开头
@@ -504,12 +512,21 @@ function paging(obj) {
                 naFirst.style.display = 'none'
             }
             // 显示隐藏的a
+            console.log(parseInt(target.innerText))
             if(parseInt(target.innerText) !== 1){
-                for (var p = allA.length - 1; p > 0; p--) {
+                for (var p = allA.length - 1; p >= 0; p--) {
                     // 自动页数--
                     allA[p].innerHTML = target.innerHTML--
                     if(tjs.getStyle(allA[p], 'display') === 'none'){
                         allA[p].style.display = 'inline-block'
+                    }
+                    if(parseInt(allA[p].innerText) <= 0){
+                        // console.log(parseInt(allA[p].innerText))
+                        allA[p].style.display = 'none'
+                        // console.log(allA[p])
+                    }else{
+                        allA[p].style.display = 'inline-block'
+                        // console.log('bug')
                     }
                 }
             }
@@ -524,6 +541,11 @@ function paging(obj) {
             console.log('是其他a')
             // console.log(target.innerHTML)
             if(parseInt(target.innerText) === 1){
+                if(pageNum <= 7){
+                    tjs.addClass(pagEleA[3], 't-bg')
+                    dataArr = showData(target.innerHTML)
+                    return
+                }
                 console.log('首位a')
                 // 隐藏first···
                 firstItem.style.display = 'none'
@@ -542,6 +564,11 @@ function paging(obj) {
                 naLast.style.display = 'inline-block'
             }
             if(parseInt(target.innerText) === pageNum){
+                if(pageNum <= 7){
+                    tjs.addClass(pagingNext.previousElementSibling, 't-bg')
+                    dataArr = showData(target.innerHTML)
+                    return
+                }
                 console.log('末位a')
                 firstItem.style.display = 'inline-block'
                 naFirst.style.display = 'inline-block'
@@ -568,18 +595,92 @@ function paging(obj) {
                     }
                 }
             }
-            if(parseInt(target.innerText) !== pageNum){
-                tjs.addClass(target, 't-bg')
+            if(parseInt(target.innerText) !== pageNum && parseInt(target.innerText) !== 1){
+                tjs.addClass(target, 't-bg') //bug
+                console.log(target.innerText)
             }
             dataArr = showData(target.innerHTML)
         }
     }
 
+    function lastBefore(allA, target, pagingNext, firstItem, naFirst, naLast) {
+        console.log('是后面省略号的前一位,并且省略号显示')
+        // 自动页数++
+            // 5    09    13    17    21    25    29       1
+            // 6    10    14    18    22    26    30       2
+            // 7    11    15    19    23    27    31       3
+            // 8    12    16    20    24    28    32       4
+            // 9    13    17    21    25    29    33       5
+        var tarText = target.innerText
+        if(target.innerText%4 === 2){
+            console.log('第二位')
+            setLocation(1)
+        }else if(target.innerText%4 === 3){
+            setLocation(2)
+        }else if(target.innerText%4 === 0){
+            setLocation(3)
+        }else{
+            console.log('第一位')
+            setLocation(0)
+        }
+        function setLocation(num) {
+            for (var k = num; k < allA.length; k++) {
+                if(parseInt(allA[k].innerText) <= 0){
+                    allA[k].style.display = 'none'
+                }else{
+                    allA[k].style.display = 'inline-block'
+                }
+                if(num === 1){
+                    allA[0].innerText = tarText - 1
+                }else if(num ===2){
+                    allA[0].innerText = tarText - 2
+                    allA[1].innerText = tarText - 1
+                }else if(num ===3){
+                    allA[0].innerText = tarText - 3
+                    allA[1].innerText = tarText - 2
+                    allA[2].innerText = tarText - 1
+                }
+                allA[k].innerText = target.innerText++
+            }
+            tjs.addClass(allA[num], 't-bg')
+            dataArr = showData(allA[num].innerText)
+        }
+
+        // 显示first···
+        firstItem.style.display = 'inline-block'
+        naFirst.style.display = 'inline-block'
+        console.log(parseInt(target.innerText))
+        if(parseInt(target.innerText) === pageNum){
+            naLast.style.display = 'none'
+            naLast.previousElementSibling.style.display = 'none'
+        }
+
+        // 判断是否翻页到结尾
+        if(parseInt(target.innerText) > pageNum){
+            var pagEndingArr = prevAllUntil(naLast, 't-bg')
+            // 隐藏多余的a
+            for (var m = 0; m < pagEndingArr.length; m++) {
+                if(parseInt(pagEndingArr[m].innerText) > pageNum){
+                    var hideAArr = nextAllUntil(pagEndingArr[m], 'paging-next');
+                    for (var n = 0; n < hideAArr.length; n++) {
+                        pagEndingArr[m].style.display = 'none';
+                    }
+                }
+            }
+            naLast.style.display = 'none'
+            pagingNext.previousElementSibling.style.display = 'none'
+            // console.log(parseInt(target.innerText) - pageNum)
+        }
+    }
 
 
+
+
+    // 初始化
     dataArr = showData()
     obj.callBack(dataArr)
-    function showData(arg) {
+    // 渲染数据
+    function showData(arg, flag) { // arg 第几页数据
         // console.log(arg)
         //currentPage 为当前页数，pageSize为每页显示的数据量数，totalSize为总数据量数，startIndex开始条数，endIndex结束条数
         var pagArr = [], currentPage = arg || 1,
@@ -590,7 +691,11 @@ function paging(obj) {
         pagArr = arr.slice(startIndex - 1, endIndex)
         // console.log(pagEle.hasChildNodes())
         // 判断首次加载
-        if(pagEle.hasChildNodes()) return pagArr
+        if(flag){ // 切换显示数量
+            pagEle.innerHTML = ''
+        }else{ // 正常翻页
+            if(pagEle.hasChildNodes()) return pagArr
+        }
         // 首次加载执行
         var aLength = obj.totalSize > 7*pageSize ? 5 : pageNum;
         for (var i = 1; i <= aLength; i++) {
@@ -605,27 +710,31 @@ function paging(obj) {
             aEles += '<a href="javascript:;" class="t-not-allowed not-allowed-last">···</a><a href="javascript:;">'+ pageNum +'</a>'
         }
         aEles += '<a href="javascript:;" class="paging-next">下一页</a>'
-        aEles += '<select>\n' +
-                 '<option value="0">10条/页</option>\n' +
-                 '<option value="1">20条/页</option>\n' +
-                 '<option value="2">30条/页</option>\n' +
-                 '<option value="3">40条/页</option>\n' +
-                 '<option value="4">50条/页</option>\n' +
-                 '</select>';
-        aEles += '跳到第<input type="text" value=' + pageNum +' />页' + '<button class="t-btn">确定</button>';
+        if(obj.limit){
+            aEles += '<select>\n' +
+                '<option value="10">10条/页</option>\n' +
+                '<option value="20">20条/页</option>\n' +
+                '<option value="30">30条/页</option>\n' +
+                '<option value="40">40条/页</option>\n' +
+                '<option value="50">50条/页</option>\n' +
+                '</select>';
+        }
+        if(obj.assign){
+            aEles += '跳到第<input type="text" value=' + pageNum +' />页' + '<button class="t-btn">确定</button>';
+        }
         pagEle.innerHTML += aEles
-        // console.log(pagArr)
+        // console.log(document.querySelector('select').selectedIndex)
         return pagArr
     }
-    // return dataArr
 }
 
 console.time('time')
 paging({
-    pageSize: 5,
-    totalSize: arr.length,
-    callBack: function (arg) {
-        // console.log(arg)
+    pageSize: 7, // 每页显示的数量
+    totalSize: arr.length, // 总数量
+    limit: false, // 是否开启范围选择框
+    assign: true, // 是否开启跳转指定页
+    callBack: function (arg) { // 回调
         ele.innerHTML = ''
         arg.forEach(function (item, index) {
             ele.innerHTML += '<li>'+ item + '</li>'
