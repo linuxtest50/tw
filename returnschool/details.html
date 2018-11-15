@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>返校登记详情</title>
+    <!--<link rel="stylesheet" href="./../layui/css/layui.css">-->
+    <link rel="stylesheet" href="/jslib/layui/css/layui.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- 内容主体区域 -->
+    <div class="details">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend><span class="alumnus_name students_name"></span>校友的 返校登记详情</legend>
+        </fieldset>
+        <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop loading"></i>
+        <div style="padding: 20px;" class="layui-form">
+            <script id="studentDetails" type="text/html">
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-md12 reception">
+                        <div class="layui-card">
+                            <div class="layui-col-md1 reception_title">
+                                <p>接待<br/>情况</p>
+                            </div>
+                            {{# if(d.detail.status === 1){ }}
+                                <div class="layui-col-md1 reception_result reception_yes">同意接待</div>
+                            {{# }else{ }}
+                                <div class="layui-col-md1 reception_result reception_no">拒绝接待</div>
+                            {{# } }}
+                            <div class="layui-col-md10 reception_reason">
+                                {{d.detail.remark || '未填写理由'}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-row layui-col-space15">
+                    <!--基本信息-->
+                    <div class="layui-col-md6">
+                        <div class="layui-card">
+                            <div class="layui-card-header">
+                                <p class="title_logo"></p>
+                                <p class="title_info">基本信息</p>
+                                <h3 class="title_item">联系人：<span class="title_username students_name">{{d.detail.name}}</span></h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">联系电话：</label>
+                                    <div class="layui-form-mid students_phone">{{d.detail.phone}}</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">所在班级：</label>
+                                    <div class="layui-form-mid students_class">{{d.detail.schoolClass}}</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">返校的时间：</label>
+                                    <div class="layui-form-mid alumnus_returnSchoolTime">{{d.detail.returnSchoolTime || '00:00:00'}}</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">离校的时间：</label>
+                                    <div class="layui-form-mid alumnus_returnSchoolTime">{{d.detail.leaveSchoolTime || '00:00:00'}}</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">返校人数：</label>
+                                    <div class="layui-form-mid alumnus_returnNumber">{{d.detail.returnNumber || '1'}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--场地需求-->
+                    {{#  if(d.config.need_place){ }}
+                    <div class="layui-col-md6 place">
+                        <div class="layui-card">
+                            <div class="layui-card-header">
+                                <p class="title_logo"></p>
+                                <p class="title_info">场地需求</p>
+                                <h3 class="title_item">是否需要场地：<span class="title_username">{{d.detail.isNeedPlace}}</span></h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">借用时间：</label>
+                                    <div class="layui-form-mid">{{d.detail.placeBorrowTime || '00:00:00'}}</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">归还时间：</label>
+                                    <div class="layui-form-mid">{{d.detail.placeReturnTime || '00:00:00'}}</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">参加人数：</label>
+                                    <div class="layui-form-mid">{{d.detail.placeNumber || '1'}}</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">是否需要投影：</label>
+                                    <div class="layui-form-mid">{{d.detail.isNeedShadow}}</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">场地需求备注：</label>
+                                    <div class="layui-form-mid">{{d.detail.placeRemark || '无'}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{#  } }}
+
+                    <!--参观需求-->
+                    {{#  if(d.config.need_visit){ }}
+                    <div class="layui-col-md6 visit">
+                        <div class="layui-card">
+                            <div class="layui-card-header">
+                                <p class="title_logo"></p>
+                                <p class="title_info">参观需求</p>
+                                <h3 class="title_item">是否需要参观：<span class="title_username students_name">{{d.detail.isNeedVisit}}</span></h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">参观地点：</label>
+                                    <div class="layui-form-mid">{{d.detail.visitSitus}}</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">参观开始时间：</label>
+                                    <div class="layui-form-mid">{{d.detail.visitStartTime || '00:00:00'}}</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">参观结束时间：</label>
+                                    <div class="layui-form-mid">{{d.detail.visitEndTime || '00:00:00'}}</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">参观人数：</label>
+                                    <div class="layui-form-mid">{{d.detail.visitNumber || '1'}}</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">参观需求备注：</label>
+                                    <div class="layui-form-mid">{{d.detail.visitRemark || '无'}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{#  } }}
+
+                    <!--就餐需求-->
+                    {{#  if(d.config.need_eat){ }}
+                    <div class="layui-col-md6 eat">
+                        <div class="layui-card">
+                            <div class="layui-card-header">
+                                <p class="title_logo"></p>
+                                <p class="title_info">就餐需求</p>
+                                <h3 class="title_item">是否在校就餐：<span class="title_username">{{d.detail.isNeedEat}}</span></h3>
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">就餐场地：</label>
+                                    <div class="layui-form-mid">{{d.detail.eatPlace || '无'}}</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">就餐开始时间：</label>
+                                    <div class="layui-form-mid">{{d.detail.eatStartTime || '00:00:00'}}</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">就餐结束时间：</label>
+                                    <div class="layui-form-mid">{{d.detail.eatEndTime || '00:00:00'}}</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">就餐人数：</label>
+                                    <div class="layui-form-mid">{{d.detail.eatNumber || '1'}}</div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label title_item">就餐需求备注：</label>
+                                    <div class="layui-form-mid">{{d.detail.eatRemark || '无'}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{#  } }}
+                </div>
+            </script>
+            <div id="detailsView"></div>
+        </div>
+    </div>
+
+<script src="/jslib/layui/layui.js"></script>
+<!--<script src="https://cdn.bootcss.com/require.js/2.3.5/require.min.js"></script>-->
+<script src="./js/details.js"></script>
+</body>
+</html>
+
+
+
+

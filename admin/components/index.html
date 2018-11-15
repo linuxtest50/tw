@@ -190,13 +190,13 @@
     window.Router = new Router();
     window.Router.init();
     Router.route('/layout', function() {
-        toUrl('http://localhost:63342/webstrom/tw/admin/components/page/layout.html', location)
+        toUrl('./page/layout.html', location)
     });
     Router.route('/css', function() {
-        toUrl('http://localhost:63342/webstrom/tw/admin/components/page/css.html', location)
+        toUrl('./page/css.html', location)
     });
     Router.route('/components', function() {
-        toUrl('http://localhost:63342/webstrom/tw/admin/components/page/components.html', location)
+        toUrl('./page/components.html', location)
     });
 
     // h5 router
@@ -223,13 +223,13 @@
         lis[i].onclick = function(){
             var location = this.getAttribute("id");
             if(location === "layout"){
-                toUrl('http://localhost:63342/webstrom/tw/admin/components/page/layout.html', location)
+                toUrl('http://localhost:63342/work/tw/admin/components/page/layout.html', location)
             }
             if(location === "css"){
-                toUrl('http://localhost:63342/webstrom/tw/admin/components/page/css.html', location)
+                toUrl('http://localhost:63342/work/tw/admin/components/page/css.html', location)
             }
             if(location === "components"){
-                toUrl('http://localhost:63342/webstrom/tw/admin/components/page/components.html', location)
+                toUrl('http://localhost:63342/work/tw/admin/components/page/components.html', location)
             }
         }
     }

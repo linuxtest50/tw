@@ -1,0 +1,155 @@
+.layui-table-cell, .layui-card-header{
+    height: auto;
+    line-height: normal;
+}
+.box, .details{
+    padding: 10px;
+}
+.loading{
+    font-size: 50px;
+    color: #a0cad8;
+    display: block !important;
+    text-align: center;
+    width:200px;
+    margin: 100px auto 0;
+}
+.alumnus_name{
+
+}
+.title_username{
+    color:#000;
+}
+.details .layui-card-header{
+    position: relative;
+    padding-bottom: 17px;
+    border-bottom:none;
+    padding-left: 0;
+}
+.details .layui-card{
+    background: #F9FAFB
+}
+.title_logo{
+    width:0;
+    height: 0;
+    border-top:43px solid #8B9CAC;
+    border-left:43px solid #8B9CAC;
+    border-bottom:43px solid transparent;
+    border-right:43px solid transparent;
+
+}
+.title_info{
+    display: inline-block;
+    transform: rotate(-45deg);
+    -ms-transform:rotate(-45deg); /* Internet Explorer */
+    -moz-transform:rotate(-45deg); /* Firefox */
+    -webkit-transform:rotate(-45deg); /* Safari 和 Chrome */
+    -o-transform:rotate(-45deg); /* Opera */
+    position: absolute;
+    top:21px;
+    color:#fff;
+}
+.details .layui-card-header h3{
+    margin-left: 58px;
+    margin-top: -36px;
+    font-size: 14px;
+}
+.details .layui-card-body{
+    padding-left: 0;
+}
+.place label.title_item, .visit label.title_item, .eat label.title_item{
+    padding-left: 55px;
+}
+
+.layui-form-label{
+    width: 100px;
+}
+.layui-card-header h3 span{
+    padding-left: 16px;
+}
+.title_item{
+    color: #999;
+}
+.reception{
+    background: #F9FAFB;
+    height: 85px;
+    margin-left: 7px;
+    padding-top: 0;
+    padding-left: 0;
+
+}
+.reception_title p{
+    width: 55%;
+    font-size: 16px;
+    border-radius: 5px;
+    background: #8B9CAC;
+    color: #fff;
+    height: 65px;
+    /*line-height: 70px;*/
+    text-align: center;
+    padding-top: 20px;
+}
+.reception_result{
+    font-size: 22px;
+    line-height: 85px;
+}
+.reception_yes{
+    color: #2ab7d5;
+}
+.reception_no{
+    color: red;
+}
+.reception_reason{
+    padding-top: 10px;
+}
+.reception_popup, .remarks_popup{
+    display: none;
+    margin-right: 50px;
+}
+.reception_popup .layui-input-block, .remarks_popup .layui-input-block{
+    margin-left: 60px;
+    margin-top: 20px;
+}
+
+/*配置页*/
+.edit{
+    width: 800px;
+    /*margin: 50px auto 0;*/
+    margin: 50px 0 0 50px;
+}
+.edit>div{
+    margin-bottom: 50px;
+}
+.edit .layui-input-block{
+     margin:10px 0;
+}
+/*#timerComp{*/
+    /*display: none;*/
+    /*position: relative;*/
+/*}*/
+#timerComp .layui-laydate{
+    margin:0 auto
+}
+.mytime_input {
+    width: 320px;
+}
+.laydate-footer-btns span{
+    margin: 3px 8px 0 -1px !important;
+}
+.layui-laydate-footer{
+    height: 77px !important;
+}
+
+.layui-form-checked span, .layui-form-checked:hover span, .layui-btn,.layui-form-select dl dd.layui-this, .layui-laydate tr .layui-this,
+.layui-laydate-content td.laydate-selected, .layui-laydate ol .layui-this, .layui-laypage .layui-laypage-curr .layui-laypage-em,.layui-layer-btn .layui-layer-btn0{
+    background-color: #a0cad8 !important;
+}
+.layui-form-checked i, .layui-form-checked:hover i, .layui-laydate-footer span:hover, .layui-laydate-footer span[lay-type=date], .layui-laypage a:hover{
+    color:#a0cad8 !important;
+}
+.layui-btn-primary:hover,.layui-layer-btn .layui-layer-btn0 {
+    border-color: #a0cad8 !important;
+    color: #fff !important;
+}
+.layui-btn-primary{
+    color:#fff !important;
+}

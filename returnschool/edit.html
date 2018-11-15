@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>管理</title>
+    <!--<link rel="stylesheet" href="./../layui/css/layui.css">-->
+    <link rel="stylesheet" href="/jslib/layui/css/layui.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- 内容主体区域 -->
+    <div class="edit">
+        <div class="layui-form">
+            <label class="">请选择前台需要展示的信息模块</label>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input type="checkbox" name="place_edit" title="场地需求" class="place_edit">
+                    <input type="checkbox" name="visit_edit" title="参观需求" class="visit_edit">
+                    <input type="checkbox" name="eat_edit" title="就餐需求" class="eat_edit">
+                </div>
+                <button class="layui-btn layui-btn-primary save_edit" lay-submit lay-filter="userinfo_item">保存</button>
+            </div>
+        </div>
+        <div class="layui-form">
+            <label style="display: block; margin-bottom: 10px">请添加可选使用场地</label>
+            <div class="layui-inline">
+                <input type="text" name="visitPlace" lay-verify="" autocomplete="off" placeholder="请输入地址信息" class="layui-input" >
+            </div>
+            <button class="layui-btn layui-btn-primary add_address" lay-submit lay-filter="add_address">新增地址</button>
+            <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop loading"></i>
+            <table id="addrTable" lay-filter="addr_tab"></table>
+            <script type="text/html" id="barAddrEdit">
+                <a href="###" class="layui-btn-xs" lay-event="edit">编辑</a>
+                <a href="###" class="layui-btn-xs" lay-event="del">删除</a>
+
+                {{#  if(d.id > 200){ }}
+                <!--<a class=" layui-btn-xs" lay-event="check">审核</a>-->
+                {{#  } }}
+            </script>
+        </div>
+
+    </div>
+<!--<script src="./../layui/layui.js"></script>-->
+<script src="/jslib/layui/layui.js"></script>
+<!--<script src="https://cdn.bootcss.com/require.js/2.3.5/require.min.js"></script>-->
+<script src="./js/edit.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
+
+
+
+

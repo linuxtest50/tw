@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>返校管理</title>
+    <!--<link rel="stylesheet" href="/jslib/layui/css/layui.css">-->
+    <link rel="stylesheet" href="./../layui/css/layui.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- 内容主体区域 -->
+    <div class="box layui-form">
+        <div class="layui-inline">
+            <input type="text" name="peopleName" lay-verify="" autocomplete="off" placeholder="请输入联系人姓名" class="layui-input" >
+        </div>
+        <div class="layui-inline sel_timer">
+            <input type="text" name="returnSchoolTime" lay-verify="" autocomplete="off" placeholder="请选择返校日期范围" class="layui-input date_plugin mytime_input" >
+            <!--<select name="returnSchoolTime" lay-filter="selTimer">-->
+                <!--<option value="">请选择返校时间段</option>-->
+                <!--<option value="0">未来7天</option>-->
+                <!--<option value="1">未来30天</option>-->
+                <!--<option value="1">未来半年</option>-->
+                <!--<option value="1">未来一年</option>-->
+                <!--<option value="1">一年以后</option>-->
+                <!--<option value="1">过去30天</option>-->
+                <!--<option value="1">过去半年</option>-->
+                <!--<option value="1">过去一年</option>-->
+                <!--<option value="1">更久远</option>-->
+                <!--<option value="custom">自定义</option>-->
+            <!--</select>-->
+        </div>
+        <div class="layui-inline">
+            <select name="returnPeopleNum" lay-verify="">
+                <option value="">请选择返校人数</option>
+                <option value="1-1">1人</option>
+                <option value="2-2">2人</option>
+                <option value="3-3">3人</option>
+                <option value="4-4">4人</option>
+                <option value="5-5">5人及5人以上</option>
+            </select>
+        </div>
+        <div class="layui-inline">
+            <select name="isNeedPlace" lay-verify="">
+                <option value="">是否需要聚会场地</option>
+                <option value="是">是</option>
+                <option value="否">否</option>
+            </select>
+        </div>
+        <div class="layui-inline">
+            <select name="isNeedVisit" lay-verify="">
+                <option value="">是否需要参观</option>
+                <option value="是">是</option>
+                <option value="否">否</option>
+            </select>
+        </div>
+        <div class="layui-inline">
+            <select name="isNeedEat" lay-verify="">
+                <option value="">是否在校就餐</option>
+                <option value="是">是</option>
+                <option value="否">否</option>
+            </select>
+        </div>
+        <button class="layui-btn" id="queryInfo" lay-submit lay-filter="criteriaQuery">查询</button>
+        <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop loading"></i>
+        <table id="userTable" lay-filter="user_tab"></table>
+        <script type="text/html" id="barUserEdit">
+            <a href="./details.html?id={{d.id}}" class="layui-btn-xs" lay-event="details">查看</a>
+            <a href="javascript:;" class="layui-btn-xs" lay-event="reception">接待审核</a>
+            <!--<a href="" class="layui-btn-xs" lay-event="userTransfer">拒绝接待</a>-->
+            <!--<br/>-->
+            <a href="javascript:;" class="layui-btn-xs changeTimerBtn" lay-event="editTimer">变更返校时间</a>
+            <a href="javascript:;" class="layui-btn-xs" lay-event="remarks">备注</a>
+            {{#  if(d.id > 200){ }}
+            <!--<a class=" layui-btn-xs" lay-event="check">审核</a>-->
+            {{#  } }}
+        </script>
+        <div id="pageDiv"></div>
+    </div>
+    <!--审核弹窗-->
+    <div class="reception_popup layui-form">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <select name="receptionStatus" lay-verify="receptionStatus">
+                    <option value="">请确认审核结果</option>
+                    <option value="1">通过</option>
+                    <option value="2">不通过</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <div class="layui-input-block">
+                <textarea placeholder="请输入审核意见或反馈" class="layui-textarea" name="receptionText"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!--备注弹窗-->
+    <div class="remarks_popup layui-form">
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <textarea placeholder="请输入备注信息，100字以内" class="layui-textarea" lay-verify="remarksInfo" name="remarksInfo"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="timerComp"></div>
+<script src="./../layui/layui.js"></script>
+<!--<script src="/jslib/layui/layui.js"></script>-->
+<!--<script src="https://cdn.bootcss.com/require.js/2.3.5/require.min.js"></script>-->
+<script src="./js/index.js"></script>
+<script src="./js/formatTime.js"></script>
+</body>
+</html>
+
+
+
+
