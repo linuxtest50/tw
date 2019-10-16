@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+<title></title>
+<meta name="keywords" content="">
+<meta name="description" content=""> 
+<!-- <script type="text/javascript" src="js/protect.js"></script> -->
+<style>
+body {
+	overflow: hidden;
+	margin: 0 auto;
+	background: url('16.jpg') no-repeat; 
+	background-attachment:fixed;
+	background-size:cover; 
+	-moz-background-size:cover; 
+	-webkit-background-size:cover;
+}
+
+.snowfall-flakes:before {
+	content: "";
+	/*绝对定位*/
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 10px;
+	height: 16px;
+	transform: rotate(-45deg);
+	background-color: red;
+	border-radius: 5px 5px 1px 1px;
+}
+
+.snowfall-flakes:after {
+	content: ""; /*激活伪元素的必要因素*/
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 10px;
+	height: 16px;
+	transform: translateX(4.3px) rotate(45deg);
+	background-color: red;
+	border-radius: 5px 5px 1px 1px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="wrap"></div>
+
+<!-- <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script> -->
+<script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="a.js"></script>
+<script type="text/javascript">
+    $(document).snowfall({ flakeCount: 100, maxSpeed: 5 });
+ //    eval(function (p, a, c, k, e, r) {
+	//     e = function (c) {
+	//         return c.toString(a)
+	//     };
+	//     if (!''.replace(/^/, String)) {
+	//         while (c--) r[e(c)] = k[c] || e(c);
+	//         k = [function (e) {
+	//             return r[e]
+	//         }];
+	//         e = function () {
+	//             return '\\w+'
+	//         };
+	//         c = 1
+	//     };
+	//     while (c--)
+	//         if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
+	//     return p
+	// }('0 3=7.8;0 1=5 6(\'2\');f(!1.9(3)){a.b.c=\'d://e.2.4/\'}', 16, 16,
+	//     'var|sear|abc|host2|com|new|RegExp|document|domain|test|window|location|href|http|www|if'.split('|'), 0, {}
+	// ));
+</script>
+
+
+
+</body></html>
